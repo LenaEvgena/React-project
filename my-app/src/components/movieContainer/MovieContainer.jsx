@@ -8,7 +8,7 @@ const MovieContainer = () => {
   const [movies, setMovies] = useState([]);
 
   const handleOpenClick = (event, id) => {
-    const item = movies.filter((movie) => movie.id == id)[0]; // данные одного выбранного фильма
+    const item = movies.filter((movie) => movie.id === id)[0]; // данные одного выбранного фильма
     event.stopPropagation();
     setShowOptions((item.id === id) ? { [item.id]: true } : null);
   }

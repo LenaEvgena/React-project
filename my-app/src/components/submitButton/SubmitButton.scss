@@ -1,0 +1,21 @@
+@import "./../../constants.scss";
+
+.submit__button {
+  width: 18rem;
+  height: 5.7rem;
+  border-radius: 4px;
+  border: none;
+  background-color: $color-primary;
+  color: $color-light;
+  font-weight: 500;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
