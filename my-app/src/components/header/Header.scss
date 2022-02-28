@@ -1,0 +1,18 @@
+@import "./../../constants.scss";
+
+.header {
+  position: relative;
+  height: 40rem;
+  background-color: $color-dark;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2rem 6rem;
+  }
+}
