@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import AddButton from '../addButton/AddButton';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SearchForm from '../searchForm/SearchForm';
@@ -13,18 +13,18 @@ const Header = (props) => {
   }
 
   return (
-      <header className="header">
-        <Background />
-        <div className="header__wrapper">
-          <div className="header__logo">
-            <LogoTitle />
-            <AddButton handleMovieModal={handleMovieModal} />
-            { showMovieModal && <MovieModal isAddModal={true} handleMovieModal={handleMovieModal} /> }
-          </div>
-
-          <SearchForm />
+    <header className="header">
+      <Background />
+      <div className="header__wrapper">
+        <div className="header__logo">
+          <LogoTitle />
+          <AddButton handleMovieModal={handleMovieModal} />
+          {showMovieModal && <MovieModal isAddModal={true} handleMovieModal={handleMovieModal} />}
         </div>
-      </header>
+
+        <SearchForm />
+      </div>
+    </header>
   );
 }
 

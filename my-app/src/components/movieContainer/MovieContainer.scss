@@ -1,0 +1,24 @@
+.movie__container {
+  width: 100%;
+  letter-spacing: 1px;
+}
+
+.result {
+  padding: 2.5rem 0;
+  font-weight: 200;
+
+  &__count {
+    font-weight: 600;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5rem;
+
+  @media only screen and (max-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}

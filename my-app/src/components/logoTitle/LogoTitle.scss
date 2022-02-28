@@ -1,0 +1,11 @@
+@import "./../../constants.scss";
+
+.logo__title {
+  font-size: 2rem;
+  color: $color-primary;
+  letter-spacing: 1px;
+}
+
+.logo_bold {
+  font-weight: 900;
+}
