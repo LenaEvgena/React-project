@@ -1,0 +1,22 @@
+@import "./../../constants.scss";
+
+.add-button {
+  width: 19rem;
+  height: 5rem;
+  background-color: rgba(98, 96, 96, 0.527);
+  border: none;
+  border-radius: 3px;
+  padding: 1rem 1.5rem;
+  color: $color-primary;
+  font-family: $font-family;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
