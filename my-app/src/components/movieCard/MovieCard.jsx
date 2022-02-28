@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import DeleteModal from '../deleteModal/DeleteModal';
 import MovieModal from '../movieModal/MovieModal';
 import './MovieCard.scss';
@@ -35,7 +36,7 @@ const MovieCard = (props) => {
       <div className="movie__description">
         <div className="movie__title">
           <h3>
-            {props.data.title}
+            <Link to={`/movie/${props.data.id}`}>{props.data.title}</Link>
           </h3>
           <p className="movie__date">
             {props.data.release_date.split('-')[0]}

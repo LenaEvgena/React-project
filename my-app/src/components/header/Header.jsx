@@ -5,6 +5,7 @@ import SearchForm from '../searchForm/SearchForm';
 import MovieModal from '../movieModal/MovieModal';
 import Background from '../background/Background';
 import './Header.scss';
+import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 
 const Header = (props) => {
   const [showMovieModal, setShowMovieModal] = useState(false);
@@ -13,18 +14,22 @@ const Header = (props) => {
   }
 
   return (
-    <header className="header">
-      <Background />
-      <div className="header__wrapper">
-        <div className="header__logo">
-          <LogoTitle />
-          <AddButton handleMovieModal={handleMovieModal} />
-          {showMovieModal && <MovieModal isAddModal={true} handleMovieModal={handleMovieModal} />}
-        </div>
+    <>
+      {showMovieModal && <MovieModal isAddModal={true} handleMovieModal={handleMovieModal} />}
 
-        <SearchForm />
-      </div>
-    </header>
+      <header className="header">
+        <ErrorBoundary>
+          <Background />
+          <div className="header__wrapper">
+            <div className="header__logo">
+              <LogoTitle />
+              <AddButton handleMovieModal={handleMovieModal} />
+            </div>
+            <SearchForm />
+          </div>
+        </ErrorBoundary>
+      </header>
+    </>
   );
 }
 

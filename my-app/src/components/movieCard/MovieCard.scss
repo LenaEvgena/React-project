@@ -5,15 +5,15 @@
 
   &__image {
     overflow: hidden;
-    cursor: pointer;
-
+    
     img {
       width: 100%;
     }
-
+    
     &:hover {
       .dots {
         display: block;
+        cursor: pointer;
       }
     }
   }
@@ -46,6 +46,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }
 
