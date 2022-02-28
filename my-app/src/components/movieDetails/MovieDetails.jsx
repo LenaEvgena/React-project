@@ -10,6 +10,7 @@ function useMovie(id) {
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
+    window.scroll(0, 0);
     setMovie(movies.find((el) => el.id == id));
   }, [id]);
 
@@ -50,7 +51,7 @@ const MovieDetails = (props) => {
 
             <div className="content-info">
               <span className="content-info_date">
-                {/* {item?.release_date.split('-')[0]} */}
+                {item?.release_date}
               </span>
               <span className="content-info_runtime">
                 {item?.runtime} min
