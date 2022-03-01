@@ -21,7 +21,7 @@ const MovieContainer = () => {
   const APIUrl = 'https://api.kinopoisk.dev/movie';
   const APIParams = 'type=movie&limit=15&sortField=videos.trailers&sortType=-1';
   const token = 'token=JHK3S7G-6Q94NNT-M46ANNW-PN81PJN';
-  const page = `page=${Math.floor(Math.random() * 100) + 1}`;
+  const page = `page=${Math.floor(Math.random() * 200) + 1}`;
 
   const fetchMovieAPI = async () => {
     try {
@@ -36,7 +36,6 @@ const MovieContainer = () => {
   useEffect(() => {
     fetchMovieAPI();
   }, []);
-
 
 
   useEffect(() => {

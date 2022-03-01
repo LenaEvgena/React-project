@@ -69,7 +69,7 @@ const MovieDetails = (props) => {
             </div>
 
             <div className="content-tagline">
-              {item.genres?.join(' ')}
+              {/* {item?.genres} */}
             </div>
 
             <div className="content-info">
