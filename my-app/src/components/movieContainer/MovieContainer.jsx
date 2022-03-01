@@ -33,7 +33,18 @@ const MovieContainer = () => {
     }
   }
 
+
   useEffect(() => {
+    fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/', {
+      method: 'GET',
+      headers: {
+        'X-API-KEY': '4fa525f3-c08b-4f89-8459-00b56e10d8eb',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(err => console.log(err))
     fetchMovieAPI();
   }, []);
 
