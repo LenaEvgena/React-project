@@ -5,11 +5,14 @@
 
   &__image {
     overflow: hidden;
-    
+    width: auto;
+    height: 42rem;
+
     img {
       width: 100%;
+      height: auto;
     }
-    
+
     &:hover {
       .dots {
         display: block;

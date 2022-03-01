@@ -16,10 +16,11 @@ const MovieCard = (props) => {
     setShowDeleteModal(!showDeleteModal);
   }
 
+
   return (
     <div className="movie">
       <div className="movie__image">
-        <img className="movie__card" id={props.data.id} src={props.data.poster_path} alt={props.data.title} />
+        <img className="movie__card" id={props.data.id} src={props.data.poster.url || props.data.poster.previewUrl} alt={props.data.alternativeName || props.data.name} />
 
         {!props.showOptions ?
           <div className="dots" onClick={(event) => props.handleClick(event, props.data.id)}></div>
@@ -36,15 +37,15 @@ const MovieCard = (props) => {
       <div className="movie__description">
         <div className="movie__title">
           <h3>
-            <Link to={`/movie/${props.data.id}`}>{props.data.title}</Link>
+            <Link to={`/movie/${props.data.id}`}>{props.data.alternativeName || props.data.name}</Link>
           </h3>
           <p className="movie__date">
-            {props.data.release_date.split('-')[0]}
+            {props.data.year}
           </p>
         </div>
 
         <div className="movie__genre">
-          {props.data.genres.join(', ')}
+          {/* {props.data.genres.join(', ')} */}
         </div>
       </div>
     </div>

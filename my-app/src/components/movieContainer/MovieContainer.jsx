@@ -17,8 +17,30 @@ const MovieContainer = () => {
     setShowOptions(movies.map((movie) => ({ [movie.id]: false })));
   }
 
+
+  const APIUrl = 'https://api.kinopoisk.dev/movie';
+  const APIParams = 'type=movie&limit=15&sortField=videos.trailers&sortType=-1';
+  const token = 'token=JHK3S7G-6Q94NNT-M46ANNW-PN81PJN';
+  const page = `page=${Math.floor(Math.random() * 100) + 1}`;
+
+  const fetchMovieAPI = async () => {
+    try {
+      await fetch(`${APIUrl}?${APIParams}&${page}&${token}`)
+        .then(response => response.json())
+        .then(data => setMovies([...data.docs]));
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   useEffect(() => {
-    setMovies([...moviesList]);
+    fetchMovieAPI();
+  }, []);
+
+
+
+  useEffect(() => {
+    console.log(movies);
     document.addEventListener('click', handleCloseClick);
     return () => {
       document.removeEventListener('click', handleCloseClick);
@@ -28,7 +50,7 @@ const MovieContainer = () => {
   return (
     <div className="movie__container">
       <div className="result">
-        <span className="result__count">39</span>
+        <span className="result__count">{movies.length}</span>
         <span> movies found</span>
       </div>
 
