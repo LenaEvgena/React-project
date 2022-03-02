@@ -1,25 +1,37 @@
-// const APIUrl = 'https://api.kinopoisk.dev/movie';
-// const APIParams = 'type=movie&limit=15&sortField=videos.trailers&sortType=-1';
-// const token = 'token=JHK3S7G-6Q94NNT-M46ANNW-PN81PJN';
+const APIUrl = 'https://kinopoiskapiunofficial.tech';
+const APIParams = '/api/v2.2/films/';
+const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
+const page = `page=${Math.floor(Math.random() * 150) + 1}`;
 
-// export const fetchMovieAPI = async () => {
-//   try {
-//     await fetch(`${APIUrl}?${APIParams}&page=1&${token}`)
-//       .then(response => response.json())
-  // } catch (error) {
-    // console.log(error.message);
-//   }
-// }
+export const fetchMovieAPI = async () => {
+  try {
+    await fetch(`${APIUrl}${APIParams}?${page}`, {
+      method: 'GET',
+      headers: {
+        'X-API-KEY': token,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(data => setMovies([...data.items]))
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
-  // useEffect(() => {
-  //   fetch('https://api.kinopoisk.dev/movie?search=2&field=typeNumber&token=JHK3S7G-6Q94NNT-M46ANNW-PN81PJN')
-  //     .then(response => response.json())
-  //     .then(data => console.log(data))
-  // }, []);
 
-
-  // useEffect(() => {
-  //   fetch('https://api.kinopoisk.dev/movie?page=2&type=movie&limit=20&field=id&search=12358&token=JHK3S7G-6Q94NNT-M46ANNW-PN81PJN')
-  //     .then(response => response.json())
-  //     .then(data => console.log(data))
-  // }, []);
+export const fetchMovieById = async () => {
+  try {
+    await fetch(`${APIUrl}${APIParams}${id}`, {
+      method: 'GET',
+      headers: {
+        'X-API-KEY': token,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(data => setMovie({...data}))
+  } catch (error) {
+    console.log(error.message);
+  }
+}

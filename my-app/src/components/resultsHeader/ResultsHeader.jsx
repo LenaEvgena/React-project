@@ -7,8 +7,8 @@ const SortResultsHeader = () => (
       <ul>
         <li className="active">All</li>
         <li>Documentary</li>
+        <li>Drama</li>
         <li>Comedy</li>
-        <li>Horror</li>
         <li>Crime</li>
       </ul>
     </div>

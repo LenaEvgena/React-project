@@ -6,7 +6,6 @@ const SearchBar = () => {
   const APIUrl = 'https://kinopoiskapiunofficial.tech';
   const APIParams = '/api/v2.2/films/';
   const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
-  // const page = `page=${Math.floor(Math.random() * 140) + 1}`;
 
   const searchMovieAPI = async () => {
     try {

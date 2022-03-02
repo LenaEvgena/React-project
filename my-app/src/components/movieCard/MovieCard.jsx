@@ -16,8 +16,11 @@ const MovieCard = (props) => {
     setShowDeleteModal(!showDeleteModal);
   }
 
-  let list = [];
-  props.data.genres.map((g) => list.push(g.genre));
+  let genresList = [];
+  props.data.genres.map((g) => genresList.push(g.genre));
+
+  let countriesList = [];
+  props.data.countries.map((c) => countriesList.push(c.country));
 
   return (
     <div className="movie">
@@ -46,8 +49,11 @@ const MovieCard = (props) => {
           </p>
         </div>
 
+        <div className="movie__country">
+          {countriesList.join(', ')}
+        </div>
         <div className="movie__genre">
-          {list.join(', ')}
+          {genresList.join(', ')}
         </div>
       </div>
     </div>

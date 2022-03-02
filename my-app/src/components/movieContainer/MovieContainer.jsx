@@ -20,12 +20,12 @@ const MovieContainer = () => {
   const APIUrl = 'https://kinopoiskapiunofficial.tech';
   const APIParams = '/api/v2.2/films/';
   const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
-  const page = `page=${Math.floor(Math.random() * 140) + 1}`;
+  const page = `page=${Math.floor(Math.random() * 20) + 1}`;
 
 
   const fetchMovieAPI = async () => {
     try {
-      await fetch(`${APIUrl}${APIParams}?${page}`, {
+      await fetch(`${APIUrl}${APIParams}?type=FILM&${page}`, {
         method: 'GET',
         headers: {
           'X-API-KEY': token,
@@ -54,20 +54,24 @@ const MovieContainer = () => {
 
   return (
     <div className="movie__container">
-      <div className="result">
-        <span className="result__count">{movies.length}</span>
-        <span> movies found</span>
-      </div>
-
-      <div className="container">
-        {movies.map(movie => (
-          <MovieCard
-            data={movie}
-            key={movie.kinopoiskId}
-            showOptions={showOptions[movie.kinopoiskId]}
-            handleClick={handleOpenClick} />
-        ))}
-      </div>
+      {!movies.length ?
+        <div className="loading">Loading...</div> :
+        <>
+          <div className="result">
+            <span className="result__count">{movies.length}</span>
+            <span> movies found</span>
+          </div>
+          <div className="container">
+            {movies.map(movie => (
+              <MovieCard
+                data={movie}
+                key={movie.kinopoiskId}
+                showOptions={showOptions[movie.kinopoiskId]}
+                handleClick={handleOpenClick} />
+            ))}
+          </div>
+        </>
+      }
     </div>
   );
 }

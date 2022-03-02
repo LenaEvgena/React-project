@@ -29,9 +29,13 @@
   &__title {
     display: flex;
     justify-content: space-between;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
-  &__genre {
+  &__genre, &__country {
     text-transform: capitalize;
     margin-top: 1rem;
     font-size: 1.4rem;
