@@ -46,6 +46,7 @@ const MovieCard = (props) => {
 
         <div className="movie__genre">
           {/* {props.data.genres['genre']} */}
+
         </div>
       </div>
     </div>

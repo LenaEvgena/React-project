@@ -13,7 +13,7 @@ const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
 function useMovie(id) {
   const [movie, setMovie] = useState({});
 
-  const fetchMovieId = async () => {
+  const fetchMovieById = async () => {
     try {
       await fetch(`${APIUrl}${APIParams}${id}`, {
         method: 'GET',
@@ -31,7 +31,7 @@ function useMovie(id) {
 
   useEffect(() => {
     window.scroll(0, 0);
-    fetchMovieId();
+    fetchMovieById();
     console.log(movie);
   }, [id]);
 
@@ -43,8 +43,24 @@ const MovieDetails = (props) => {
   const { id } = useParams();
   const item = useMovie(id);
 
-  const handleClick = () => {
+  const fetchVideoById = async () => {
+    try {
+      await fetch(`${APIUrl}${APIParams}${id}/videos`, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': token,
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
+  const handleClick = () => {
+    fetchVideoById();
   }
 
   return (
