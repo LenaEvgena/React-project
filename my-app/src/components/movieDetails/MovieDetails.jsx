@@ -3,27 +3,27 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import Background from '../background/Background';
 import LogoTitle from '../logoTitle/LogoTitle';
+import SubmitButton from '../submitButton/SubmitButton';
 import './MovieDetails.scss';
-import movies from '../../moviesData/movies';
 
-const APIUrl = 'https://api.kinopoisk.dev/movie';
-const APIParams = 'type=movie&limit=15&sortField=videos.trailers&sortType=-1';
-
-const token = 'token=JHK3S7G-6Q94NNT-M46ANNW-PN81PJN';
-const page = `page=${Math.floor(Math.random() * 100) + 1}`;
-
+const APIUrl = 'https://kinopoiskapiunofficial.tech';
+const APIParams = '/api/v2.2/films/';
+const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
 
 function useMovie(id) {
   const [movie, setMovie] = useState({});
-  const queryId = `field=id&search=${id}`;
 
   const fetchMovieId = async () => {
     try {
-      await fetch(`${APIUrl}?${APIParams}&${queryId}&${token}`)
-        .then(response => response.json())
-        // .then(data => console.log(data));
-        .then(data => setMovie({...data}));
-
+      await fetch(`${APIUrl}${APIParams}${id}`, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': token,
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(res => res.json())
+        .then(data => setMovie({...data}))
     } catch (error) {
       console.log(error.message);
     }
@@ -33,7 +33,6 @@ function useMovie(id) {
     window.scroll(0, 0);
     fetchMovieId();
     console.log(movie);
-    // setMovie(movies.find((el) => el.id == id));
   }, [id]);
 
   return movie;
@@ -44,6 +43,10 @@ const MovieDetails = (props) => {
   const { id } = useParams();
   const item = useMovie(id);
 
+  const handleClick = () => {
+
+  }
+
   return (
     <div className="movie__details">
       <Background />
@@ -53,23 +56,26 @@ const MovieDetails = (props) => {
           <Link to='/' className="details-search" type="button"></Link>
         </div>
         <div className="details__container">
-          <div className="details__image">
-            <img src={item.poster?.url || item.poster?.previewUrl} alt={item?.alternativeName || item?.name} className="image-cover" />
+          <div className="details__aside">
+            <div className="details__image">
+              <img className="image-cover" src={item?.posterUrl || item?.posterUrlPreview} alt={item?.nameOriginal || item?.nameRu} />
+            </div>
+            <SubmitButton text={'Video'} handleClick={handleClick} />
           </div>
 
           <div className="details__content">
 
             <div className="content-title">
               <h2 className="content-movie_title">
-                {item?.alternativeName || item?.name}
+                {item?.nameOriginal || item?.nameRu}
               </h2>
               <div className="content-vote_average">
-                {item.rating?.imdb}
+                {item?.ratingKinopoisk}
               </div>
             </div>
 
             <div className="content-tagline">
-              {/* {item?.genres} */}
+              {item?.slogan || item?.nameRu}
             </div>
 
             <div className="content-info">
@@ -77,12 +83,12 @@ const MovieDetails = (props) => {
                 {item?.year}
               </span>
               <span className="content-info_runtime">
-                {item?.movieLength} min
+                {item?.serial ? `${item?.filmLength || 1} series` : `${item?.filmLength || 90} min`}
               </span>
             </div>
 
             <div className="content-overview">
-              {item?.description}
+              {item?.description || 'Описание фильма временно не доступно'}
             </div>
 
           </div>

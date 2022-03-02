@@ -20,10 +20,10 @@ const MovieCard = (props) => {
   return (
     <div className="movie">
       <div className="movie__image">
-        <img className="movie__card" id={props.data.id} src={props.data.poster.url || props.data.poster.previewUrl} alt={props.data.alternativeName || props.data.name} />
+        <img className="movie__card" id={props.data.kinopoiskId} src={props.data.posterUrl || props.data.posterUrlPreview} alt={props.data.nameOriginal || props.data.nameRu} />
 
         {!props.showOptions ?
-          <div className="dots" onClick={(event) => props.handleClick(event, props.data.id)}></div>
+          <div className="dots" onClick={(event) => props.handleClick(event, props.data.kinopoiskId)}></div>
           : <div className="options__modal">
             <div className="options-close">x</div>
             <div className="options-edit" onClick={handleMovieModal}>Edit</div>
@@ -37,7 +37,7 @@ const MovieCard = (props) => {
       <div className="movie__description">
         <div className="movie__title">
           <h3>
-            <Link to={`/movie/${props.data.id}`}>{props.data.alternativeName || props.data.name}</Link>
+            <Link to={`/movie/${props.data.kinopoiskId}`}>{props.data.nameOriginal || props.data.nameRu}</Link>
           </h3>
           <p className="movie__date">
             {props.data.year}
@@ -45,7 +45,7 @@ const MovieCard = (props) => {
         </div>
 
         <div className="movie__genre">
-          {/* {props.data.genres.join(', ')} */}
+          {/* {props.data.genres['genre']} */}
         </div>
       </div>
     </div>
