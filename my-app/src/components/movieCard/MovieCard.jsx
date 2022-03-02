@@ -16,6 +16,8 @@ const MovieCard = (props) => {
     setShowDeleteModal(!showDeleteModal);
   }
 
+  let list = [];
+  props.data.genres.map((g) => list.push(g.genre));
 
   return (
     <div className="movie">
@@ -45,8 +47,7 @@ const MovieCard = (props) => {
         </div>
 
         <div className="movie__genre">
-          {/* {props.data.genres['genre']} */}
-
+          {list.join(', ')}
         </div>
       </div>
     </div>

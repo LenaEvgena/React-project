@@ -5,12 +5,11 @@
 
   &__image {
     overflow: hidden;
-    width: auto;
-    height: 42rem;
 
     img {
       width: 100%;
       height: auto;
+      margin-bottom: 2.5rem;
     }
 
     &:hover {
@@ -24,7 +23,6 @@
   &__description {
     display: flex;
     flex-direction: column;
-    margin-top: 2.5rem;
     width: 100%;
   }
 
@@ -34,6 +32,7 @@
   }
 
   &__genre {
+    text-transform: capitalize;
     margin-top: 1rem;
     font-size: 1.4rem;
     opacity: 0.5;
