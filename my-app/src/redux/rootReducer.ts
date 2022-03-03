@@ -2,6 +2,7 @@
 // export const rootReducer = combineReducers({}); //если комбинируются отдельные редьюсеры
 import { SET_MOVIES_ASYNC } from './actions';
 import { SET_CURRENT_PAGE } from './actions';
+import { SET_IS_FETCHING } from './actions'
 import { SET_FETCHED_ERROR } from './actions';
 
 
@@ -11,6 +12,7 @@ const initialState = {
   totalCount: 0,
   total: 0,
   filter: 'all',
+  isFetching: false,
   isFetchedError: false,
 }
 
@@ -27,6 +29,11 @@ export const rootReducer: any = (state = initialState, action: any) => {
       return {
         ...state,
         currentPage: action.currentPage, //приходит из action
+      }
+    case SET_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.isFetching, //приходит из action
       }
     case SET_FETCHED_ERROR:
       return {

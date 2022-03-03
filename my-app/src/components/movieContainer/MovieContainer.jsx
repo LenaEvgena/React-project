@@ -10,9 +10,10 @@ const MovieContainer = () => {
   const [showOptions, setShowOptions] = useState({});
   const dispatch = useDispatch();
   const movies = useSelector(state => state.movies.items); //получаем состояние из store
-  const totalCount = useSelector(state => state.totalCount); //получаем состояние из store
-  const currentPage = useSelector(state => state.currentPage); //получаем состояние из store
-  const total = useSelector(state => state.total); //получаем состояние из store
+  const totalCount = useSelector(state => state.totalCount);
+  const currentPage = useSelector(state => state.currentPage);
+  const total = useSelector(state => state.total);
+  const isFetching = useSelector(state => state.isFetching);
   const isFetchedError = useSelector(state => state.isFetchedError);
   const pages = [];
 
@@ -53,14 +54,6 @@ const MovieContainer = () => {
     </div>)
   }
 
-  if (totalCount === undefined) {
-    return (
-      <div className="movie__container">
-        <div className="loading">Loading...</div>
-      </div>
-    )
-  }
-
   if (totalCount === 0) {
     return (
       <div className="movie__container">
@@ -76,16 +69,21 @@ const MovieContainer = () => {
         <span> movies found</span>
       </div>
 
-      <div className="container">
-        {movies.map(movie => (
-          <MovieCard
-            data={movie}
-            key={movie.kinopoiskId}
-            showOptions={showOptions[movie.kinopoiskId]}
-            handleClick={handleOpenClick}
-          />
-        ))}
-      </div>
+      {isFetching ? (
+        <div className="loader">
+          <div className="loader_image"></div>
+          <div className="loading">Loading...</div>
+        </div>) :
+        <div className="container">
+          {movies.map(movie => (
+            <MovieCard
+              data={movie}
+              key={movie.kinopoiskId}
+              showOptions={showOptions[movie.kinopoiskId]}
+              handleClick={handleOpenClick}
+          />))}
+        </div>}
+
       <div className="pages">
         {pages.map((page, index) => <span
           className={currentPage === page ? "page active" : "page"}
@@ -103,6 +101,7 @@ const mapStateToProps = state => {
     movies: state.movies,
     totalCount: state.totalCount,
     currentPage: state.currentPage,
+    isFetching: state.isFetching,
     isFetchedError: state.isFetchedError,
   };
 };

@@ -1,5 +1,6 @@
 export const SET_MOVIES_ASYNC = 'MOVIES/SET_MOVIES_ASYNC';
 export const SET_CURRENT_PAGE = 'MOVIES/SET_CURRENT_PAGE';
+export const SET_IS_FETCHING = 'MOVIES/SET_IS_FETCHING';
 export const SET_FETCHED_ERROR = 'ERROR/SET_FETCHED_ERROR';
 
 export const setMoviesAsync = (movies) => ({
@@ -17,4 +18,9 @@ export const setCurrentPage = (page) => ({
 export const setFetchedError = (bool) => ({
   type: SET_FETCHED_ERROR,
   isFetchedError: bool,
+})
+
+export const setIsFetching = (bool) => ({
+  type: SET_IS_FETCHING,
+  isFetching: bool,
 })
