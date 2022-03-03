@@ -1,33 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMoviesAPI, setCurrentPage } from '../../redux/actions';
 import './SearchBar.scss';
 
 const SearchBar = () => {
   const [inputQuery, setInputQuery] = useState('');
-  const APIUrl = 'https://kinopoiskapiunofficial.tech';
-  const APIParams = '/api/v2.2/films/';
-  const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
-
-  const searchMovieAPI = async () => {
-    try {
-      await fetch(`${APIUrl}${APIParams}?keyword=${inputQuery}`, {
-        method: 'GET',
-        headers: {
-          'X-API-KEY': token,
-          'Content-Type': 'application/json',
-        },
-      })
-        .then(res => res.json())
-        .then(data => console.log(data))
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
+  const dispatch = useDispatch();
+  const currentPage = useSelector(state => state.currentPage);
 
   const handleChange = ({ target }) => setInputQuery(target.value);
 
   const handleClick = () => {
-    if (!inputQuery) return;
-    searchMovieAPI();
+    if (!inputQuery.trim()) return;
+    dispatch(setCurrentPage(1));
+    dispatch(getMoviesAPI(inputQuery, currentPage));
     setInputQuery('');
   }
 

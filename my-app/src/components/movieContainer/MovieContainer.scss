@@ -1,3 +1,5 @@
+@import "./../../constants.scss";
+
 .movie__container {
   width: 100%;
   letter-spacing: 1px;
@@ -33,4 +35,38 @@
   align-items: center;
   justify-content: center;
   padding: 5rem;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid $color-primary;
+  border-radius: 50%;
+  padding: 0.5rem 1rem;
+  margin: 0 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.active {
+    background-color: $color-primary;
+  }
+
+  &:active {
+    background-color: $color-primary;
+  }
 }
