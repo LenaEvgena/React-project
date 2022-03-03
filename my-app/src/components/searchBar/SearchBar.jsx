@@ -26,6 +26,7 @@ const SearchBar = () => {
   const handleChange = ({ target }) => setInputQuery(target.value);
 
   const handleClick = () => {
+    if (!inputQuery) return;
     searchMovieAPI();
     setInputQuery('');
   }
