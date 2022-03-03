@@ -5,8 +5,7 @@ export function createPages(pages, pagesCount, currentPage) {
         pages.push(i);
         if (i == pagesCount) break;
       }
-    }
-    else {
+    } else {
       for (let i = 1; i <= 7; i++) {
         pages.push(i);
         if (i == pagesCount) break;

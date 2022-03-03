@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMoviesAPI, setCurrentPage } from '../../redux/actions';
+import { setCurrentPage } from '../../redux/actions';
+import { getMoviesAPI } from '../../redux/api';
 import './SearchBar.scss';
 
 const SearchBar = () => {
