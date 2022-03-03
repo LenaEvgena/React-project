@@ -30,7 +30,8 @@ const MovieContainer = () => {
 
   useEffect(() => {
     dispatch(getMoviesAPI(currentPage));
-  }, [currentPage]);
+    window.scroll(0, 0);
+  }, [currentPage, dispatch]);
 
   useEffect(() => {
     document.addEventListener('click', handleCloseClick);

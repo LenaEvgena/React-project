@@ -1,8 +1,9 @@
 // import { combineReducers } from 'redux';
 // export const rootReducer = combineReducers({}); //если комбинируются отдельные редьюсеры
 import { SET_MOVIES_ASYNC } from './actions';
-import { SEARCH_MOVIES_ASYNC } from './actions';
 import { SET_CURRENT_PAGE } from './actions';
+import { SET_FETCHED_ERROR } from './actions';
+
 
 const initialState = {
   movies: [],
@@ -10,6 +11,7 @@ const initialState = {
   totalCount: 0,
   total: 0,
   filter: 'all',
+  isFetchedError: false,
 }
 
 export const rootReducer: any = (state = initialState, action: any) => {
@@ -25,6 +27,11 @@ export const rootReducer: any = (state = initialState, action: any) => {
       return {
         ...state,
         currentPage: action.currentPage, //приходит из action
+      }
+    case SET_FETCHED_ERROR:
+      return {
+        ...state,
+        isFetchedError: action.isFetchedError, //приходит из action
       }
     default:
       return state;

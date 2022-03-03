@@ -130,7 +130,7 @@ const MovieModal = (props) => {
             </div>
           </div>
           <div className="modal-button">
-            <ResetButton text="reset" handleReset={handleReset} />
+            <ResetButton text="reset" handleClick={handleReset} />
             {props.isAddModal ?
               <SubmitButton text="submit" handleClick={props.handleMovieModal} />
               : <SubmitButton text="save" handleClick={props.handleMovieModal} />}
