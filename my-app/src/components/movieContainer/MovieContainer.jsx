@@ -26,8 +26,8 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
   // console.log('showOptions', showOptions);
 
   useEffect(() => {
-    dispatch(getMoviesAPI(currentPage, sortType));
     window.scroll(0, 0);
+    dispatch(getMoviesAPI(currentPage, sortType));
   }, []);
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
 
 //преобразовывает state в props
 const mapStateToProps = state => {
-  console.log('State: ', state);
+  // console.log('State: ', state);
   return {
     movies: state.movies.items,
     total: state.total,

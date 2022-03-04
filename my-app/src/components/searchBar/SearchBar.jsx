@@ -7,7 +7,6 @@ import './SearchBar.scss';
 const SearchBar = ({ currentPage, sortType, filter, keyword }) => {
   const dispatch = useDispatch();
 
-  console.log(keyword);
   const handleChange = ({ target }) => dispatch(setMoviesKeyword(target.value));
 
   const handleClick = () => {

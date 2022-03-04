@@ -2,12 +2,17 @@ import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import './ResultsHeader.scss';
 import { getMoviesAPI } from '../../redux/api';
-import { sortMoviesAsync, filterGenreMoviesAsync } from '../../redux/actions';
+import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../redux/actions';
 
 const SortResultsHeader = ({ currentPage, filter, sortType, keyword }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setCurrentPage(1));
+  }, [filter])
+
+  useEffect(() => {
+    window.scroll(0, 0);
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
   }, [currentPage, sortType, filter, keyword]);
 
@@ -43,7 +48,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = () => ({
   getMoviesAPI,
   sortMoviesAsync,
-  filterGenreMoviesAsync
+  filterGenreMoviesAsync,
+  setCurrentPage
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SortResultsHeader);

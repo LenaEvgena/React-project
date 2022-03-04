@@ -47,25 +47,3 @@ export const getMoviesAPI = (currentPage, sortType = 'RATING', genre, query = ''
     }
   }
 }
-
-// export const searchMoviesAPI = (query, currentPage) => {
-//   return async dispatch => {
-//     try {
-//       const url = !query ? APIUrl : `${APIUrl}&order=RATING&keyword=${query}`;
-
-//       dispatch(setIsFetching(true));
-//       const res = await fetch(`${url}&page=${currentPage}`, {
-//         method: 'GET',
-//         headers: {
-//           'X-API-KEY': token,
-//           'Content-Type': 'application/json',
-//         },
-//       });
-//       const data = await res.json();
-//       dispatch(setMoviesAsync(data));
-//       dispatch(setIsFetching(false));
-//     } catch (error) {
-//       dispatch(setFetchedError(true));
-//     }
-//   }
-// }
