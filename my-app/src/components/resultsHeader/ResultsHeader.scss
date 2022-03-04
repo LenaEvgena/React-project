@@ -11,6 +11,11 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid $color-light-grey;
+
+  @media only screen and (max-width: 450px){
+    column-count: 2;
+    height: auto;
+  }
 }
 
 .results__filter {
@@ -18,9 +23,19 @@
   align-items: center;
   height: 6rem;
 
+  @media only screen and (max-width: 450px){
+    align-items: flex-start;
+    height: 30rem;
+  }
+
   ul {
     display: flex;
     margin: 0;
+
+    @media only screen and (max-width: 450px){
+      flex-direction: column;
+      height: 20rem;
+    }
   }
 
   li {
