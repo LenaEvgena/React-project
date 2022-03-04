@@ -1,21 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import './ResultsHeader.scss';
-import { getMoviesAPI, filterMoviesByGenreAPI } from '../../redux/api';
+import { getMoviesAPI } from '../../redux/api';
 import { sortMoviesAsync, filterGenreMoviesAsync } from '../../redux/actions';
 
-const SortResultsHeader = ({ currentPage, filter }) => {
-  console.log(filter);
+const SortResultsHeader = ({ currentPage, filter, sortType }) => {
   const dispatch = useDispatch();
-
-  const setType = (e) => {
-    dispatch(getMoviesAPI(currentPage, e.target.value));
-  }
+  console.log(sortType);
 
   useEffect(() => {
-    dispatch(filterMoviesByGenreAPI(currentPage, filter))
-  }, [currentPage, filter]);
-
+    dispatch(getMoviesAPI(currentPage, sortType, filter));
+  }, [currentPage, sortType, filter]);
 
   return (
     <div className="results__header">
@@ -30,7 +25,7 @@ const SortResultsHeader = ({ currentPage, filter }) => {
       </div>
       <div className="results__sort">
         <span>Sort by</span>
-        <select className="select" onClick={(e) => setType(e)}>
+        <select className="select" onClick={(e) => dispatch(sortMoviesAsync(e.target.value))}>
           <option value="RATING">Rating</option>
           <option value="YEAR">Release date</option>
         </select>

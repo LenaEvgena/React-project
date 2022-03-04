@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import MovieCard from '../movieCard/MovieCard';
 import './MovieContainer.scss';
 import { createPages } from '../../utils/createPages';
 import { getMoviesAPI } from '../../redux/api';
 import { setCurrentPage } from '../../redux/actions';
 
-const MovieContainer = ({ movies, currentPage, total, totalCount, isFetching, isFetchedError }) => {
+const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFetching, isFetchedError }) => {
   const [showOptions, setShowOptions] = useState({});
   const dispatch = useDispatch();
   const pages = [];
+
+  console.log("Тип из стора", sortType);
 
   createPages(pages, total, currentPage);
 
@@ -23,10 +25,10 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, isFetching, is
     setShowOptions(movies.map((movie) => ({ [movie.kinopoiskId]: false })));
   }
 
-  // console.log('showOptions', showOptions);
+  console.log('showOptions', showOptions);
 
   useEffect(() => {
-    dispatch(getMoviesAPI(currentPage));
+    dispatch(getMoviesAPI(currentPage, sortType));
     window.scroll(0, 0);
   }, []);
 
@@ -97,6 +99,7 @@ const mapStateToProps = state => {
     total: state.total,
     totalCount: state.totalCount,
     currentPage: state.currentPage,
+    sortType: state.sortType,
     isFetching: state.isFetching,
     isFetchedError: state.isFetchedError,
   };
