@@ -6,7 +6,6 @@ import { sortMoviesAsync, filterGenreMoviesAsync } from '../../redux/actions';
 
 const SortResultsHeader = ({ currentPage, filter, sortType }) => {
   const dispatch = useDispatch();
-  console.log(sortType);
 
   useEffect(() => {
     dispatch(getMoviesAPI(currentPage, sortType, filter));

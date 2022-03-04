@@ -1,4 +1,4 @@
-import { setFetchedError, setIsFetching, setMoviesAsync, sortMoviesAsync, filterGenreMoviesAsync } from './actions';
+import { setFetchedError, setIsFetching, setMoviesAsync } from './actions';
 
 const APIUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/?type=FILM';
 const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';

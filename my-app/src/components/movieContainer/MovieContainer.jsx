@@ -11,8 +11,6 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
   const dispatch = useDispatch();
   const pages = [];
 
-  console.log("Тип из стора", sortType);
-
   createPages(pages, total, currentPage);
 
   const handleOpenClick = (event, id) => {
@@ -25,7 +23,7 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
     setShowOptions(movies.map((movie) => ({ [movie.kinopoiskId]: false })));
   }
 
-  console.log('showOptions', showOptions);
+  // console.log('showOptions', showOptions);
 
   useEffect(() => {
     dispatch(getMoviesAPI(currentPage, sortType));
