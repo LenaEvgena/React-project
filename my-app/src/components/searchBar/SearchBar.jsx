@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPage } from '../../redux/actions';
-import { getMoviesAPI } from '../../redux/api';
+import { searchMoviesAPI } from '../../redux/api';
 import './SearchBar.scss';
 
 const SearchBar = () => {
@@ -14,7 +14,7 @@ const SearchBar = () => {
   const handleClick = () => {
     if (!inputQuery.trim()) return;
     dispatch(setCurrentPage(1));
-    dispatch(getMoviesAPI(inputQuery, currentPage));
+    dispatch(searchMoviesAPI(inputQuery, currentPage));
     setInputQuery('');
   }
 

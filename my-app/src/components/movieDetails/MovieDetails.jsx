@@ -92,6 +92,7 @@ const MovieDetails = (props) => {
 
             <div className="content-tagline">
               {item?.slogan || item?.nameRu}
+              <div>{item?.shortDescription}</div>
             </div>
 
             <div className="content-info">

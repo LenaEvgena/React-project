@@ -1,19 +1,16 @@
 // import { combineReducers } from 'redux';
 // export const rootReducer = combineReducers({}); //если комбинируются отдельные редьюсеры
-import { SET_MOVIES_ASYNC } from './actions';
-import { SET_CURRENT_PAGE } from './actions';
-import { SET_IS_FETCHING } from './actions'
-import { SET_FETCHED_ERROR } from './actions';
-
+import { SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR, FILTER_MOVIES_ASYNC} from './actions';
 
 const initialState = {
   movies: [],
   currentPage: 1,
   totalCount: 0,
   total: 0,
-  filter: 'all',
   isFetching: false,
   isFetchedError: false,
+  filter: 'all',
+  sortType: 'RATING',
 }
 
 export const rootReducer: any = (state = initialState, action: any) => {
@@ -39,6 +36,16 @@ export const rootReducer: any = (state = initialState, action: any) => {
       return {
         ...state,
         isFetchedError: action.isFetchedError, //приходит из action
+      }
+    case FILTER_MOVIES_ASYNC:
+      return {
+        ...state,
+        filter: action.filter, //приходит из action
+      }
+    case SORT_MOVIES_ASYNC:
+      return {
+        ...state,
+        sortType: action.sortType, //приходит из action
       }
     default:
       return state;

@@ -6,15 +6,9 @@ import { createPages } from '../../utils/createPages';
 import { getMoviesAPI } from '../../redux/api';
 import { setCurrentPage } from '../../redux/actions';
 
-const MovieContainer = () => {
+const MovieContainer = ({ movies, currentPage, total, totalCount, isFetching, isFetchedError }) => {
   const [showOptions, setShowOptions] = useState({});
   const dispatch = useDispatch();
-  const movies = useSelector(state => state.movies.items); //получаем состояние из store
-  const totalCount = useSelector(state => state.totalCount);
-  const currentPage = useSelector(state => state.currentPage);
-  const total = useSelector(state => state.total);
-  const isFetching = useSelector(state => state.isFetching);
-  const isFetchedError = useSelector(state => state.isFetchedError);
   const pages = [];
 
   createPages(pages, total, currentPage);
@@ -34,7 +28,7 @@ const MovieContainer = () => {
   useEffect(() => {
     dispatch(getMoviesAPI(currentPage));
     window.scroll(0, 0);
-  }, [currentPage]);
+  }, []);
 
   useEffect(() => {
     document.addEventListener('click', handleCloseClick);
@@ -81,7 +75,8 @@ const MovieContainer = () => {
               key={movie.kinopoiskId}
               showOptions={showOptions[movie.kinopoiskId]}
               handleClick={handleOpenClick}
-          />))}
+            />)
+          )}
         </div>}
 
       <div className="pages">
@@ -98,7 +93,8 @@ const MovieContainer = () => {
 const mapStateToProps = state => {
   console.log('State: ', state);
   return {
-    movies: state.movies,
+    movies: state.movies.items,
+    total: state.total,
     totalCount: state.totalCount,
     currentPage: state.currentPage,
     isFetching: state.isFetching,

@@ -2,6 +2,8 @@ export const SET_MOVIES_ASYNC = 'MOVIES/SET_MOVIES_ASYNC';
 export const SET_CURRENT_PAGE = 'MOVIES/SET_CURRENT_PAGE';
 export const SET_IS_FETCHING = 'MOVIES/SET_IS_FETCHING';
 export const SET_FETCHED_ERROR = 'ERROR/SET_FETCHED_ERROR';
+export const FILTER_MOVIES_ASYNC = 'MOVIES/FILTER_MOVIES_ASYNC';
+export const SORT_MOVIES_ASYNC = 'MOVIES/SORT_MOVIES_ASYNC';
 
 export const setMoviesAsync = (movies) => ({
   type: SET_MOVIES_ASYNC,
@@ -15,12 +17,22 @@ export const setCurrentPage = (page) => ({
   currentPage: page,
 })
 
+export const setIsFetching = (bool) => ({
+  type: SET_IS_FETCHING,
+  isFetching: bool,
+})
+
 export const setFetchedError = (bool) => ({
   type: SET_FETCHED_ERROR,
   isFetchedError: bool,
 })
 
-export const setIsFetching = (bool) => ({
-  type: SET_IS_FETCHING,
-  isFetching: bool,
+export const filterGenreMoviesAsync = (genre) => ({
+  type: FILTER_MOVIES_ASYNC,
+  filter: genre,
+})
+
+export const sortMoviesAsync = (sortType) => ({
+  type: SORT_MOVIES_ASYNC,
+  sortType,
 })
