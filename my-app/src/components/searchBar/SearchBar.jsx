@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentPage } from '../../redux/actions';
-import { searchMoviesAPI } from '../../redux/api';
+import React from 'react';
+import { useDispatch, connect } from 'react-redux';
+import { setMoviesKeyword, setCurrentPage } from '../../redux/actions';
+import { getMoviesAPI } from '../../redux/api';
 import './SearchBar.scss';
 
-const SearchBar = () => {
-  const [inputQuery, setInputQuery] = useState('');
+const SearchBar = ({ currentPage, sortType, filter, keyword }) => {
   const dispatch = useDispatch();
-  const currentPage = useSelector(state => state.currentPage);
 
-  const handleChange = ({ target }) => setInputQuery(target.value);
+  console.log(keyword);
+  const handleChange = ({ target }) => dispatch(setMoviesKeyword(target.value));
 
   const handleClick = () => {
-    if (!inputQuery.trim()) return;
+    if (!keyword.trim()) return;
     dispatch(setCurrentPage(1));
-    dispatch(searchMoviesAPI(inputQuery, currentPage));
-    setInputQuery('');
+    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
   }
 
   return (
     <div className="search">
-      <input className="search__field" type="text" placeholder="What do you want to watch? Enter a keyword..." value={inputQuery} onChange={handleChange} />
+      <input className="search__field" type="text" placeholder="What do you want to watch? Enter a keyword..." value={keyword} onChange={handleChange} />
       <button className="search__button" type="button" onClick={handleClick}>Search</button>
     </div>
   );
 }
 
-export default SearchBar;
+const mapStateToProps = (state) => ({
+  currentPage: state.currentPage,
+  sortType: state.sortType,
+  filter: state.filter,
+  keyword: state.keyword,
+})
+
+const mapDispatchToProps = () => ({
+  getMoviesAPI,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

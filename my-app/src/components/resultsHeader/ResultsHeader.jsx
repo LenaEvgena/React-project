@@ -4,12 +4,12 @@ import './ResultsHeader.scss';
 import { getMoviesAPI } from '../../redux/api';
 import { sortMoviesAsync, filterGenreMoviesAsync } from '../../redux/actions';
 
-const SortResultsHeader = ({ currentPage, filter, sortType }) => {
+const SortResultsHeader = ({ currentPage, filter, sortType, keyword }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMoviesAPI(currentPage, sortType, filter));
-  }, [currentPage, sortType, filter]);
+    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
+  }, [currentPage, sortType, filter, keyword]);
 
   return (
     <div className="results__header">
@@ -37,6 +37,7 @@ const mapStateToProps = (state) => ({
   currentPage: state.currentPage,
   sortType: state.sortType,
   filter: state.filter,
+  keyword: state.keyword,
 })
 
 const mapDispatchToProps = () => ({

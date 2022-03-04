@@ -4,6 +4,7 @@ export const SET_IS_FETCHING = 'MOVIES/SET_IS_FETCHING';
 export const SET_FETCHED_ERROR = 'ERROR/SET_FETCHED_ERROR';
 export const FILTER_MOVIES_ASYNC = 'MOVIES/FILTER_MOVIES_ASYNC';
 export const SORT_MOVIES_ASYNC = 'MOVIES/SORT_MOVIES_ASYNC';
+export const SEARCH_MOVIES_KEYWORD = 'MOVIES/SEARCH_MOVIES_KEYWORD';
 
 export const setMoviesAsync = (movies) => ({
   type: SET_MOVIES_ASYNC,
@@ -35,4 +36,9 @@ export const filterGenreMoviesAsync = (genre) => ({
 export const sortMoviesAsync = (sortType) => ({
   type: SORT_MOVIES_ASYNC,
   sortType,
+})
+
+export const setMoviesKeyword = (keyword) => ({
+  type: SEARCH_MOVIES_KEYWORD,
+  keyword,
 })

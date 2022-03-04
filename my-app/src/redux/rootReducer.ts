@@ -1,6 +1,6 @@
 // import { combineReducers } from 'redux';
 // export const rootReducer = combineReducers({}); //если комбинируются отдельные редьюсеры
-import { SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR, FILTER_MOVIES_ASYNC} from './actions';
+import { SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR, FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD } from './actions';
 
 const initialState = {
   movies: [],
@@ -11,6 +11,7 @@ const initialState = {
   isFetchedError: false,
   filter: 'all',
   sortType: 'RATING',
+  keyword: '',
 }
 
 export const rootReducer: any = (state = initialState, action: any) => {
@@ -46,6 +47,11 @@ export const rootReducer: any = (state = initialState, action: any) => {
       return {
         ...state,
         sortType: action.sortType, //приходит из action
+      }
+    case SEARCH_MOVIES_KEYWORD:
+      return {
+        ...state,
+        keyword: action.keyword, //приходит из action
       }
     default:
       return state;
