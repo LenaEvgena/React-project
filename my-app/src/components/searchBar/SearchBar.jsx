@@ -1,18 +1,16 @@
 import React from 'react';
-import { useDispatch, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { setMoviesKeyword, setCurrentPage } from '../../redux/actions';
 import { getMoviesAPI } from '../../redux/api';
 import './SearchBar.scss';
 
-const SearchBar = ({ currentPage, sortType, filter, keyword }) => {
-  const dispatch = useDispatch();
-
-  const handleChange = ({ target }) => dispatch(setMoviesKeyword(target.value));
+const SearchBar = ({ currentPage, sortType, filter, keyword, setCurrentPage, setMoviesKeyword, getMoviesAPI }) => {
+  const handleChange = ({ target }) => setMoviesKeyword(target.value);
 
   const handleClick = () => {
     if (!keyword.trim()) return;
-    dispatch(setCurrentPage(1));
-    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
+    setCurrentPage(1);
+    getMoviesAPI(currentPage, sortType, filter, keyword);
   }
 
   return (
@@ -30,8 +28,10 @@ const mapStateToProps = (state) => ({
   keyword: state.keyword,
 })
 
-const mapDispatchToProps = () => ({
-  getMoviesAPI,
+const mapDispatchToProps = (dispatch) => ({
+  getMoviesAPI: (currentPage, sortType, filter, keyword) => dispatch(getMoviesAPI(currentPage, sortType, filter, keyword)),
+  setMoviesKeyword: (e) => dispatch(setMoviesKeyword(e)),
+  setCurrentPage: (v) => dispatch(setCurrentPage(v))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
