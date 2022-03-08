@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import MovieCard from '../movieCard/MovieCard';
 import './MovieContainer.scss';
 import { createPages } from '../../utils/createPages';
 import { getMoviesAPI } from '../../redux/api';
 import { setCurrentPage } from '../../redux/actions';
 
-const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFetching, isFetchedError }) => {
+const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFetching, isFetchedError, getMoviesAPI, setCurrentPage }) => {
   const [showOptions, setShowOptions] = useState({});
-  const dispatch = useDispatch();
   const pages = [];
 
+  useEffect(() => {
+    window.scroll(0, 0);
+    getMoviesAPI(currentPage, sortType);
+  }, []);
+
   createPages(pages, total, currentPage);
+
+console.log(movies);
 
   const handleOpenClick = (event, id) => {
     const item = movies.filter((movie) => movie.kinopoiskId === id)[0]; // данные одного выбранного фильма
@@ -20,15 +26,8 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
   }
 
   const handleCloseClick = () => {
-    setShowOptions(movies.map((movie) => ({ [movie.kinopoiskId]: false })));
+    setShowOptions(movies.map((movie) => ({ [movie?.kinopoiskId]: false })));
   }
-
-  // console.log('showOptions', showOptions);
-
-  useEffect(() => {
-    window.scroll(0, 0);
-    dispatch(getMoviesAPI(currentPage, sortType));
-  }, []);
 
   useEffect(() => {
     document.addEventListener('click', handleCloseClick);
@@ -36,6 +35,8 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
       document.removeEventListener('click', handleCloseClick);
     }
   }, []);
+
+  console.log('showOptions', showOptions);
 
   if (isFetchedError) {
     return (<div className="error">
@@ -63,6 +64,13 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
         <span> movies found</span>
       </div>
 
+      <div className="pages">
+        {pages.map((page, index) => <span
+          className={currentPage === page ? "page active" : "page"}
+          key={index}
+          onClick={() => setCurrentPage(page)}>{page}</span>)}
+      </div>
+
       {isFetching ? (
         <div className="loader">
           <div className="loader_image"></div>
@@ -78,13 +86,6 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
             />)
           )}
         </div>}
-
-      <div className="pages">
-        {pages.map((page, index) => <span
-          className={currentPage === page ? "page active" : "page"}
-          key={index}
-          onClick={() => dispatch(setCurrentPage(page))}>{page}</span>)}
-      </div>
     </div>
   );
 }
@@ -103,9 +104,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {
-  getMoviesAPI,
-  setCurrentPage,
-}
+const mapDispatchToProps = (dispatch) => ({
+  getMoviesAPI: (currentPage, sortType) => dispatch(getMoviesAPI(currentPage, sortType)),
+  setCurrentPage: (page) => dispatch(setCurrentPage(page)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieContainer);

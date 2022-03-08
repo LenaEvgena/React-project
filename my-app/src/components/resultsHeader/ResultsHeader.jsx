@@ -49,7 +49,7 @@ const mapDispatchToProps = () => ({
   getMoviesAPI,
   sortMoviesAsync,
   filterGenreMoviesAsync,
-  setCurrentPage
+  setCurrentPage,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SortResultsHeader);

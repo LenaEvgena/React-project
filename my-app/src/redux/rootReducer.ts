@@ -57,3 +57,32 @@ export const rootReducer: any = (state = initialState, action: any) => {
       return state;
   }
 }
+
+
+// case 'DELETE_MOVIE_ASYNC_SUCCESS':
+//     return {
+//       ...state,
+//       idMovieIdToDelete: '',
+//       openMovieDeleteForm: false,
+//       total: state.total - 1,
+//       apiError: false,
+//       movies: state.movies.filter((el) => el.id !== action.id),
+//     };
+// export const openDeleteMovieForm = (id) => ({
+//   type: 'OPEN_DELETE_MOVIE_FORM',
+//   id,
+// });
+
+// export const closeDeleteMovieForm = () => ({
+//   type: 'CLOSE_DELETE_MOVIE_FORM',
+// });
+
+// export const deleteMovieAsync = (id) => ({
+//   type: 'DELETE_MOVIE_ASYNC',
+//   id,
+// });
+
+// export const deleteMovieAsyncSuccess = (id) => ({
+//   type: 'DELETE_MOVIE_ASYNC_SUCCESS',
+//   id,
+// });
