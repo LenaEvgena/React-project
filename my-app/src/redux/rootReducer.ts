@@ -16,7 +16,7 @@ const initialState = {
   keyword: '',
 }
 
-export const rootReducer: any = (state = initialState, action: any) => {
+export const rootReducer: any = (state: any = initialState, action: any) => {
   switch (action.type) {
     case SET_MOVIES_ASYNC:
       return {
@@ -73,7 +73,7 @@ export const rootReducer: any = (state = initialState, action: any) => {
         movieIdToDelete: '',
         isDeleteFormOpen: false,
         total: state.total - 1,
-        // movies: state.movies.filter((el) => el.id !== action.id),
+        movies: action.movies.filter((movie: any, id: any) => movie.id !== id),
       }
     default:
       return state;

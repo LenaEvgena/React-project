@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import DeleteModal from '../deleteModal/DeleteModal';
 import MovieModal from '../movieModal/MovieModal';
 import './MovieCard.scss';
-import { closeDeleteMovieForm, openDeleteMovieForm } from '../../redux/actions';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { openDeleteMovieForm } from '../../redux/actions';
 
-const MovieCard = ({isDeleteFormOpen, openDeleteMovieForm, closeDeleteMovieForm, data}) => {
+const MovieCard = ({ data }) => {
+  const dispatch = useDispatch();
+  const isDeleteFormOpen = useSelector(state => state.isDeleteFormOpen);
   const [showMovieModal, setShowMovieModal] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
 
@@ -46,10 +48,10 @@ const MovieCard = ({isDeleteFormOpen, openDeleteMovieForm, closeDeleteMovieForm,
           : <div className="options__modal">
             <div className="options-close" onClick={handleOptions} >x</div>
             <div className="options-edit" onClick={handleMovieModal}>Edit</div>
-            <div className="options-delete" onClick={() => openDeleteMovieForm(data.kinopoiskId)}>Delete</div>
+            <div className="options-delete" onClick={() => dispatch(openDeleteMovieForm(data.kinopoiskId))}>Delete</div>
           </div>}
         {showMovieModal && <MovieModal isAddModal={false} handleMovieModal={handleMovieModal} />}
-        {isDeleteFormOpen && <DeleteModal handleDeleteModal={closeDeleteMovieForm} />}
+        {isDeleteFormOpen && <DeleteModal id={data.kinopoiskId} />}
 
       </div>
 
@@ -74,13 +76,4 @@ const MovieCard = ({isDeleteFormOpen, openDeleteMovieForm, closeDeleteMovieForm,
   );
 }
 
-const mapStateToProps = (state) => ({
-  isDeleteFormOpen: state.isDeleteFormOpen,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  openDeleteMovieForm: (id) => dispatch(openDeleteMovieForm(id)),
-  closeDeleteMovieForm: (id) => dispatch(closeDeleteMovieForm(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
+export default MovieCard;

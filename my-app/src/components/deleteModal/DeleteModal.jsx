@@ -3,15 +3,18 @@ import Footer from '../footer/Footer';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
 import './DeleteModal.scss';
+import { useDispatch } from 'react-redux';
+import { closeDeleteMovieForm, deleteMovieById } from '../../redux/actions';
 
-const DeleteModal = (props) => {
+const DeleteModal = ({ id }) => {
+  const dispatch = useDispatch();
   const modalRef = React.createRef();
 
   const handleOutsideClick = (event) => {
     if (modalRef.current.contains(event.target)) {
       return;
     }
-    props.handleDeleteModal();
+    closeDeleteMovieForm();
   }
 
   return (
@@ -19,13 +22,13 @@ const DeleteModal = (props) => {
       <div className="modal__wrapper" onClick={handleOutsideClick}>
         <LogoTitle />
         <div className="modal" ref={modalRef}>
-          <div className="modal-close" onClick={props.handleDeleteModal}></div>
+          <div className="modal-close" onClick={() => dispatch(closeDeleteMovieForm())}></div>
           <div className="modal__content">
             <h2 className="modal__title">Delete movie</h2>
             <p className="modal__subtitle">Are you sure you want to delete this movie?</p>
           </div>
           <div className="modal-button">
-            <SubmitButton text="confirm" handleClick={props.handleDeleteModal} />
+            <SubmitButton text="confirm" handleClick={() => dispatch(deleteMovieById(id))} />
           </div>
         </div>
       </div>

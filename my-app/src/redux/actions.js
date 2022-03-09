@@ -46,8 +46,9 @@ export const setMoviesKeyword = (keyword) => ({
   keyword,
 })
 
-export const deleteMovieById = (id) => ({
+export const deleteMovieById = (id, movies) => ({
   type: DELETE_MOVIE,
+  movies,
   id,
 })
 

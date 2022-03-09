@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './ResultsHeader.scss';
-import { getMoviesAPI } from '../../redux/api';
+import { getMoviesAPI } from '../../redux/asyncActions';
 import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../redux/actions';
 
 const SortResultsHeader = ({ currentPage, filter, sortType, keyword, getMoviesAPI, sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage }) => {

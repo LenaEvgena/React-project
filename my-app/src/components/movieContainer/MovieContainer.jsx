@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MovieCard from '../movieCard/MovieCard';
 import './MovieContainer.scss';
 import { createPages } from '../../utils/createPages';
-import { getMoviesAPI } from '../../redux/api';
+import { getMoviesAPI } from '../../redux/asyncActions';
 import { setCurrentPage } from '../../redux/actions';
 
 const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFetching, isFetchedError, getMoviesAPI, setCurrentPage }) => {
