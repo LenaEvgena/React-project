@@ -1,6 +1,6 @@
 // import { combineReducers } from 'redux';
 // export const rootReducer = combineReducers({}); //если комбинируются отдельные редьюсеры
-import { SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR, FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD } from './actions';
+import { SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR, FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD, DELETE_MOVIE, OPEN_DELETE_MOVIE_FORM, CLOSE_DELETE_MOVIE_FORM } from './actions';
 
 const initialState = {
   movies: [],
@@ -9,6 +9,8 @@ const initialState = {
   total: 0,
   isFetching: false,
   isFetchedError: false,
+  movieIdToDelete: '',
+  isDeleteFormOpen: false,
   filter: 'all',
   sortType: 'RATING',
   keyword: '',
@@ -53,36 +55,27 @@ export const rootReducer: any = (state = initialState, action: any) => {
         ...state,
         keyword: action.keyword, //приходит из action
       }
+    case OPEN_DELETE_MOVIE_FORM:
+      return {
+        ...state,
+        movieIdToDelete: action.id,
+        isDeleteFormOpen: true,
+      };
+    case CLOSE_DELETE_MOVIE_FORM:
+      return {
+        ...state,
+        movieIdToDelete: '',
+        isDeleteFormOpen: false,
+      };
+    case DELETE_MOVIE:
+      return {
+        ...state,
+        movieIdToDelete: '',
+        isDeleteFormOpen: false,
+        total: state.total - 1,
+        // movies: state.movies.filter((el) => el.id !== action.id),
+      }
     default:
       return state;
   }
 }
-
-
-// case 'DELETE_MOVIE_ASYNC_SUCCESS':
-//     return {
-//       ...state,
-//       idMovieIdToDelete: '',
-//       openMovieDeleteForm: false,
-//       total: state.total - 1,
-//       apiError: false,
-//       movies: state.movies.filter((el) => el.id !== action.id),
-//     };
-// export const openDeleteMovieForm = (id) => ({
-//   type: 'OPEN_DELETE_MOVIE_FORM',
-//   id,
-// });
-
-// export const closeDeleteMovieForm = () => ({
-//   type: 'CLOSE_DELETE_MOVIE_FORM',
-// });
-
-// export const deleteMovieAsync = (id) => ({
-//   type: 'DELETE_MOVIE_ASYNC',
-//   id,
-// });
-
-// export const deleteMovieAsyncSuccess = (id) => ({
-//   type: 'DELETE_MOVIE_ASYNC_SUCCESS',
-//   id,
-// });

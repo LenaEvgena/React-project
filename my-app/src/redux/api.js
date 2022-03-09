@@ -48,26 +48,13 @@ export const getMoviesAPI = (currentPage, sortType = 'RATING', genre, query = ''
   }
 }
 
-
-// export const fetchMovieById = async (id) => {
-//   return fetch(`${APIUrl}${id}`, {
-//     method: 'GET',
-//     headers: {
-//       'X-API-KEY': token,
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     .then(res => res.json())
-//   // .then(data => setMovie({...data}))
-// }
-
 export const fetchVideoById = async (id) => {
   try {
     await fetch(`${APIUrl}${id}/videos`, {
       method: 'GET',
       headers: {
         'X-API-KEY': token,
-        'Content-Type': 'application/json',
+        'accept': 'application/json',
       },
     })
       .then(res => res.json())

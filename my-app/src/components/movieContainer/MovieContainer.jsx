@@ -7,36 +7,13 @@ import { getMoviesAPI } from '../../redux/api';
 import { setCurrentPage } from '../../redux/actions';
 
 const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFetching, isFetchedError, getMoviesAPI, setCurrentPage }) => {
-  const [showOptions, setShowOptions] = useState({});
   const pages = [];
+  createPages(pages, total, currentPage);
 
   useEffect(() => {
     window.scroll(0, 0);
     getMoviesAPI(currentPage, sortType);
   }, []);
-
-  createPages(pages, total, currentPage);
-
-console.log(movies);
-
-  const handleOpenClick = (event, id) => {
-    const item = movies.filter((movie) => movie.kinopoiskId === id)[0]; // данные одного выбранного фильма
-    setShowOptions((item.kinopoiskId === id) ? { [item.kinopoiskId]: true } : null);
-    event.stopPropagation();
-  }
-
-  const handleCloseClick = () => {
-    setShowOptions(movies.map((movie) => ({ [movie?.kinopoiskId]: false })));
-  }
-
-  useEffect(() => {
-    document.addEventListener('click', handleCloseClick);
-    return () => {
-      document.removeEventListener('click', handleCloseClick);
-    }
-  }, []);
-
-  console.log('showOptions', showOptions);
 
   if (isFetchedError) {
     return (<div className="error">
@@ -81,8 +58,6 @@ console.log(movies);
             <MovieCard
               data={movie}
               key={movie.kinopoiskId}
-              showOptions={showOptions[movie.kinopoiskId]}
-              handleClick={handleOpenClick}
             />)
           )}
         </div>}
