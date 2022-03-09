@@ -6,6 +6,7 @@ import Main from './components/main/Main';
 import MovieDetails from './components/movieDetails/MovieDetails';
 import ErrorPage from './components/errorPage/ErrorPage';
 import './style.scss';
+import ScrollButton from './components/scrollButton/ScrollButton';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       </Routes>
       <Main />
       <Footer />
+      <ScrollButton />
     </BrowserRouter>
   )
 };
