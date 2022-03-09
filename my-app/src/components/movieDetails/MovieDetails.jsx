@@ -15,7 +15,6 @@ const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
 function useMovie(id) {
   const [movie, setMovie] = useState({});
 
-
   const fetchMovieById = async (movieId) => {
     try {
       const res = await fetch(`${APIUrl}${APIParams}${movieId}`, {

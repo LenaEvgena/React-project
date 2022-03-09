@@ -1,14 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './SearchBar.scss';
+import { setCurrentPage, setMoviesKeyword } from '../../redux/actions';
+import { getMoviesAPI } from '../../redux/asyncActions';
 
-const SearchBar = ({ setCurrentPage, setMoviesKeyword, getMoviesAPI }) => {
+const SearchBar = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector(state => state.currentPage);
   const sortType = useSelector(state => state.sortType);
   const filter = useSelector(state => state.filter);
   const keyword = useSelector(state => state.keyword);
-
 
   const handleChange = ({ target }) => dispatch(setMoviesKeyword(target.value));
 

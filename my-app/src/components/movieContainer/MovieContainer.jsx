@@ -1,18 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import MovieCard from '../movieCard/MovieCard';
 import './MovieContainer.scss';
 import { createPages } from '../../utils/createPages';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { setCurrentPage } from '../../redux/actions';
 
-const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFetching, isFetchedError, getMoviesAPI, setCurrentPage }) => {
+const MovieContainer = () => {
+  const dispatch = useDispatch();
+  const movies = useSelector(state => state.movies.items);
+  const total = useSelector(state => state.total);
+  const totalCount = useSelector(state => state.totalCount);
+  const currentPage = useSelector(state => state.currentPage);
+  const sortType = useSelector(state => state.sortType);
+  const isFetching = useSelector(state => state.isFetching);
+  const isFetchedError = useSelector(state => state.isFetchedError);
+
   const pages = [];
   createPages(pages, total, currentPage);
 
   useEffect(() => {
     window.scroll(0, 0);
-    getMoviesAPI(currentPage, sortType);
+    dispatch(getMoviesAPI(currentPage, sortType));
   }, []);
 
   if (isFetchedError) {
@@ -45,7 +54,7 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
         {pages.map((page, index) => <span
           className={currentPage === page ? "page active" : "page"}
           key={index}
-          onClick={() => setCurrentPage(page)}>{page}</span>)}
+          onClick={() => dispatch(setCurrentPage(page))}>{page}</span>)}
       </div>
 
       {isFetching ? (
@@ -65,23 +74,4 @@ const MovieContainer = ({ movies, currentPage, total, totalCount, sortType, isFe
   );
 }
 
-//преобразовывает state в props
-const mapStateToProps = state => {
-  // console.log('State: ', state);
-  return {
-    movies: state.movies.items,
-    total: state.total,
-    totalCount: state.totalCount,
-    currentPage: state.currentPage,
-    sortType: state.sortType,
-    isFetching: state.isFetching,
-    isFetchedError: state.isFetchedError,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  getMoviesAPI: (currentPage, sortType) => dispatch(getMoviesAPI(currentPage, sortType)),
-  setCurrentPage: (page) => dispatch(setCurrentPage(page)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieContainer);
+export default MovieContainer;
