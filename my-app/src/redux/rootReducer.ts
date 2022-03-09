@@ -5,7 +5,7 @@ import { SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING,
 const initialState = {
   movies: [],
   currentPage: 1,
-  totalCount: 0,
+  totalCount: 0, //всего фильмов
   total: 0,
   isFetching: false,
   isFetchedError: false,
@@ -15,6 +15,7 @@ const initialState = {
   sortType: 'RATING',
   keyword: '',
 }
+
 
 export const rootReducer: any = (state: any = initialState, action: any) => {
   switch (action.type) {
@@ -72,8 +73,9 @@ export const rootReducer: any = (state: any = initialState, action: any) => {
         ...state,
         movieIdToDelete: '',
         isDeleteFormOpen: false,
+        totalCount: state.totalCount - 1,
         total: state.total - 1,
-        movies: action.movies.filter((movie: any, id: any) => movie.id !== id),
+        movies: state.movies.items.filter((movie: any) => movie.kinopoiskId !== action.id),
       }
     default:
       return state;

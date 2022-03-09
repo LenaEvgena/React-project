@@ -85,13 +85,11 @@ export const fetchVideoById = async (id) => {
 export const deleteMovieAPI = (id) => {
   return async dispatch => {
     try {
-      dispatch(setIsFetching(true));
       const res = await fetch(`${APIUrl}`, {
-        method: 'DELETE',
+        method: 'GET',
       });
       const data = await res.json();
-      dispatch(deleteMovieById(id, data));
-      dispatch(setIsFetching(false));
+      dispatch(deleteMovieById(id,data));
     } catch (error) {
       dispatch(setFetchedError(true));
     }

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MovieCard from '../movieCard/MovieCard';
 import './MovieContainer.scss';
 import { createPages } from '../../utils/createPages';
@@ -15,8 +15,8 @@ const MovieContainer = () => {
   const sortType = useSelector(state => state.sortType);
   const isFetching = useSelector(state => state.isFetching);
   const isFetchedError = useSelector(state => state.isFetchedError);
-
   const pages = [];
+
   createPages(pages, total, currentPage);
 
   useEffect(() => {

@@ -48,8 +48,8 @@ export const setMoviesKeyword = (keyword) => ({
 
 export const deleteMovieById = (id, movies) => ({
   type: DELETE_MOVIE,
-  movies,
   id,
+  movies,
 })
 
 export const openDeleteMovieForm = (id) => ({
