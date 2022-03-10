@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DeleteModal from '../deleteModal/DeleteModal';
 import './MovieCard.scss';
@@ -28,7 +28,7 @@ const MovieCard = ({ data }) => {
     setShowOptions(false);
   }
 
-  useState(() => {
+  useEffect(() => {
     document.addEventListener('click', handleCloseOptions);
     return () => {
       document.removeEventListener('click', handleCloseOptions);
@@ -43,6 +43,7 @@ const MovieCard = ({ data }) => {
     }
   }
 
+  if (!data) return;
   return (
     <div className="movie">
       <div className="movie__image">
