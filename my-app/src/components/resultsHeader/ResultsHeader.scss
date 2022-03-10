@@ -43,14 +43,19 @@
     margin-right: 3rem;
     transition: 0.3s;
     cursor: pointer;
-  }
 
-  li.active {
-    border-bottom: 2px solid $color-primary;
-  }
+    &.active {
+      border-bottom: 2px solid $color-primary;
+    }
 
-  li:hover {
-    opacity: 0.5;
+    &.busy {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -74,11 +79,21 @@
     background: url('./../../assets/triangle.svg');
     background-position: center right;
     background-repeat: no-repeat;
+
+    &.busy {
+      pointer-events: none;
+      opacity: 0.7;
+    }
   }
 
   .select {
     width: 16rem;
     height: 2rem;
+
+    &.busy {
+      pointer-events: none;
+      opacity: 0.7;
+    }
   }
 
   option {

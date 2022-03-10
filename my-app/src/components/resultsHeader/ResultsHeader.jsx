@@ -11,6 +11,7 @@ const SortResultsHeader = () => {
   const sortType = useSelector(state => state.sortType);
   const filter = useSelector(state => state.filter);
   const keyword = useSelector(state => state.keyword);
+  const isFetching = useSelector(state => state.isFetching);
 
   useEffect(() => {
     dispatch(setCurrentPage(1));
@@ -26,16 +27,16 @@ const SortResultsHeader = () => {
       {!isFavorListOpen && <>
         <div className="results__filter">
           <ul>
-            <li className={filter === 'all' ? 'active' : ''} onClick={() => dispatch(filterGenreMoviesAsync('all'))}>All</li>
-            <li className={filter === 'drama' ? 'active' : ''} onClick={() => dispatch(filterGenreMoviesAsync('drama'))}>Drama</li>
-            <li className={filter === 'melodrama' ? 'active' : ''} onClick={() => dispatch(filterGenreMoviesAsync('melodrama'))}>Melodrama</li>
-            <li className={filter === 'thriller' ? 'active' : ''} onClick={() => dispatch(filterGenreMoviesAsync('thriller'))}>Thriller</li>
-            <li className={filter === 'crime' ? 'active' : ''} onClick={() => dispatch(filterGenreMoviesAsync('crime'))}>Crime</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'all' && 'active'}`} onClick={() => dispatch(filterGenreMoviesAsync('all'))}>All</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'drama' && 'active' }`} onClick={() => dispatch(filterGenreMoviesAsync('drama'))}>Drama</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'melodrama' && 'active'}`} onClick={() => dispatch(filterGenreMoviesAsync('melodrama'))}>Melodrama</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'thriller' && 'active'}`} onClick={() => dispatch(filterGenreMoviesAsync('thriller'))}>Thriller</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'crime' && 'active'}`} onClick={() => dispatch(filterGenreMoviesAsync('crime'))}>Crime</li>
           </ul>
         </div>
         <div className="results__sort">
           <span>Sort by</span>
-          <select className="select" onClick={(e) => dispatch(sortMoviesAsync(e.target.value))}>
+          <select className={`${isFetching && 'busy'} 'select'`} onClick={(e) => dispatch(sortMoviesAsync(e.target.value))}>
             <option value="RATING">Rating</option>
             <option value="YEAR">Release date</option>
           </select>
