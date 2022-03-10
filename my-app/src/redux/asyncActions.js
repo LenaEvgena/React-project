@@ -69,37 +69,17 @@ export const fetchMovieById = (movieId) => {
 export const fetchVideoById = (id) => {
   return async dispatch => {
     try {
-      await fetch(`${APIUrl}${id}/videos`, {
+      const res = await fetch(`${APIUrl}${id}/videos`, {
         method: 'GET',
         headers: {
           'X-API-KEY': token,
           'Content-Type': 'application/json',
         },
       })
-        .then(res => res.json())
-        .then(data => console.log(data))
+      const data = await res.json();
+      console.log(data)
     } catch (error) {
       dispatch(setFetchedError(true));
     }
   }
 }
-
-// export const fetchVideoById = (id) => {
-//   return async dispatch => {
-//     try {
-//       const res = await fetch(`${APIUrl}${id}/videos`, {
-//         method: 'GET',
-//         headers: {
-//           'X-API-KEY': token,
-//           'Content-Type': 'application/json',
-//         },
-//       });
-//       const data = await res.json();
-//       console.log(data);
-//     } catch (error) {
-//       dispatch(setFetchedError(true));
-//     }
-//   }
-// }
-
-

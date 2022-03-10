@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
+import { removeFavoriteMovie, setFavoriteMovie } from '../../redux/actions';
 import Background from '../background/Background';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
@@ -12,8 +13,11 @@ import './MovieDetails.scss';
 const MovieDetails = (props) => {
   const dispatch = useDispatch();
   const item = useSelector(state => state.selectedByIdMovie);
+  const favoriteMovies = useSelector(state => state.favoriteMovies);
   const { id } = useParams();
   const [showVideoModal, setShowVideoModal] = useState(false);
+
+  const isFavorite = (id) => favoriteMovies.some((item) => item.kinopoiskId === id);
 
   const handleVideoModal = () => {
     setShowVideoModal(!showVideoModal);
@@ -24,6 +28,14 @@ const MovieDetails = (props) => {
     dispatch(fetchVideoById(id));
     handleVideoModal();
   };
+
+  const handleFavoriteClick = (id) => {
+    if (isFavorite(id)) {
+      dispatch(removeFavoriteMovie(id));
+    } else {
+      dispatch(setFavoriteMovie(id));
+    }
+  }
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -44,6 +56,8 @@ const MovieDetails = (props) => {
           <div className="details__container">
             <div className="details__aside">
               <div className="details__image">
+                <i className={`movie_icon-fav ${isFavorite(item?.kinopoiskId) ? 'active' : ''}`} onClick={() => handleFavoriteClick(item?.kinopoiskId)}></i>
+
                 <img className="image-cover" src={item?.posterUrl || item?.posterUrlPreview} alt={item?.nameOriginal || item?.nameRu} />
               </div>
               <SubmitButton text={'Video'} handleClick={handleClick} />
