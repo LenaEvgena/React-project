@@ -6,6 +6,7 @@ import { createPages } from '../../utils/createPages';
 import MovieCard from '../movieCard/MovieCard';
 import ErrorPage from '../errorPage/ErrorPage';
 import './MovieContainer.scss';
+import FavorContainer from './FavorContainer';
 
 const MovieContainer = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const MovieContainer = () => {
   const sortType = useSelector(state => state.sortType);
   const isFetching = useSelector(state => state.isFetching);
   const isFetchedError = useSelector(state => state.isFetchedError);
+  const favoriteMovies = useSelector(state => state.favoriteMovies);
+  const isFavorListOpen = useSelector(state => state.isFavorListOpen);
   const pages = [];
 
   createPages(pages, total, currentPage);
@@ -35,6 +38,10 @@ const MovieContainer = () => {
         <div className="loading">No movies found</div>
       </div>
     )
+  }
+
+  if (isFavorListOpen) {
+    return <FavorContainer />
   }
 
   return (
@@ -63,9 +70,10 @@ const MovieContainer = () => {
               key={movie.kinopoiskId}
             />)
           )}
-        </div>}
+        </div>
+      }
     </div>
-  );
+  )
 }
 
 export default MovieContainer;

@@ -12,6 +12,7 @@ export const OPEN_DELETE_MOVIE_FORM = 'MOVIES/OPEN_DELETE_MOVIE_FORM';
 export const CLOSE_DELETE_MOVIE_FORM = 'MOVIES/CLOSE_DELETE_MOVIE_FORM';
 export const SET_FAVORITE_MOVIE = 'MOVIES/SET_FAVORITE_MOVIE';
 export const REMOVE_FAVORITE_MOVIE = 'MOVIES/REMOVE_FAVORITE_MOVIE';
+export const TOGGLE_FAVORITE_LIST = 'MOVIES/TOGGLE_FAVORITE_LIST';
 
 
 export const setMoviesAsync = (movies) => ({
@@ -84,3 +85,7 @@ export const removeFavoriteMovie = (id) => ({
   id,
 });
 
+export const toggleFavoriteList = (bool) => ({
+  type: TOGGLE_FAVORITE_LIST,
+  isFavorListOpen: bool,
+});

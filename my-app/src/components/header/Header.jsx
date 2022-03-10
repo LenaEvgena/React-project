@@ -1,6 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import AddButton from '../addButton/AddButton';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleFavoriteList } from '../../redux/actions';
+import FavorButton from '../favorButton/FavorButton';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SearchForm from '../searchForm/SearchForm';
 import Background from '../background/Background';
@@ -8,10 +9,16 @@ import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 import './Header.scss';
 
 const Header = (props) => {
-  const favoriteMovies = useSelector(state => state.favoriteMovies);
+  const dispatch = useDispatch();
+  const isFavorListOpen = useSelector(state => state.isFavorListOpen);
+  let text = !isFavorListOpen ? 'Show favorites' : 'Close favorites';
 
-  const handleClick = () => {
-    console.log('favoriteMovies', favoriteMovies);
+  const handleFavoriteClick = (id) => {
+    if (isFavorListOpen) {
+      dispatch(toggleFavoriteList(false));
+    } else {
+      dispatch(toggleFavoriteList(true));
+    }
   }
 
   return (
@@ -22,7 +29,7 @@ const Header = (props) => {
           <div className="header__wrapper">
             <div className="header__logo">
               <LogoTitle />
-              <AddButton handleClick={handleClick} />
+              <FavorButton handleClick={handleFavoriteClick} text={text} />
             </div>
             <SearchForm />
           </div>
