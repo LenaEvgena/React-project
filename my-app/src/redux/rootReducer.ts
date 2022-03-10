@@ -75,14 +75,14 @@ export const rootReducer: any = (state: any = initialState, action: any) => {
         isDeleteFormOpen: false,
       };
     case DELETE_MOVIE:
-      return {
-        ...state,
-        movieIdToDelete: '',
-        isDeleteFormOpen: false,
-        totalCount: state.totalCount - 1,
-        total: state.total - 1,
-        movies: state.movies.filter((movie: any) => movie.kinopoiskId !== action.id),
-      }
+      let copy = { ...state };
+      copy.isDeleteFormOpen = false;
+      copy.movieIdToDelete = '';
+      copy.totalCount = state.totalCount - 1;
+      copy.total = state.total - 1;
+      copy.movies = { ...state.movies };
+      copy.movies.items = [...state.movies.items.filter((item: any) => item.kinopoiskId !== action.id)];
+      return copy;
     case SET_FAVORITE_MOVIE:
       return {
         ...state,

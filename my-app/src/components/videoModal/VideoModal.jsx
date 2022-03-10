@@ -5,7 +5,6 @@ import SubmitButton from '../submitButton/SubmitButton';
 import './VideoModal.scss';
 
 const VideoModal = (props) => {
-  console.log(props);
   const modalRef = React.createRef();
 
   const handleOutsideClick = (event) => {

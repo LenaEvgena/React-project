@@ -3,12 +3,13 @@ import Footer from '../footer/Footer';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
 import './DeleteModal.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeDeleteMovieForm, deleteMovieById } from '../../redux/actions';
 
-const DeleteModal = ({ id }) => {
+const DeleteModal = () => {
   const dispatch = useDispatch();
   const modalRef = React.createRef();
+  const id = useSelector(state => state.movieIdToDelete);
 
   const handleOutsideClick = (event) => {
     if (modalRef.current.contains(event.target)) {
