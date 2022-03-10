@@ -1,4 +1,4 @@
-import { deleteMovieById, setFetchedError, setIsFetching, setMoviesAsync } from './actions';
+import { setFetchedError, setIsFetching, setMovieByID, setMoviesAsync } from './actions';
 
 const APIUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/';
 const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
@@ -48,19 +48,39 @@ export const getMoviesAPI = (currentPage, sortType = 'RATING', genre, query = ''
   }
 }
 
-export const fetchVideoById = async (id) => {
-  try {
-    await fetch(`${APIUrl}${id}/videos`, {
-      method: 'GET',
-      headers: {
-        'X-API-KEY': token,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-  } catch (error) {
-    console.log(error.message);
+export const fetchMovieById = (movieId) => {
+  return async dispatch => {
+    try {
+      const res = await fetch(`${APIUrl}${movieId}`, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': token,
+          'Content-Type': 'application/json',
+        },
+      })
+      const data = await res.json();
+      dispatch(setMovieByID(data));
+    } catch (error) {
+      dispatch(setFetchedError(true));
+    }
+  }
+}
+
+export const fetchVideoById = (id) => {
+  return async dispatch => {
+    try {
+      await fetch(`${APIUrl}${id}/videos`, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': token,
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    } catch (error) {
+      dispatch(setFetchedError(true));
+    }
   }
 }
 
@@ -82,16 +102,4 @@ export const fetchVideoById = async (id) => {
 //   }
 // }
 
-export const deleteMovieAPI = (id) => {
-  return async dispatch => {
-    try {
-      const res = await fetch(`${APIUrl}`, {
-        method: 'GET',
-      });
-      const data = await res.json();
-      dispatch(deleteMovieById(id,data));
-    } catch (error) {
-      dispatch(setFetchedError(true));
-    }
-  }
-}
+

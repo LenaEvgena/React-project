@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DeleteModal from '../deleteModal/DeleteModal';
-import './MovieCard.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { openDeleteMovieForm, removeFavoriteMovie, setFavoriteMovie } from '../../redux/actions';
+import DeleteModal from '../deleteModal/DeleteModal';
+import './MovieCard.scss';
 
 const MovieCard = ({ data }) => {
   const dispatch = useDispatch();
@@ -43,11 +43,10 @@ const MovieCard = ({ data }) => {
     }
   }
 
-  if (!data) return;
   return (
     <div className="movie">
       <div className="movie__image">
-        <i className={isFavorite(data.kinopoiskId) ? 'movie_icon-fav active' : 'movie_icon-fav'} onClick={() => handleFavoriteClick(data.kinopoiskId)}></i>
+        <i className={`movie_icon-fav ${isFavorite(data.kinopoiskId) ? 'active' : ''}`} onClick={() => handleFavoriteClick(data.kinopoiskId)}></i>
         <img className="movie__card" id={data.kinopoiskId} src={data.posterUrl || data.posterUrlPreview} alt={data.nameOriginal || data.nameRu} />
 
         {!showOptions ?

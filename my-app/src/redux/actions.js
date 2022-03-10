@@ -1,5 +1,6 @@
 export const SET_MOVIES_ASYNC = 'MOVIES/SET_MOVIES_ASYNC';
 export const SET_CURRENT_PAGE = 'MOVIES/SET_CURRENT_PAGE';
+export const SET_MOVIE_BY_ID = 'MOVIES/SET_MOVIE_BY_ID';
 export const SET_IS_FETCHING = 'MOVIES/SET_IS_FETCHING';
 export const SET_FETCHED_ERROR = 'ERROR/SET_FETCHED_ERROR';
 export const FILTER_MOVIES_ASYNC = 'MOVIES/FILTER_MOVIES_ASYNC';
@@ -10,6 +11,7 @@ export const OPEN_DELETE_MOVIE_FORM = 'MOVIES/OPEN_DELETE_MOVIE_FORM';
 export const CLOSE_DELETE_MOVIE_FORM = 'MOVIES/CLOSE_DELETE_MOVIE_FORM';
 export const SET_FAVORITE_MOVIE = 'MOVIES/SET_FAVORITE_MOVIE';
 export const REMOVE_FAVORITE_MOVIE = 'MOVIES/REMOVE_FAVORITE_MOVIE';
+
 
 export const setMoviesAsync = (movies) => ({
   type: SET_MOVIES_ASYNC,
@@ -22,6 +24,11 @@ export const setCurrentPage = (page) => ({
   type: SET_CURRENT_PAGE,
   currentPage: page,
 })
+
+export const setMovieByID = (movie) => ({
+  type: SET_MOVIE_BY_ID,
+  movie,
+});
 
 export const setIsFetching = (bool) => ({
   type: SET_IS_FETCHING,
@@ -71,3 +78,4 @@ export const removeFavoriteMovie = (id) => ({
   type: REMOVE_FAVORITE_MOVIE,
   id,
 });
+

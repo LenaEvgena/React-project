@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './ResultsHeader.scss';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../redux/actions';
+import './ResultsHeader.scss';
 
 const SortResultsHeader = () => {
   const dispatch = useDispatch();

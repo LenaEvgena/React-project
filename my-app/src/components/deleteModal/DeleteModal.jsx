@@ -1,10 +1,10 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeDeleteMovieForm, deleteMovieById } from '../../redux/actions';
 import Footer from '../footer/Footer';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
 import './DeleteModal.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { closeDeleteMovieForm, deleteMovieById } from '../../redux/actions';
 
 const DeleteModal = () => {
   const dispatch = useDispatch();

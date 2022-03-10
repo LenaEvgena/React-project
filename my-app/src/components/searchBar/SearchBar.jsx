@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './SearchBar.scss';
 import { setCurrentPage, setMoviesKeyword } from '../../redux/actions';
 import { getMoviesAPI } from '../../redux/asyncActions';
+import './SearchBar.scss';
 
 const SearchBar = () => {
   const dispatch = useDispatch();

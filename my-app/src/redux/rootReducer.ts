@@ -1,9 +1,7 @@
-// import { combineReducers } from 'redux';
-// export const rootReducer = combineReducers({}); //если комбинируются отдельные редьюсеры
 import {
   SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR,
   FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD, DELETE_MOVIE, OPEN_DELETE_MOVIE_FORM, CLOSE_DELETE_MOVIE_FORM,
-  SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE
+  SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE, SET_MOVIE_BY_ID
 } from './actions';
 
 const initialState = {
@@ -19,6 +17,7 @@ const initialState = {
   sortType: 'RATING',
   keyword: '',
   favoriteMovies: [],
+  selectedByIdMovie: {},
 }
 
 
@@ -27,40 +26,45 @@ export const rootReducer: any = (state: any = initialState, action: any) => {
     case SET_MOVIES_ASYNC:
       return {
         ...state,
-        movies: action.movies, //приходит из action
-        totalCount: action.totalCount, //приходит из action
-        total: action.total, //приходит из action
+        movies: action.movies,
+        totalCount: action.totalCount,
+        total: action.total,
         isFetchedError: false,
       }
     case SET_CURRENT_PAGE:
       return {
         ...state,
-        currentPage: action.currentPage, //приходит из action
+        currentPage: action.currentPage,
+      }
+    case SET_MOVIE_BY_ID:
+      return {
+        ...state,
+        selectedByIdMovie: action.movie,
       }
     case SET_IS_FETCHING:
       return {
         ...state,
-        isFetching: action.isFetching, //приходит из action
+        isFetching: action.isFetching,
       }
     case SET_FETCHED_ERROR:
       return {
         ...state,
-        isFetchedError: action.isFetchedError, //приходит из action
+        isFetchedError: action.isFetchedError,
       }
     case FILTER_MOVIES_ASYNC:
       return {
         ...state,
-        filter: action.filter, //приходит из action
+        filter: action.filter,
       }
     case SORT_MOVIES_ASYNC:
       return {
         ...state,
-        sortType: action.sortType, //приходит из action
+        sortType: action.sortType,
       }
     case SEARCH_MOVIES_KEYWORD:
       return {
         ...state,
-        keyword: action.keyword, //приходит из action
+        keyword: action.keyword,
       }
     case OPEN_DELETE_MOVIE_FORM:
       return {

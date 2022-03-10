@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import MovieCard from '../movieCard/MovieCard';
-import './MovieContainer.scss';
-import { createPages } from '../../utils/createPages';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { setCurrentPage } from '../../redux/actions';
+import { createPages } from '../../utils/createPages';
+import MovieCard from '../movieCard/MovieCard';
 import ErrorPage from '../errorPage/ErrorPage';
+import './MovieContainer.scss';
 
 const MovieContainer = () => {
   const dispatch = useDispatch();

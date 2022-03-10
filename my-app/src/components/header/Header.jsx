@@ -4,8 +4,8 @@ import AddButton from '../addButton/AddButton';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SearchForm from '../searchForm/SearchForm';
 import Background from '../background/Background';
-import './Header.scss';
 import ErrorBoundary from '../errorBoundary/ErrorBoundary';
+import './Header.scss';
 
 const Header = (props) => {
   const favoriteMovies = useSelector(state => state.favoriteMovies);

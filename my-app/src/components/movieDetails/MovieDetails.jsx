@@ -1,60 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { fetchVideoById } from '../../redux/asyncActions';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
 import Background from '../background/Background';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
-import './MovieDetails.scss';
 import VideoModal from '../videoModal/VideoModal';
-
-const APIUrl = 'https://kinopoiskapiunofficial.tech';
-const APIParams = '/api/v2.2/films/';
-const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
-
-function useMovie(id) {
-  const [movie, setMovie] = useState({});
-
-  const fetchMovieById = async (movieId) => {
-    try {
-      const res = await fetch(`${APIUrl}${APIParams}${movieId}`, {
-        method: 'GET',
-        headers: {
-          'X-API-KEY': token,
-          'Content-Type': 'application/json',
-        },
-      })
-      const data = await res.json();
-      console.log(data);
-      setMovie(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-  useEffect(() => {
-    window.scroll(0, 0);
-    fetchMovieById(id);
-  }, [id]);
-
-  return movie;
-}
-
+import './MovieDetails.scss';
 
 const MovieDetails = (props) => {
+  const dispatch = useDispatch();
+  const item = useSelector(state => state.selectedByIdMovie);
   const { id } = useParams();
-  const item = useMovie(id);
   const [showVideoModal, setShowVideoModal] = useState(false);
 
   const handleVideoModal = () => {
     setShowVideoModal(!showVideoModal);
-  }
+  };
 
   const handleClick = () => {
     window.scroll(0, 0);
-    fetchVideoById(id);
+    dispatch(fetchVideoById(id));
     handleVideoModal();
-  }
+  };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+    dispatch(fetchMovieById(id));
+  }, [id]);
 
   return (
     <>
