@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import LogoTitle from '../logoTitle/LogoTitle';
 import './ErrorPage.scss';
 
-const ErrorPage = () => (
+const ErrorPage = (props) => (
   <>
     <div className="error">
       <div className="error_logo">
@@ -14,7 +14,7 @@ const ErrorPage = () => (
           <h2 className="error_text">Page not Found</h2>
           <p className="error_num">404</p>
           <Link to="/">
-            <button className="reset__button" type="button">Go back</button>
+            <button className="reset__button" type="button" onClick={props.handleClick}>{props.text || 'Go back'}</button>
           </Link>
         </div>
       </div>

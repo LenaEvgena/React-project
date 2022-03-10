@@ -3,6 +3,22 @@
 .movie {
   position: relative;
 
+  &_icon-fav {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-image: url('./../../assets/heart.png');
+    background-size: cover;
+    width: 2.35rem;
+    height: 2.1rem;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    &.active{
+      background-image: url('./../../assets/heartPink.png');
+    }
+  }
+
   &__image {
     overflow: hidden;
 
@@ -86,8 +102,8 @@
   top: 0.6rem;
   right: 0.7rem;
   width: 19rem;
-  height: 11rem;
   background-color: $color-dark;
+  padding-bottom: 1rem;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -106,9 +122,8 @@
 
 .options-edit {
   opacity: 0.8;
+  padding: 0.8rem;
   padding-left: 2.3rem;
-  height: 3.4rem;
-  padding-top: 0.8rem;
   cursor: pointer;
 
   &:hover {

@@ -5,6 +5,7 @@ import './MovieContainer.scss';
 import { createPages } from '../../utils/createPages';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { setCurrentPage } from '../../redux/actions';
+import ErrorPage from '../errorPage/ErrorPage';
 
 const MovieContainer = () => {
   const dispatch = useDispatch();
@@ -25,14 +26,7 @@ const MovieContainer = () => {
   }, []);
 
   if (isFetchedError) {
-    return (<div className="error">
-      <div className="error__wrapper">
-        <div className="error_content">
-          <h2 className="error_text">Page not Found</h2>
-          <p className="error_num">404</p>
-        </div>
-      </div>
-    </div>)
+    return <ErrorPage handleClick={() => dispatch(getMoviesAPI(currentPage, sortType))} text='Try again' />;
   }
 
   if (totalCount === 0) {

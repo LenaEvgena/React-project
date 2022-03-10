@@ -3,7 +3,7 @@ import './AddButton.scss';
 
 const AddButton = (props) => (
   <div className="logo__button">
-    <button className="add-button" type="button" onClick={props.handleMovieModal}>+ Add movie</button>
+    <button className="fav-button" type="button" onClick={props.handleClick}>Favorites</button>
   </div>
 );
 

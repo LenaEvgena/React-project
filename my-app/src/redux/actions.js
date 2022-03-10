@@ -8,6 +8,8 @@ export const SEARCH_MOVIES_KEYWORD = 'MOVIES/SEARCH_MOVIES_KEYWORD';
 export const DELETE_MOVIE = 'MOVIES/DELETE_MOVIE';
 export const OPEN_DELETE_MOVIE_FORM = 'MOVIES/OPEN_DELETE_MOVIE_FORM';
 export const CLOSE_DELETE_MOVIE_FORM = 'MOVIES/CLOSE_DELETE_MOVIE_FORM';
+export const SET_FAVORITE_MOVIE = 'MOVIES/SET_FAVORITE_MOVIE';
+export const REMOVE_FAVORITE_MOVIE = 'MOVIES/REMOVE_FAVORITE_MOVIE';
 
 export const setMoviesAsync = (movies) => ({
   type: SET_MOVIES_ASYNC,
@@ -46,10 +48,9 @@ export const setMoviesKeyword = (keyword) => ({
   keyword,
 })
 
-export const deleteMovieById = (id, movies) => ({
+export const deleteMovieById = (id) => ({
   type: DELETE_MOVIE,
   id,
-  movies,
 })
 
 export const openDeleteMovieForm = (id) => ({
@@ -61,3 +62,12 @@ export const closeDeleteMovieForm = () => ({
   type: CLOSE_DELETE_MOVIE_FORM,
 });
 
+export const setFavoriteMovie = (id) => ({
+  type: SET_FAVORITE_MOVIE,
+  id,
+});
+
+export const removeFavoriteMovie = (id) => ({
+  type: REMOVE_FAVORITE_MOVIE,
+  id,
+});

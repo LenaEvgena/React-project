@@ -1,6 +1,10 @@
 // import { combineReducers } from 'redux';
 // export const rootReducer = combineReducers({}); //если комбинируются отдельные редьюсеры
-import { SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR, FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD, DELETE_MOVIE, OPEN_DELETE_MOVIE_FORM, CLOSE_DELETE_MOVIE_FORM } from './actions';
+import {
+  SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR,
+  FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD, DELETE_MOVIE, OPEN_DELETE_MOVIE_FORM, CLOSE_DELETE_MOVIE_FORM,
+  SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE
+} from './actions';
 
 const initialState = {
   movies: [],
@@ -14,6 +18,7 @@ const initialState = {
   filter: 'all',
   sortType: 'RATING',
   keyword: '',
+  favoriteMovies: [],
 }
 
 
@@ -25,6 +30,7 @@ export const rootReducer: any = (state: any = initialState, action: any) => {
         movies: action.movies, //приходит из action
         totalCount: action.totalCount, //приходит из action
         total: action.total, //приходит из action
+        isFetchedError: false,
       }
     case SET_CURRENT_PAGE:
       return {
@@ -75,7 +81,17 @@ export const rootReducer: any = (state: any = initialState, action: any) => {
         isDeleteFormOpen: false,
         totalCount: state.totalCount - 1,
         total: state.total - 1,
-        movies: state.movies.items.filter((movie: any) => movie.kinopoiskId !== action.id),
+        movies: state.movies.filter((movie: any) => movie.kinopoiskId !== action.id),
+      }
+    case SET_FAVORITE_MOVIE:
+      return {
+        ...state,
+        favoriteMovies: [...state.movies.items.filter((item: any) => item.kinopoiskId === action.id), ...state.favoriteMovies],
+      }
+    case REMOVE_FAVORITE_MOVIE:
+      return {
+        ...state,
+        favoriteMovies: [...state.favoriteMovies.filter((item: any) => item.kinopoiskId !== action.id)],
       }
     default:
       return state;

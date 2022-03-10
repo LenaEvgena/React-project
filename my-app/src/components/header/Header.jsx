@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import AddButton from '../addButton/AddButton';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SearchForm from '../searchForm/SearchForm';
-import MovieModal from '../movieModal/MovieModal';
 import Background from '../background/Background';
 import './Header.scss';
 import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 
 const Header = (props) => {
-  const [showMovieModal, setShowMovieModal] = useState(false);
-  const handleMovieModal = () => {
-    setShowMovieModal(!showMovieModal);
+  const favoriteMovies = useSelector(state => state.favoriteMovies);
+
+  const handleClick = () => {
+    console.log('favoriteMovies', favoriteMovies);
   }
 
   return (
     <>
-      {showMovieModal && <MovieModal isAddModal={true} handleMovieModal={handleMovieModal} />}
-
       <header className="header">
         <ErrorBoundary>
           <Background />
           <div className="header__wrapper">
             <div className="header__logo">
               <LogoTitle />
-              <AddButton handleMovieModal={handleMovieModal} />
+              <AddButton handleClick={handleClick} />
             </div>
             <SearchForm />
           </div>

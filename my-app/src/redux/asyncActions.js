@@ -1,6 +1,6 @@
 import { deleteMovieById, setFetchedError, setIsFetching, setMoviesAsync } from './actions';
 
-const APIUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/';
+const APIUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films';
 const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
 const yearSorting = 'yearFrom=1000&yearTo=2021';
 
@@ -54,7 +54,7 @@ export const fetchVideoById = async (id) => {
       method: 'GET',
       headers: {
         'X-API-KEY': token,
-        'accept': 'application/json',
+        'Content-Type': 'application/json',
       },
     })
       .then(res => res.json())
