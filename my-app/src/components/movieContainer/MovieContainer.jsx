@@ -17,7 +17,6 @@ const MovieContainer = () => {
   const sortType = useSelector(state => state.sortType);
   const isFetching = useSelector(state => state.isFetching);
   const isFetchedError = useSelector(state => state.isFetchedError);
-  const favoriteMovies = useSelector(state => state.favoriteMovies);
   const isFavorListOpen = useSelector(state => state.isFavorListOpen);
   const pages = [];
 
