@@ -1,7 +1,7 @@
 import {
   SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR,
   FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD, DELETE_MOVIE, OPEN_DELETE_MOVIE_FORM, CLOSE_DELETE_MOVIE_FORM,
-  SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE, SET_MOVIE_BY_ID, CLOSE_MOVIE_DETAILS_FORM, TOGGLE_FAVORITE_LIST
+  SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE, SET_MOVIE_BY_ID, CLOSE_MOVIE_DETAILS_FORM, TOGGLE_FAVORITE_LIST, SET_VIDEO
 } from './actions';
 
 const initialState = {
@@ -19,6 +19,7 @@ const initialState = {
   favoriteMovies: [],
   selectedByIdMovie: {},
   isFavorListOpen: false,
+  video: [],
 }
 
 
@@ -107,6 +108,11 @@ export const rootReducer: any = (state: any = initialState, action: any) => {
       return {
         ...state,
         isFavorListOpen: action.isFavorListOpen,
+      }
+    case SET_VIDEO:
+      return {
+        ...state,
+        video: action.video,
       }
     default:
       return state;
