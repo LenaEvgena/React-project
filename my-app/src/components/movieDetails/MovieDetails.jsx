@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
-import { removeFavoriteMovie, setFavoriteMovie } from '../../redux/actions';
+import { closeMovieDetailsForm, removeFavoriteMovie, setFavoriteMovie } from '../../redux/actions';
 import Background from '../background/Background';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
@@ -51,7 +51,7 @@ const MovieDetails = (props) => {
         <div className="details">
           <div className="details__header">
             <LogoTitle />
-            <Link to='/' className="details-search" type="button"></Link>
+            <Link to='/' className="details-search" type="button" onClick={() => dispatch(closeMovieDetailsForm())}></Link>
           </div>
           <div className="details__container">
             <div className="details__aside">
