@@ -17,5 +17,10 @@
   &:hover {
     opacity: 0.8;
   }
+
+  &.busy {
+    background-color: $color-light-grey;
+    pointer-events: none;
+  }
 }
 

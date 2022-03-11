@@ -68,7 +68,7 @@ const MovieDetails = (props) => {
                 <i className={`movie_icon-fav ${isFavorite(item?.kinopoiskId) ? 'active' : ''}`} onClick={() => handleFavoriteClick(item?.kinopoiskId)}></i>
                 <img className="image-cover" src={item?.posterUrl || item?.posterUrlPreview} alt={item?.nameOriginal || item?.nameRu} />
               </div>
-              {itemVideo && <SubmitButton text='Video' handleClick={handleClick} />}
+              <SubmitButton text='Video' busy={!itemVideo} handleClick={handleClick} />
             </div>
 
             <div className="details__content">
