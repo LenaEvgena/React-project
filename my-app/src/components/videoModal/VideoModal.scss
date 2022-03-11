@@ -22,12 +22,12 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .video {
     position: relative;
     width: 80%;
-    height: 100%;
     background-color: $color-dark;
     padding: 6.5rem 8rem;
     margin: 8rem auto 14rem auto;
@@ -37,7 +37,7 @@
     flex-direction: column;
 
     &__content {
-      height: 100%;
+      margin-bottom: 6rem;
     }
 
     &-close {
@@ -73,21 +73,21 @@
       flex-direction: column;
       justify-content: center;
       width: 100%;
-      padding-top: calc(45.15% + 85px);
+      // padding-top: calc(45.15% + 85px);
       margin-bottom: 40px;
-        @media screen and (max-width: 1100px) {
-          padding-top: calc(45.15% + 60px);
+        // @media screen and (max-width: 1100px) {
+        //   padding-top: calc(45.15% + 60px);
 
-        }
-        @media screen and (max-width: 1000px) {
-          margin-bottom: 20px;
-          padding-top: calc(45.15% + 57px);
+        // }
+        // @media screen and (max-width: 1000px) {
+        //   margin-bottom: 20px;
+        //   padding-top: calc(45.15% + 57px);
 
-        }
-        @media screen and (max-width: 600px) {
-          margin-bottom: 40px;
-          padding-top: calc(45.15% + 54px);
-        }
+        // }
+        // @media screen and (max-width: 600px) {
+        //   margin-bottom: 40px;
+        //   padding-top: calc(45.15% + 54px);
+        // }
     }
 
     &__window {
