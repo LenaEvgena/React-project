@@ -19,9 +19,16 @@ const SearchBar = () => {
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
   }
 
+  const handleResetClick = () => {
+    if (!keyword.trim()) return;
+    dispatch(setCurrentPage(1));
+    dispatch(setMoviesKeyword(''));
+  }
+
   return (
     <div className="search">
       <input className="search__field" type="text" placeholder="What do you want to watch? Enter a keyword..." value={keyword} onChange={handleChange} />
+      <button className="search__button search__button-reset" type="button" onClick={handleResetClick}></button>
       <button className="search__button" type="button" onClick={handleClick}>Search</button>
     </div>
   );

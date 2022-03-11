@@ -36,5 +36,17 @@
     &:hover {
       opacity: 0.8;
     }
+
+    &-reset {
+      width: 6rem;
+      background-color: rgba(56, 56, 56, 0.527);
+      background: url('./../../assets/cross.svg');
+      width: 2.2rem;
+      height: 2.2rem;
+      background-position: center right;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.5;
+    }
   }
 }
