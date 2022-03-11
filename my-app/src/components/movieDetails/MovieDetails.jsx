@@ -16,6 +16,21 @@ const MovieDetails = (props) => {
   const favoriteMovies = useSelector(state => state.favoriteMovies);
   const { id } = useParams();
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const videos = useSelector(state => state.videos);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+    dispatch(fetchMovieById(id));
+    dispatch(fetchVideoById(id));
+  }, [id]);
+
+  const getVideo = (arr) => {
+    if (!arr) return;
+    let item = arr.find(v => v.site === 'YOUTUBE');
+    return item;
+  }
+
+  const itemVideo = getVideo(videos);
 
   const isFavorite = (id) => favoriteMovies.some((item) => item.kinopoiskId === id);
 
@@ -25,7 +40,6 @@ const MovieDetails = (props) => {
 
   const handleClick = () => {
     window.scroll(0, 0);
-    dispatch(fetchVideoById(id));
     handleVideoModal();
   };
 
@@ -37,14 +51,9 @@ const MovieDetails = (props) => {
     }
   }
 
-  useEffect(() => {
-    window.scroll(0, 0);
-    dispatch(fetchMovieById(id));
-  }, [id]);
-
   return (
     <>
-      {showVideoModal && <VideoModal movie={item} handleVideoModal={handleVideoModal} />}
+      {showVideoModal && <VideoModal movie={item} video={itemVideo} handleVideoModal={handleVideoModal} />}
 
       <div className="movie__details">
         <Background />
@@ -57,14 +66,12 @@ const MovieDetails = (props) => {
             <div className="details__aside">
               <div className="details__image">
                 <i className={`movie_icon-fav ${isFavorite(item?.kinopoiskId) ? 'active' : ''}`} onClick={() => handleFavoriteClick(item?.kinopoiskId)}></i>
-
                 <img className="image-cover" src={item?.posterUrl || item?.posterUrlPreview} alt={item?.nameOriginal || item?.nameRu} />
               </div>
-              <SubmitButton text={'Video'} handleClick={handleClick} />
+              {itemVideo && <SubmitButton text='Video' handleClick={handleClick} />}
             </div>
 
             <div className="details__content">
-
               <div className="content-title">
                 <h2 className="content-movie_title">
                   {item?.nameOriginal || item?.nameRu}
@@ -91,7 +98,6 @@ const MovieDetails = (props) => {
               <div className="content-overview">
                 {item?.description || 'Описание фильма временно не доступно'}
               </div>
-
             </div>
           </div>
         </div>

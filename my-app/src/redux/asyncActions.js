@@ -1,4 +1,4 @@
-import { setFetchedError, setIsFetching, setMovieByID, setMoviesAsync, setVideo } from './actions';
+import { setFetchedError, setIsFetching, setMovieByID, setMoviesAsync, setVideoList } from './actions';
 
 const APIUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/';
 const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
@@ -77,8 +77,7 @@ export const fetchVideoById = (id) => {
         },
       })
       const data = await res.json();
-      console.log(data.items[0]?.url)
-      dispatch(setVideo(data.items || []));
+      dispatch(setVideoList(data.items || []));
     } catch (error) {
       dispatch(setFetchedError(true));
     }
