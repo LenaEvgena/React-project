@@ -17,9 +17,15 @@ export const REMOVE_FAVORITE_MOVIE = 'MOVIES/REMOVE_FAVORITE_MOVIE';
 export const TOGGLE_FAVORITE_LIST = 'MOVIES/TOGGLE_FAVORITE_LIST';
 export const SET_VIDEO_LIST = 'MOVIES/SET_VIDEO_LIST';
 
+export type ActionsTypes = SetMovieType | SetCurrentPageType | SetMovieByIDType |
+  CloseMovieDetailsFormType | SetIsFetchingType | SetFetchedErrorType | FilterGenreMoviesAsyncType |
+  SortMoviesAsyncType | SetMoviesKeywordType | DeleteMovieByIdType | OpenDeleteMovieFormType |
+  CloseDeleteMovieFormType | SetFavoriteMovieType | RemoveFavoriteMovieType | ToggleFavoriteListType |
+  SetVideoListType;
+
 type SetMovieType = {
   type: typeof SET_MOVIES_ASYNC,
-  movies: MoviesType | null,
+  movies: MoviesType
   totalCount: number,
   total: number,
 }

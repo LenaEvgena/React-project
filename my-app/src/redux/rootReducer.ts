@@ -1,7 +1,7 @@
 import {
   SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR,
   FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD, DELETE_MOVIE, OPEN_DELETE_MOVIE_FORM, CLOSE_DELETE_MOVIE_FORM,
-  SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE, SET_MOVIE_BY_ID, CLOSE_MOVIE_DETAILS_FORM, TOGGLE_FAVORITE_LIST, SET_VIDEO_LIST
+  SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE, SET_MOVIE_BY_ID, CLOSE_MOVIE_DETAILS_FORM, TOGGLE_FAVORITE_LIST, SET_VIDEO_LIST, ActionsTypes
 } from './actions';
 
 export type MoviesType = {
@@ -10,24 +10,6 @@ export type MoviesType = {
   totalPages: number
 }
 
-// type InitialStateType = {
-//   movies: MoviesType,
-//   currentPage: number,
-//   totalCount: number, //всего фильмов
-//   total: number,
-//   isFetching: boolean,
-//   isFetchedError: boolean,
-//   movieIdToDelete: string,
-//   isDeleteFormOpen: boolean,
-//   filter: string,
-//   sortType: string,
-//   keyword: string,
-//   favoriteMovies: Array<any>,
-//   selectedByIdMovie: {} | null,
-//   isFavorListOpen: boolean,
-//   videos: Array<any> | null,
-// }
-
 const initialState = {
   movies: {} as MoviesType,
   currentPage: 1,
@@ -35,7 +17,7 @@ const initialState = {
   total: 0,
   isFetching: false,
   isFetchedError: false,
-  movieIdToDelete: '',
+  movieIdToDelete: null as number | null,
   isDeleteFormOpen: false,
   filter: 'all',
   sortType: 'RATING',
@@ -48,7 +30,7 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 
-export const rootReducer = (state = initialState, action: any): InitialStateType => {
+export const rootReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
     case SET_MOVIES_ASYNC:
       return {
@@ -107,13 +89,13 @@ export const rootReducer = (state = initialState, action: any): InitialStateType
     case CLOSE_DELETE_MOVIE_FORM:
       return {
         ...state,
-        movieIdToDelete: '',
+        movieIdToDelete: null,
         isDeleteFormOpen: false,
       };
     case DELETE_MOVIE:
       let copy = { ...state };
       copy.isDeleteFormOpen = false;
-      copy.movieIdToDelete = '';
+      copy.movieIdToDelete = null;
       copy.totalCount = state.totalCount - 1;
       copy.total = state.total - 1;
       copy.movies = { ...state.movies };
