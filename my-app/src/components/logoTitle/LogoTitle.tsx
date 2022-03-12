@@ -1,7 +1,7 @@
 import React from 'react';
 import './LogoTitle.scss';
 
-const LogoTitle = () => (
+const LogoTitle: React.FC = () => (
   <div className="logo__title">
     <span className="logo_bold">netflix</span>
     <span>roulette</span>

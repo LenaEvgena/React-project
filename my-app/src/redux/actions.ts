@@ -1,3 +1,5 @@
+import { MoviesType } from "./rootReducer";
+
 export const SET_MOVIES_ASYNC = 'MOVIES/SET_MOVIES_ASYNC';
 export const SET_CURRENT_PAGE = 'MOVIES/SET_CURRENT_PAGE';
 export const SET_MOVIE_BY_ID = 'MOVIES/SET_MOVIE_BY_ID';
@@ -17,12 +19,12 @@ export const SET_VIDEO_LIST = 'MOVIES/SET_VIDEO_LIST';
 
 type SetMovieType = {
   type: typeof SET_MOVIES_ASYNC,
-  movies: [] | null,
+  movies: MoviesType | null,
   totalCount: number,
   total: number,
 }
 
-export const setMoviesAsync = (movies: any): SetMovieType => ({
+export const setMoviesAsync = (movies: MoviesType): SetMovieType => ({
   type: SET_MOVIES_ASYNC,
   movies,
   totalCount: movies.total,
@@ -167,10 +169,10 @@ export const toggleFavoriteList = (bool: boolean): ToggleFavoriteListType => ({
 
 type SetVideoListType = {
   type: typeof SET_VIDEO_LIST,
-  videos: []
+  videos: Array<any>
 }
 
-export const setVideoList = (videos: []): SetVideoListType => ({
+export const setVideoList = (videos: Array<any>): SetVideoListType => ({
   type: SET_VIDEO_LIST,
   videos,
 });

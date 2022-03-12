@@ -4,30 +4,32 @@ import {
   SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE, SET_MOVIE_BY_ID, CLOSE_MOVIE_DETAILS_FORM, TOGGLE_FAVORITE_LIST, SET_VIDEO_LIST
 } from './actions';
 
-// type MoviesType = {
-//   items?: any
-// }
-
-type InitialStateType = {
-  movies: { items?: any },
-  currentPage: number,
-  totalCount: number, //всего фильмов
-  total: number,
-  isFetching: boolean,
-  isFetchedError: boolean,
-  movieIdToDelete: string,
-  isDeleteFormOpen: boolean,
-  filter: string,
-  sortType: string,
-  keyword: string,
-  favoriteMovies: [] | any[],
-  selectedByIdMovie: {} | null,
-  isFavorListOpen: boolean,
-  videos: [] | null,
+export type MoviesType = {
+  items: Array<any>
+  total: number
+  totalPages: number
 }
 
-const initialState: InitialStateType = {
-  movies: {},
+// type InitialStateType = {
+//   movies: MoviesType,
+//   currentPage: number,
+//   totalCount: number, //всего фильмов
+//   total: number,
+//   isFetching: boolean,
+//   isFetchedError: boolean,
+//   movieIdToDelete: string,
+//   isDeleteFormOpen: boolean,
+//   filter: string,
+//   sortType: string,
+//   keyword: string,
+//   favoriteMovies: Array<any>,
+//   selectedByIdMovie: {} | null,
+//   isFavorListOpen: boolean,
+//   videos: Array<any> | null,
+// }
+
+const initialState = {
+  movies: {} as MoviesType,
   currentPage: 1,
   totalCount: 0, //всего фильмов
   total: 0,
@@ -38,11 +40,13 @@ const initialState: InitialStateType = {
   filter: 'all',
   sortType: 'RATING',
   keyword: '',
-  favoriteMovies: [],
+  favoriteMovies: [] as Array<any>,
   selectedByIdMovie: {},
   isFavorListOpen: false,
-  videos: [],
+  videos: [] as Array<any>,
 }
+
+type InitialStateType = typeof initialState;
 
 export const rootReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {

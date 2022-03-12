@@ -1,9 +1,9 @@
 import React from 'react';
 import './ScrollButton.scss';
 
-const ScrollButton = () => {
+const ScrollButton: React.FC = () => {
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     window.scrollTo({
       top: 0,
       left: 0,

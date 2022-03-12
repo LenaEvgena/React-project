@@ -4,7 +4,7 @@ import MovieContainer from '../movieContainer/MovieContainer';
 import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 import './Main.scss';
 
-const Main = () => (
+const Main: React.FC = () => (
   <main className="main">
     <SortResultsHeader />
     <ErrorBoundary>

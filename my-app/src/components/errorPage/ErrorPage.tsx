@@ -4,7 +4,12 @@ import LogoTitle from '../logoTitle/LogoTitle';
 import ResetButton from '../resetButton/ResetButton';
 import './ErrorPage.scss';
 
-const ErrorPage = (props) => (
+type PropsType = {
+  text?: string
+  handleClick?: () => void,
+}
+
+const ErrorPage: React.FC<PropsType> = (props) => (
   <>
     <div className="error">
       <div className="error_logo">
