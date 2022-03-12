@@ -4,8 +4,30 @@ import {
   SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE, SET_MOVIE_BY_ID, CLOSE_MOVIE_DETAILS_FORM, TOGGLE_FAVORITE_LIST, SET_VIDEO_LIST
 } from './actions';
 
-const initialState = {
-  movies: [],
+// type MoviesType = {
+//   items?: any
+// }
+
+type InitialStateType = {
+  movies: { items?: any },
+  currentPage: number,
+  totalCount: number, //всего фильмов
+  total: number,
+  isFetching: boolean,
+  isFetchedError: boolean,
+  movieIdToDelete: string,
+  isDeleteFormOpen: boolean,
+  filter: string,
+  sortType: string,
+  keyword: string,
+  favoriteMovies: [] | any[],
+  selectedByIdMovie: {} | null,
+  isFavorListOpen: boolean,
+  videos: [] | null,
+}
+
+const initialState: InitialStateType = {
+  movies: {},
   currentPage: 1,
   totalCount: 0, //всего фильмов
   total: 0,
@@ -20,11 +42,9 @@ const initialState = {
   selectedByIdMovie: {},
   isFavorListOpen: false,
   videos: [],
-  video: {},
 }
 
-
-export const rootReducer: any = (state: any = initialState, action: any) => {
+export const rootReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case SET_MOVIES_ASYNC:
       return {
