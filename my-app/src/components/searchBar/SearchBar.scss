@@ -33,6 +33,11 @@
     cursor: pointer;
     transition: 0.3s;
 
+    &.busy {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
     &:hover {
       opacity: 0.8;
     }
@@ -50,3 +55,5 @@
     }
   }
 }
+
+

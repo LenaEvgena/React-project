@@ -5,9 +5,9 @@ import { setCurrentPage } from '../../redux/actions';
 import { createPages } from '../../utils/createPages';
 import MovieCard from '../movieCard/MovieCard';
 import ErrorPage from '../errorPage/ErrorPage';
-import './MovieContainer.scss';
 import FavorContainer from './FavorContainer';
 import { InitialStateType } from '../../types/types';
+import './MovieContainer.scss';
 
 const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();

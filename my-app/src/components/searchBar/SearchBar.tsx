@@ -11,6 +11,7 @@ const SearchBar: React.FC = () => {
   const sortType = useSelector((state: InitialStateType) => state.sortType);
   const filter = useSelector((state: InitialStateType) => state.filter);
   const keyword = useSelector((state: InitialStateType) => state.keyword);
+  const isFetching = useSelector((state: InitialStateType) => state.isFetching);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setMoviesKeyword(e.target.value));
 
@@ -30,7 +31,7 @@ const SearchBar: React.FC = () => {
     <div className="search">
       <input className="search__field" type="text" placeholder="What do you want to watch? Enter a keyword..." value={keyword} onChange={handleChange} />
       <button className="search__button search__button-reset" type="button" onClick={handleResetClick}></button>
-      <button className="search__button" type="button" onClick={handleClick}>Search</button>
+      <button className={`search__button ${isFetching && 'busy'}`} type="button" onClick={handleClick}>Search</button>
     </div>
   );
 }

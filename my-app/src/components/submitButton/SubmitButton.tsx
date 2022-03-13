@@ -8,7 +8,7 @@ type PropsType = {
 }
 
 const SubmitButton: React.FC<PropsType> = ({ text, isBusy, handleClick }) => (
-  <button className={`submit__button ${isBusy ? 'busy' : ''}`} type="submit" onClick={handleClick}>{text}</button>
+  <button className={`submit__button ${isBusy && 'busy'}`} type="submit" onClick={handleClick}>{text}</button>
 );
 
 export default SubmitButton;
