@@ -8,42 +8,47 @@ import Background from '../background/Background';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
 import VideoModal from '../videoModal/VideoModal';
+import { InitialStateType, ItemType, VideoItemType } from '../../types/types';
 import './MovieDetails.scss';
 
-const MovieDetails = (props) => {
+type ParamsIdType = {
+  id: string
+}
+
+const MovieDetails: React.FC = () => {
   const dispatch = useDispatch();
-  const item = useSelector(state => state.selectedByIdMovie);
-  const favoriteMovies = useSelector(state => state.favoriteMovies);
-  const { id } = useParams();
-  const [showVideoModal, setShowVideoModal] = useState(false);
-  const videos = useSelector(state => state.videos);
+  const item = useSelector((state: InitialStateType) => state.selectedByIdMovie);
+  const favoriteMovies = useSelector((state: InitialStateType) => state.favoriteMovies);
+  const videos = useSelector((state: InitialStateType) => state.videos);
+  const { id } = useParams<ParamsIdType>();
+  const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
 
   useEffect(() => {
     window.scroll(0, 0);
-    dispatch(fetchMovieById(id));
-    dispatch(fetchVideoById(id));
+    dispatch(fetchMovieById(id as string));
+    dispatch(fetchVideoById(id as string));
   }, [id]);
 
-  const getVideo = (arr) => {
-    if (!arr) return;
+  const getVideo = (arr: Array<VideoItemType>): VideoItemType  => {
+    // if (!arr) return;
     let item = arr.find(v => v.site === 'YOUTUBE');
-    return item;
+    return item as VideoItemType;
   }
 
   const itemVideo = getVideo(videos);
 
-  const isFavorite = (id) => favoriteMovies.some((item) => item.kinopoiskId === id);
+  const isFavorite = (id: number) => favoriteMovies.some((item) => item.kinopoiskId === id);
 
-  const handleVideoModal = () => {
+  const handleVideoModal = (): void => {
     setShowVideoModal(!showVideoModal);
   };
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     window.scroll(0, 0);
     handleVideoModal();
   };
 
-  const handleFavoriteClick = (id) => {
+  const handleFavoriteClick = (id: number): void => {
     if (isFavorite(id)) {
       dispatch(removeFavoriteMovie(id));
     } else {
@@ -53,7 +58,7 @@ const MovieDetails = (props) => {
 
   return (
     <>
-      {showVideoModal && <VideoModal movie={item} video={itemVideo} handleVideoModal={handleVideoModal} />}
+      {showVideoModal && <VideoModal movie={item as ItemType} video={itemVideo as VideoItemType} handleVideoModal={handleVideoModal} />}
 
       <div className="movie__details">
         <Background />
@@ -65,10 +70,10 @@ const MovieDetails = (props) => {
           <div className="details__container">
             <div className="details__aside">
               <div className="details__image">
-                <i className={`movie_icon-fav ${isFavorite(item?.kinopoiskId) ? 'active' : ''}`} onClick={() => handleFavoriteClick(item?.kinopoiskId)}></i>
-                <img className="image-cover" src={item?.posterUrl || item?.posterUrlPreview} alt={item?.nameOriginal || item?.nameRu} />
+                <i className={`movie_icon-fav ${isFavorite(item?.kinopoiskId as number) ? 'active' : ''}`} onClick={() => handleFavoriteClick(item?.kinopoiskId as number)}></i>
+                <img className="image-cover" src={item?.posterUrl || item?.posterUrlPreview} alt={item?.nameOriginal || item?.nameRu as string} />
               </div>
-              <SubmitButton text='Video' busy={!itemVideo} handleClick={handleClick} />
+              <SubmitButton text='Video' isBusy={!itemVideo} handleClick={handleClick} />
             </div>
 
             <div className="details__content">

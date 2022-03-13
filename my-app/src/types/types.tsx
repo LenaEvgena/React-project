@@ -5,7 +5,7 @@ import { CLOSE_DELETE_MOVIE_FORM, CLOSE_MOVIE_DETAILS_FORM, DELETE_MOVIE,
   SORT_MOVIES_ASYNC, TOGGLE_FAVORITE_LIST } from "../redux/actions";
 
 export type ItemType = {
-  kinopoiskId?: number,
+  kinopoiskId: number | null,
   nameRu?: string | null,
   nameOriginal?: string | null,
   countries?: Array<any>,
@@ -14,9 +14,12 @@ export type ItemType = {
   type?: string,
   posterUrl?: string,
   posterUrlPreview?: string,
-  shortDescription?: string,
   slogan?: string,
-  description?: string
+  shortDescription?: string,
+  description?: string,
+  ratingKinopoisk?: number,
+  serial? : string,
+  filmLength?: number
 }
 
 export type VideoItemType = {
@@ -43,7 +46,7 @@ export type InitialStateType = {
   sortType: string,
   keyword: string,
   favoriteMovies: Array<ItemType>,
-  selectedByIdMovie: {},
+  selectedByIdMovie: ItemType | null,
   isFavorListOpen: boolean,
   videos: Array<VideoItemType>,
 }

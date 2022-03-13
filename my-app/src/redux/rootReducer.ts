@@ -20,7 +20,9 @@ const initialState: InitialStateType = {
   sortType: 'RATING',
   keyword: '',
   favoriteMovies: [],
-  selectedByIdMovie: {},
+  selectedByIdMovie: {
+    kinopoiskId: null,
+  },
   isFavorListOpen: false,
   videos: [],
 }
@@ -48,7 +50,7 @@ export const rootReducer = (state = initialState, action: ActionsTypes): Initial
     case CLOSE_MOVIE_DETAILS_FORM:
       return {
         ...state,
-        selectedByIdMovie: '',
+        selectedByIdMovie: null,
       }
     case SET_IS_FETCHING:
       return {

@@ -1,4 +1,4 @@
-import { CloseDeleteMovieFormType, CloseMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, MoviesType, OpenDeleteMovieFormType, RemoveFavoriteMovieType, SetCurrentPageType, SetFavoriteMovieType, SetFetchedErrorType, SetIsFetchingType, SetMovieByIDType, SetMoviesKeywordType, SetMovieType, SetVideoListType, SortMoviesAsyncType, ToggleFavoriteListType } from "./../types/types";
+import { CloseDeleteMovieFormType, CloseMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, ItemType, MoviesType, OpenDeleteMovieFormType, RemoveFavoriteMovieType, SetCurrentPageType, SetFavoriteMovieType, SetFetchedErrorType, SetIsFetchingType, SetMovieByIDType, SetMoviesKeywordType, SetMovieType, SetVideoListType, SortMoviesAsyncType, ToggleFavoriteListType, VideoItemType } from "./../types/types";
 
 export const SET_MOVIES_ASYNC = 'MOVIES/SET_MOVIES_ASYNC';
 export const SET_CURRENT_PAGE = 'MOVIES/SET_CURRENT_PAGE';
@@ -29,7 +29,7 @@ export const setCurrentPage = (page: number): SetCurrentPageType => ({
   currentPage: page,
 })
 
-export const setMovieByID = (movie: {}): SetMovieByIDType => ({
+export const setMovieByID = (movie: ItemType): SetMovieByIDType => ({
   type: SET_MOVIE_BY_ID,
   movie,
 });
@@ -92,7 +92,7 @@ export const toggleFavoriteList = (bool: boolean): ToggleFavoriteListType => ({
   isFavorListOpen: bool,
 });
 
-export const setVideoList = (videos: Array<any>): SetVideoListType => ({
+export const setVideoList = (videos: Array<VideoItemType>): SetVideoListType => ({
   type: SET_VIDEO_LIST,
   videos,
 });

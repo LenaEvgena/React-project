@@ -5,7 +5,7 @@ import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../r
 import { InitialStateType } from '../../types/types';
 import './ResultsHeader.scss';
 
-const SortResultsHeader = () => {
+const SortResultsHeader: React.FC = () => {
   const dispatch = useDispatch();
   const isFavorListOpen = useSelector((state: InitialStateType) => state.isFavorListOpen);
   const currentPage = useSelector((state: InitialStateType) => state.currentPage);

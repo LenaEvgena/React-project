@@ -5,7 +5,7 @@ import { getMoviesAPI } from '../../redux/asyncActions';
 import { InitialStateType } from '../../types/types';
 import './SearchBar.scss';
 
-const SearchBar = () => {
+const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector((state: InitialStateType) => state.currentPage);
   const sortType = useSelector((state: InitialStateType) => state.sortType);

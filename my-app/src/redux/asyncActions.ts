@@ -49,7 +49,7 @@ export const getMoviesAPI = (currentPage: number, sortType = 'RATING', genre: st
   }
 }
 
-export const fetchMovieById = (movieId: number) => {
+export const fetchMovieById = (movieId: string) => {
   return async (dispatch: Dispatch<ActionsTypes>) => {
     try {
       const res = await fetch(`${APIUrl}${movieId}`, {
@@ -67,7 +67,7 @@ export const fetchMovieById = (movieId: number) => {
   }
 }
 
-export const fetchVideoById = (id: number) => {
+export const fetchVideoById = (id: string) => {
   return async (dispatch: Dispatch<ActionsTypes>) => {
     try {
       const res = await fetch(`${APIUrl}${id}/videos`, {
