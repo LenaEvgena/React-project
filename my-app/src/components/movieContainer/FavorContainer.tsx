@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { InitialStateType } from '../../types/types';
 import MovieCard from '../movieCard/MovieCard';
 import './MovieContainer.scss';
 
-const FavorContainer = () => {
-  const favoriteMovies = useSelector(state => state.favoriteMovies);
-  let count = favoriteMovies.length;
+const FavorContainer: React.FC = () => {
+  const favoriteMovies = useSelector((state: InitialStateType) => state.favoriteMovies);
+  let count: number = favoriteMovies.length;
 
   if (count === 0) {
     return (

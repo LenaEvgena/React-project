@@ -7,18 +7,19 @@ import MovieCard from '../movieCard/MovieCard';
 import ErrorPage from '../errorPage/ErrorPage';
 import './MovieContainer.scss';
 import FavorContainer from './FavorContainer';
+import { InitialStateType } from '../../types/types';
 
-const MovieContainer = () => {
+const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const movies = useSelector(state => state.movies.items);
-  const total = useSelector(state => state.total);
-  const totalCount = useSelector(state => state.totalCount);
-  const currentPage = useSelector(state => state.currentPage);
-  const sortType = useSelector(state => state.sortType);
-  const isFetching = useSelector(state => state.isFetching);
-  const isFetchedError = useSelector(state => state.isFetchedError);
-  const isFavorListOpen = useSelector(state => state.isFavorListOpen);
-  const pages = [];
+  const movies = useSelector((state: InitialStateType) => state.movies.items);
+  const total = useSelector((state: InitialStateType) => state.total);
+  const totalCount = useSelector((state: InitialStateType) => state.totalCount);
+  const currentPage = useSelector((state: InitialStateType) => state.currentPage);
+  const sortType = useSelector((state: InitialStateType) => state.sortType);
+  const isFetching = useSelector((state: InitialStateType) => state.isFetching);
+  const isFetchedError = useSelector((state: InitialStateType) => state.isFetchedError);
+  const isFavorListOpen = useSelector((state: InitialStateType) => state.isFavorListOpen);
+  const pages: Array<number> = [];
 
   createPages(pages, total, currentPage);
 
