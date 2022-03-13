@@ -1,15 +1,24 @@
-import { CLOSE_DELETE_MOVIE_FORM, CLOSE_MOVIE_DETAILS_FORM, DELETE_MOVIE, FILTER_MOVIES_ASYNC, OPEN_DELETE_MOVIE_FORM, REMOVE_FAVORITE_MOVIE, SEARCH_MOVIES_KEYWORD, SET_CURRENT_PAGE, SET_FAVORITE_MOVIE, SET_FETCHED_ERROR, SET_IS_FETCHING, SET_MOVIES_ASYNC, SET_MOVIE_BY_ID, SET_VIDEO_LIST, SORT_MOVIES_ASYNC, TOGGLE_FAVORITE_LIST } from "../redux/actions";
+import { CLOSE_DELETE_MOVIE_FORM, CLOSE_MOVIE_DETAILS_FORM, DELETE_MOVIE,
+  FILTER_MOVIES_ASYNC, OPEN_DELETE_MOVIE_FORM, REMOVE_FAVORITE_MOVIE,
+  SEARCH_MOVIES_KEYWORD, SET_CURRENT_PAGE, SET_FAVORITE_MOVIE, SET_FETCHED_ERROR,
+  SET_IS_FETCHING, SET_MOVIES_ASYNC, SET_MOVIE_BY_ID, SET_VIDEO_LIST,
+  SORT_MOVIES_ASYNC, TOGGLE_FAVORITE_LIST } from "../redux/actions";
 
 export type ItemType = {
   kinopoiskId?: number,
   nameRu?: string | null,
-  nameEn?: string | null,
+  nameOriginal?: string | null,
   countries?: Array<any>,
   genres?: Array<any>,
   year?: number,
   type?: string,
   posterUrl?: string,
   posterUrlPreview?: string,
+}
+
+export type VideoItemType = {
+  url: string,
+  site: string,
 }
 
 export type MoviesType = {
@@ -30,10 +39,10 @@ export type InitialStateType = {
   filter: string,
   sortType: string,
   keyword: string,
-  favoriteMovies: Array<any>,
+  favoriteMovies: Array<ItemType>,
   selectedByIdMovie: {},
   isFavorListOpen: boolean,
-  videos: Array<any>,
+  videos: Array<VideoItemType>,
 }
 
 export type SetMovieType = {
@@ -50,7 +59,7 @@ export type SetCurrentPageType = {
 
 export type SetMovieByIDType = {
   type: typeof SET_MOVIE_BY_ID,
-  movie: {},
+  movie: ItemType,
 }
 
 export type CloseMovieDetailsFormType = {
@@ -113,7 +122,7 @@ export type ToggleFavoriteListType = {
 
 export type SetVideoListType = {
   type: typeof SET_VIDEO_LIST,
-  videos: Array<any>,
+  videos: Array<VideoItemType>,
 }
 
 export type ActionsTypes = SetMovieType | SetCurrentPageType | SetMovieByIDType |

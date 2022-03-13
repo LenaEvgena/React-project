@@ -1,6 +1,5 @@
 import { ActionsTypes, InitialStateType } from '../types/types';
-import {
-  SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR,
+import { SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR,
   FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD, DELETE_MOVIE, OPEN_DELETE_MOVIE_FORM, CLOSE_DELETE_MOVIE_FORM,
   SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE, SET_MOVIE_BY_ID, CLOSE_MOVIE_DETAILS_FORM, TOGGLE_FAVORITE_LIST, SET_VIDEO_LIST
 } from './actions';
@@ -11,7 +10,7 @@ const initialState: InitialStateType = {
     total: 0,
     totalPages: 0},
   currentPage: 1,
-  totalCount: 0, //всего фильмов
+  totalCount: 0,
   total: 0,
   isFetching: false,
   isFetchedError: false,
@@ -95,7 +94,7 @@ export const rootReducer = (state = initialState, action: ActionsTypes): Initial
       copy.totalCount = state.totalCount - 1;
       copy.total = state.total - 1;
       copy.movies = { ...state.movies };
-      copy.movies.items = {...state.movies.items.filter((item: any) => item.kinopoiskId !== action.id)};
+      copy.movies.items = [...state.movies.items.filter((item: any) => item.kinopoiskId !== action.id)];
       return copy;
     case SET_FAVORITE_MOVIE:
       return {
