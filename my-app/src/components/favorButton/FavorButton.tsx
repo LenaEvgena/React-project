@@ -1,7 +1,6 @@
 import React from 'react';
 import './FavorButton.scss';
 
-
 type PropsType = {
   text: string
   handleClick: () => void,

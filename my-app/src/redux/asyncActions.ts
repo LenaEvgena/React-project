@@ -1,5 +1,6 @@
 import { Dispatch } from 'react';
-import { ActionsTypes, setFetchedError, setIsFetching, setMovieByID, setMoviesAsync, setVideoList } from './actions';
+import { ActionsTypes } from '../types/types';
+import { setFetchedError, setIsFetching, setMovieByID, setMoviesAsync, setVideoList } from './actions';
 
 const APIUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/';
 const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
@@ -8,7 +9,7 @@ const yearSorting = 'yearFrom=1000&yearTo=2021';
 export const getMoviesAPI = (currentPage: number, sortType = 'RATING', genre: string, query = '') => {
   return async (dispatch: Dispatch<ActionsTypes>) => {
     try {
-      let genreType;
+      let genreType: string | number;
       switch (genre) {
         case 'all':
           genreType = '';

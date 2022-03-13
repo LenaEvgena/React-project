@@ -6,14 +6,15 @@ import LogoTitle from '../logoTitle/LogoTitle';
 import SearchForm from '../searchForm/SearchForm';
 import Background from '../background/Background';
 import ErrorBoundary from '../errorBoundary/ErrorBoundary';
+import { InitialStateType } from '../../types/types';
 import './Header.scss';
 
-const Header = (props) => {
+const Header: React.FC = () => {
   const dispatch = useDispatch();
-  const isFavorListOpen = useSelector(state => state.isFavorListOpen);
+  const isFavorListOpen = useSelector((state: InitialStateType) => state.isFavorListOpen);
   let text = !isFavorListOpen ? 'Show favorites' : 'Close favorites';
 
-  const handleFavoriteClick = (id) => {
+  const handleFavoriteClick = (): void => {
     if (isFavorListOpen) {
       dispatch(toggleFavoriteList(false));
     } else {
