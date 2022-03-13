@@ -9,7 +9,7 @@ type PropsType = {
   handleClick?: () => void,
 }
 
-const ErrorPage: React.FC<PropsType> = (props) => (
+const ErrorPage: React.FC<PropsType> = ({ text, handleClick }) => (
   <>
     <div className="error">
       <div className="error_logo">
@@ -20,7 +20,7 @@ const ErrorPage: React.FC<PropsType> = (props) => (
           <h2 className="error_text">Page not Found</h2>
           <p className="error_num">404</p>
           <Link to="/">
-            <ResetButton handleClick={props.handleClick} text={props.text || 'Go back'}/>
+            <ResetButton handleClick={handleClick} text={text || 'Go back'} />
           </Link>
         </div>
       </div>

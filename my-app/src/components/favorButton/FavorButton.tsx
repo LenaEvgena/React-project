@@ -6,9 +6,9 @@ type PropsType = {
   handleClick: () => void,
 }
 
-const FavorButton: React.FC<PropsType> = (props) => (
+const FavorButton: React.FC<PropsType> = ({ text, handleClick }) => (
   <div className="logo__button">
-    <button className="fav-button" type="button" onClick={props.handleClick}>{props.text}</button>
+    <button className="fav-button" type="button" onClick={handleClick}>{text}</button>
   </div>
 );
 

@@ -3,12 +3,12 @@ import './SubmitButton.scss';
 
 type PropsType = {
   text: string
-  busy?: boolean
+  isBusy?: boolean
   handleClick: () => void,
 }
 
-const SubmitButton: React.FC<PropsType> = (props) => (
-  <button className={`submit__button ${props.busy ? 'busy' : ''}`} type="submit" onClick={props.handleClick}>{props.text}</button>
+const SubmitButton: React.FC<PropsType> = ({ text, isBusy, handleClick }) => (
+  <button className={`submit__button ${isBusy ? 'busy' : ''}`} type="submit" onClick={handleClick}>{text}</button>
 );
 
 export default SubmitButton;
