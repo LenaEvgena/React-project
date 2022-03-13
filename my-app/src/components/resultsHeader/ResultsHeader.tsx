@@ -41,7 +41,7 @@ const SortResultsHeader: React.FC = () => {
         </div>
         <div className="results__sort">
           <span>Sort by</span>
-          <select className={`${isFetching && 'busy'} 'select'`} onChange={handleClick}>
+          <select className={`${isFetching && 'busy'} select`} onChange={handleClick}>
             <option value="RATING">Rating</option>
             <option value="YEAR">Release date</option>
           </select>
