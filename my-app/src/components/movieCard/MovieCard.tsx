@@ -18,10 +18,8 @@ const MovieCard: React.FC<PropsType> = ({ data }) => {
   let genresList: Array<string> = [];
   let countriesList: Array<string> = [];
 
-  useEffect(() => {
-    data.genres!.map((g) => genresList.push(g.genre));
-    data.countries!.map((c) => countriesList.push(c.country));
-  }, []);
+  data.genres!.map((g) => genresList.push(g.genre));
+  data.countries!.map((c) => countriesList.push(c.country));
 
   const isFavorite = (id: number) => favoriteMovies.some((item) => item.kinopoiskId === id);
 
