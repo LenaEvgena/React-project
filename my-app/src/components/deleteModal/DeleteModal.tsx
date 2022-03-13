@@ -12,7 +12,7 @@ const DeleteModal: React.FC = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const id = useSelector((state: InitialStateType) => state.movieIdToDelete);
 
-  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (modalRef.current?.contains(e.target as Element)) {
       return;
     }

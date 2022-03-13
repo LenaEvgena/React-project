@@ -2,24 +2,25 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPage, setMoviesKeyword } from '../../redux/actions';
 import { getMoviesAPI } from '../../redux/asyncActions';
+import { InitialStateType } from '../../types/types';
 import './SearchBar.scss';
 
 const SearchBar = () => {
   const dispatch = useDispatch();
-  const currentPage = useSelector(state => state.currentPage);
-  const sortType = useSelector(state => state.sortType);
-  const filter = useSelector(state => state.filter);
-  const keyword = useSelector(state => state.keyword);
+  const currentPage = useSelector((state: InitialStateType) => state.currentPage);
+  const sortType = useSelector((state: InitialStateType) => state.sortType);
+  const filter = useSelector((state: InitialStateType) => state.filter);
+  const keyword = useSelector((state: InitialStateType) => state.keyword);
 
-  const handleChange = ({ target }) => dispatch(setMoviesKeyword(target.value));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setMoviesKeyword(e.target.value));
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     if (!keyword.trim()) return;
     dispatch(setCurrentPage(1));
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
   }
 
-  const handleResetClick = () => {
+  const handleResetClick = (): void => {
     if (!keyword.trim()) return;
     dispatch(setCurrentPage(1));
     dispatch(setMoviesKeyword(''));

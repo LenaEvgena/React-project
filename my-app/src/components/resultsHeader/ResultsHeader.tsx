@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../redux/actions';
+import { InitialStateType } from '../../types/types';
 import './ResultsHeader.scss';
 
 const SortResultsHeader = () => {
   const dispatch = useDispatch();
-  const isFavorListOpen = useSelector(state => state.isFavorListOpen);
-  const currentPage = useSelector(state => state.currentPage);
-  const sortType = useSelector(state => state.sortType);
-  const filter = useSelector(state => state.filter);
-  const keyword = useSelector(state => state.keyword);
-  const isFetching = useSelector(state => state.isFetching);
+  const isFavorListOpen = useSelector((state: InitialStateType) => state.isFavorListOpen);
+  const currentPage = useSelector((state: InitialStateType) => state.currentPage);
+  const sortType = useSelector((state: InitialStateType) => state.sortType);
+  const filter = useSelector((state: InitialStateType) => state.filter);
+  const keyword = useSelector((state: InitialStateType) => state.keyword);
+  const isFetching = useSelector((state: InitialStateType) => state.isFetching);
 
   useEffect(() => {
     dispatch(setCurrentPage(1));
@@ -21,6 +22,10 @@ const SortResultsHeader = () => {
     window.scroll(0, 0);
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
   }, [currentPage, sortType, filter, keyword]);
+
+  const handleClick = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    dispatch(sortMoviesAsync(e.target.value));
+  }
 
   return (
     <div className="results__header">
@@ -36,7 +41,7 @@ const SortResultsHeader = () => {
         </div>
         <div className="results__sort">
           <span>Sort by</span>
-          <select className={`${isFetching && 'busy'} 'select'`} onClick={(e) => dispatch(sortMoviesAsync(e.target.value))}>
+          <select className={`${isFetching && 'busy'} 'select'`} onChange={handleClick}>
             <option value="RATING">Rating</option>
             <option value="YEAR">Release date</option>
           </select>

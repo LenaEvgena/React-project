@@ -15,7 +15,7 @@ type PropsType = {
 const VideoModal: React.FC<PropsType> = ({ movie, video, handleVideoModal }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (modalRef.current?.contains(e.target as Element)) {
       return;
     }
