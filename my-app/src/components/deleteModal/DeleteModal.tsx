@@ -7,16 +7,16 @@ import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
 import './DeleteModal.scss';
 
-const DeleteModal = () => {
+const DeleteModal: React.FC = () => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLDivElement>(null);
   const id = useSelector((state: InitialStateType) => state.movieIdToDelete);
 
-  const handleOutsideClick = (e: React.MouseEvent<HTMLElement>) => {
+  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (modalRef.current?.contains(e.target as Element)) {
       return;
     }
-    closeDeleteMovieForm();
+    dispatch(closeDeleteMovieForm());
   }
 
   return (

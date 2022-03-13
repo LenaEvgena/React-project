@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ReactPlayer from 'react-player';
+import { ItemType, VideoItemType } from '../../types/types';
 import Footer from '../footer/Footer';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
 import './VideoModal.scss';
 
-const VideoModal = (props) => {
-  const modalRef = React.createRef();
+type PropsType = {
+  movie: ItemType,
+  video: VideoItemType,
+  handleVideoModal: () => void;
+}
 
-  const handleOutsideClick = (event) => {
-    if (modalRef.current.contains(event.target)) {
+const VideoModal: React.FC<PropsType> = ({ movie, video, handleVideoModal }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (modalRef.current?.contains(e.target as Element)) {
       return;
     }
-    props.handleVideoModal();
+    handleVideoModal();
   }
 
   return (
@@ -22,18 +29,18 @@ const VideoModal = (props) => {
           <LogoTitle />
         </div>
         <div className="video" ref={modalRef} >
-          <div className="video-close" onClick={props.handleVideoModal}></div>
+          <div className="video-close" onClick={handleVideoModal}></div>
           <div className="video__content">
             <div className="video__screen">
-              <ReactPlayer controls url={props.video?.url} width="500" />
+              <ReactPlayer controls url={video?.url} width="500" />
             </div>
             <div className="video__title">
-              <h2>{props.movie?.nameOriginal || props.movie?.nameRu}</h2>
-              <div>{props.movie?.shortDescription || props.movie?.slogan}</div>
+              <h2>{movie?.nameOriginal || movie?.nameRu}</h2>
+              <div>{movie?.shortDescription || movie?.slogan}</div>
             </div>
           </div>
           <div className="video-button">
-            <SubmitButton text="Back" handleClick={props.handleVideoModal} />
+            <SubmitButton text="Back" handleClick={handleVideoModal} />
           </div>
         </div>
         <div className="video-footer">

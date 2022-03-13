@@ -14,6 +14,9 @@ export type ItemType = {
   type?: string,
   posterUrl?: string,
   posterUrlPreview?: string,
+  shortDescription?: string,
+  slogan?: string,
+  description?: string
 }
 
 export type VideoItemType = {
