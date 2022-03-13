@@ -3,7 +3,7 @@ import './SubmitButton.scss';
 
 type PropsType = {
   text: string
-  busy: boolean
+  busy?: boolean
   handleClick: () => void,
 }
 
