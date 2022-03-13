@@ -4,12 +4,20 @@ import { CLOSE_DELETE_MOVIE_FORM, CLOSE_MOVIE_DETAILS_FORM, DELETE_MOVIE,
   SET_IS_FETCHING, SET_MOVIES_ASYNC, SET_MOVIE_BY_ID, SET_VIDEO_LIST,
   SORT_MOVIES_ASYNC, TOGGLE_FAVORITE_LIST } from "../redux/actions";
 
+export type CountryType = {
+  country: string
+}
+
+export type GenreType = {
+  genre: string
+}
+
 export type ItemType = {
   kinopoiskId: number | null,
   nameRu?: string | null,
   nameOriginal?: string | null,
-  countries?: Array<any>,
-  genres?: Array<any>,
+  countries?: Array<CountryType>,
+  genres?: Array<GenreType>,
   year?: number,
   type?: string,
   posterUrl?: string,
