@@ -20,8 +20,8 @@
 
   .modal {
     position: relative;
-    width: 69rem;
-    height: 35rem;
+    max-width: 69rem;
+    min-height: 35rem;
     background-color: $color-dark;
     padding: 6.5rem 8rem;
     margin: 12.3rem auto;
