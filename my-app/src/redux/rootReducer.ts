@@ -1,4 +1,4 @@
-import { ActionsTypesList, ActionTypes, InitialStateType } from '../types/types';
+import { ActionType, ActionTypes, InitialStateType } from '../types/types';
 
 const initialState: InitialStateType = {
   movies: {
@@ -24,7 +24,7 @@ const initialState: InitialStateType = {
   videos: [],
 }
 
-export const rootReducer = (state = initialState, action: ActionsTypesList): InitialStateType => {
+export const rootReducer = (state = initialState, action: ActionType): InitialStateType => {
   switch (action.type) {
     case ActionTypes.SET_MOVIES_ASYNC:
       return {

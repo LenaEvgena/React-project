@@ -152,7 +152,7 @@ export type SetVideoListType = {
   videos: Array<VideoItemType>,
 }
 
-export type ActionsTypesList = SetMovieType | SetCurrentPageType | SetMovieByIDType |
+export type ActionType = SetMovieType | SetCurrentPageType | SetMovieByIDType |
   CloseMovieDetailsFormType | SetIsFetchingType | SetFetchedErrorType | FilterGenreMoviesAsyncType |
   SortMoviesAsyncType | SetMoviesKeywordType | DeleteMovieByIdType | OpenDeleteMovieFormType |
   CloseDeleteMovieFormType | SetFavoriteMovieType | RemoveFavoriteMovieType | ToggleFavoriteListType |
