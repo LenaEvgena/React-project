@@ -1,4 +1,9 @@
-import { CloseDeleteMovieFormType, CloseMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, ItemType, MoviesType, OpenDeleteMovieFormType, RemoveFavoriteMovieType, SetCurrentPageType, SetFavoriteMovieType, SetFetchedErrorType, SetIsFetchingType, SetMovieByIDType, SetMoviesKeywordType, SetMovieType, SetVideoListType, SortMoviesAsyncType, ToggleFavoriteListType, VideoItemType } from "./../types/types";
+import {
+  CloseDeleteMovieFormType, CloseMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, ItemType,
+  MoviesType, OpenDeleteMovieFormType, RemoveFavoriteMovieType, SetCurrentPageType, SetFavoriteMovieType,
+  SetFetchedErrorType, SetIsFetchingType, SetMovieByIDType, SetMoviesKeywordType, SetMovieType, SetVideoListType,
+  SortMoviesAsyncType, ToggleFavoriteListType, VideoItemType
+} from "./../types/types";
 
 export const SET_MOVIES_ASYNC = 'MOVIES/SET_MOVIES_ASYNC';
 export const SET_CURRENT_PAGE = 'MOVIES/SET_CURRENT_PAGE';

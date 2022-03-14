@@ -30,7 +30,6 @@ const MovieDetails: React.FC = () => {
   }, [id]);
 
   const getVideo = (arr: Array<VideoItemType>): VideoItemType  => {
-    // if (!arr) return;
     let item = arr.find(v => v.site === 'YOUTUBE');
     return item as VideoItemType;
   }
