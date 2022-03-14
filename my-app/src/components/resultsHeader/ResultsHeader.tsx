@@ -21,7 +21,7 @@ const SortResultsHeader: React.FC = () => {
   useEffect(() => {
     window.scroll(0, 0);
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
-  }, [currentPage, sortType, filter, keyword]);
+  }, [currentPage, sortType, filter]);
 
   const handleClick = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     dispatch(sortMoviesAsync(e.target.value));

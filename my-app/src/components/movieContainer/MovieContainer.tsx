@@ -25,7 +25,7 @@ const MovieContainer: React.FC = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
-    dispatch(getMoviesAPI(currentPage, sortType));
+    dispatch(getMoviesAPI(currentPage));
   }, []);
 
   if (isFetchedError) {

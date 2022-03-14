@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentPage, setMoviesKeyword } from '../../redux/actions';
+import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword } from '../../redux/actions';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { InitialStateType } from '../../types/types';
 import './SearchBar.scss';
@@ -13,11 +13,14 @@ const SearchBar: React.FC = () => {
   const keyword = useSelector((state: InitialStateType) => state.keyword);
   const isFetching = useSelector((state: InitialStateType) => state.isFetching);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setMoviesKeyword(e.target.value));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setMoviesKeyword(e.target.value));
+  }
 
   const handleClick = (): void => {
     if (!keyword.trim()) return;
     dispatch(setCurrentPage(1));
+    dispatch(filterGenreMoviesAsync('all'))
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
   }
 
@@ -25,6 +28,8 @@ const SearchBar: React.FC = () => {
     if (!keyword.trim()) return;
     dispatch(setCurrentPage(1));
     dispatch(setMoviesKeyword(''));
+    dispatch(filterGenreMoviesAsync('all'))
+    dispatch(getMoviesAPI(currentPage));
   }
 
   return (

@@ -6,7 +6,7 @@ const APIUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/';
 const token = '4fa525f3-c08b-4f89-8459-00b56e10d8eb';
 const yearSorting = 'yearFrom=1000&yearTo=2021';
 
-export const getMoviesAPI = (currentPage?: number, sortType = 'RATING', genre?: string, query = '') => {
+export const getMoviesAPI = (currentPage: number = 1, sortType = 'RATING', genre: string = 'all', query = '') => {
   return async (dispatch: Dispatch<ActionsTypes>) => {
     try {
       let genreType: string | number;
