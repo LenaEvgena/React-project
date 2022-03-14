@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeDeleteMovieForm, deleteMovieById } from '../../redux/actions';
+import { closeDeleteMovieForm, deleteMovieById, removeFavoriteMovie } from '../../redux/actions';
 import { InitialStateType } from '../../types/types';
 import Footer from '../footer/Footer';
 import LogoTitle from '../logoTitle/LogoTitle';
@@ -19,6 +19,11 @@ const DeleteModal: React.FC = () => {
     dispatch(closeDeleteMovieForm());
   }
 
+  const handleDeleteClick = (id: number): void => {
+    dispatch(deleteMovieById(id));
+    dispatch(removeFavoriteMovie(id));
+  }
+
   return (
     <div className="delete__modal">
       <div className="modal__wrapper" onClick={handleOutsideClick}>
@@ -30,7 +35,7 @@ const DeleteModal: React.FC = () => {
             <p className="modal__subtitle">Are you sure you want to delete this movie?</p>
           </div>
           <div className="modal-button">
-            <SubmitButton text="confirm" handleClick={() => dispatch(deleteMovieById(id as number))} />
+            <SubmitButton text="confirm" handleClick={() => handleDeleteClick(id as number)} />
           </div>
         </div>
       </div>

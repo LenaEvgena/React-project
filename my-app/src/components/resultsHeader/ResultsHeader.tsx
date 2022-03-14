@@ -15,16 +15,18 @@ const SortResultsHeader: React.FC = () => {
   const isFetching = useSelector((state: InitialStateType) => state.isFetching);
 
   useEffect(() => {
-    dispatch(setCurrentPage(1));
-  }, [filter])
-
-  useEffect(() => {
     window.scroll(0, 0);
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
-  }, [currentPage, sortType, filter]);
+  }, [currentPage, filter, sortType]);
 
   const handleClick = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    dispatch(setCurrentPage(1));
     dispatch(sortMoviesAsync(e.target.value));
+  }
+
+  const handleOnFilterClick = (genre: string): void => {
+    dispatch(setCurrentPage(1));
+    dispatch(filterGenreMoviesAsync(genre));
   }
 
   return (
@@ -32,11 +34,11 @@ const SortResultsHeader: React.FC = () => {
       {!isFavorListOpen && <>
         <div className="results__filter">
           <ul>
-            <li className={`${isFetching && 'busy'} ${filter === 'all' && 'active'}`} onClick={() => dispatch(filterGenreMoviesAsync('all'))}>All</li>
-            <li className={`${isFetching && 'busy'} ${filter === 'drama' && 'active' }`} onClick={() => dispatch(filterGenreMoviesAsync('drama'))}>Drama</li>
-            <li className={`${isFetching && 'busy'} ${filter === 'melodrama' && 'active'}`} onClick={() => dispatch(filterGenreMoviesAsync('melodrama'))}>Melodrama</li>
-            <li className={`${isFetching && 'busy'} ${filter === 'thriller' && 'active'}`} onClick={() => dispatch(filterGenreMoviesAsync('thriller'))}>Thriller</li>
-            <li className={`${isFetching && 'busy'} ${filter === 'crime' && 'active'}`} onClick={() => dispatch(filterGenreMoviesAsync('crime'))}>Crime</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'all' && 'active'}`} onClick={() => handleOnFilterClick('all')}>All</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'drama' && 'active' }`} onClick={() => handleOnFilterClick('drama')}>Drama</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'melodrama' && 'active'}`} onClick={() => handleOnFilterClick('melodrama')}>Melodrama</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'thriller' && 'active'}`} onClick={() => handleOnFilterClick('thriller')}>Thriller</li>
+            <li className={`${isFetching && 'busy'} ${filter === 'crime' && 'active'}`} onClick={() => handleOnFilterClick('crime')}>Crime</li>
           </ul>
         </div>
         <div className="results__sort">

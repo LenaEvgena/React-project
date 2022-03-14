@@ -9,6 +9,7 @@ const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector((state: InitialStateType) => state.currentPage);
   const sortType = useSelector((state: InitialStateType) => state.sortType);
+  const filter = useSelector((state: InitialStateType) => state.filter);
   const keyword = useSelector((state: InitialStateType) => state.keyword);
   const isFetching = useSelector((state: InitialStateType) => state.isFetching);
 
@@ -20,7 +21,7 @@ const SearchBar: React.FC = () => {
     if (!keyword.trim()) return;
     dispatch(setCurrentPage(1));
     dispatch(filterGenreMoviesAsync('all'))
-    dispatch(getMoviesAPI(currentPage, sortType, 'all', keyword));
+    dispatch(getMoviesAPI(1, sortType, 'all', keyword));
   }
 
   const handleResetClick = (): void => {
@@ -28,7 +29,7 @@ const SearchBar: React.FC = () => {
     dispatch(setCurrentPage(1));
     dispatch(setMoviesKeyword(''));
     dispatch(filterGenreMoviesAsync('all'))
-    dispatch(getMoviesAPI(currentPage));
+    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { setCurrentPage } from '../../redux/actions';
@@ -22,11 +22,6 @@ const MovieContainer: React.FC = () => {
   const pages: Array<number> = [];
 
   createPages(pages, total, currentPage);
-
-  useEffect(() => {
-    window.scroll(0, 0);
-    dispatch(getMoviesAPI(currentPage));
-  }, []);
 
   if (isFetchedError) {
     return <ErrorPage handleClick={() => dispatch(getMoviesAPI(currentPage, sortType))} text='Try again' />;
