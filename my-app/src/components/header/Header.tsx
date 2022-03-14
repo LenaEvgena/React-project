@@ -1,17 +1,17 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toggleFavoriteList } from '../../redux/actions';
 import FavorButton from '../favorButton/FavorButton';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SearchForm from '../searchForm/SearchForm';
 import Background from '../background/Background';
 import ErrorBoundary from '../errorBoundary/ErrorBoundary';
-import { InitialStateType } from '../../types/types';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './Header.scss';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
-  const isFavorListOpen = useSelector((state: InitialStateType) => state.isFavorListOpen);
+  const isFavorListOpen = useTypedSelector(state => state.isFavorListOpen)
   let text = !isFavorListOpen ? 'Show favorites' : 'Close favorites';
 
   const handleFavoriteClick = (): void => {

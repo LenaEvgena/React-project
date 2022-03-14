@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
 import { closeMovieDetailsForm, removeFavoriteMovie, setFavoriteMovie } from '../../redux/actions';
 import Background from '../background/Background';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
 import VideoModal from '../videoModal/VideoModal';
-import { InitialStateType, ItemType, VideoItemType } from '../../types/types';
+import { ItemType, VideoItemType } from '../../types/types';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './MovieDetails.scss';
 
 type ParamsIdType = {
@@ -17,9 +18,7 @@ type ParamsIdType = {
 
 const MovieDetails: React.FC = () => {
   const dispatch = useDispatch();
-  const item = useSelector((state: InitialStateType) => state.selectedByIdMovie);
-  const favoriteMovies = useSelector((state: InitialStateType) => state.favoriteMovies);
-  const videos = useSelector((state: InitialStateType) => state.videos);
+  const { selectedByIdMovie, favoriteMovies, videos } = useTypedSelector((state) => state);
   const { id } = useParams<ParamsIdType>();
   const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
 
@@ -29,7 +28,7 @@ const MovieDetails: React.FC = () => {
     dispatch(fetchVideoById(id as string));
   }, [id]);
 
-  const getVideo = (arr: Array<VideoItemType>): VideoItemType  => {
+  const getVideo = (arr: Array<VideoItemType>): VideoItemType => {
     let item = arr.find(v => v.site === 'YOUTUBE');
     return item as VideoItemType;
   }
@@ -57,7 +56,7 @@ const MovieDetails: React.FC = () => {
 
   return (
     <>
-      {showVideoModal && <VideoModal movie={item as ItemType} video={itemVideo as VideoItemType} handleVideoModal={handleVideoModal} />}
+      {showVideoModal && <VideoModal movie={selectedByIdMovie as ItemType} video={itemVideo as VideoItemType} handleVideoModal={handleVideoModal} />}
 
       <div className="movie__details">
         <Background />
@@ -69,8 +68,8 @@ const MovieDetails: React.FC = () => {
           <div className="details__container">
             <div className="details__aside">
               <div className="details__image">
-                <i className={`movie_icon-fav ${isFavorite(item?.kinopoiskId as number) ? 'active' : ''}`} onClick={() => handleFavoriteClick(item?.kinopoiskId as number)}></i>
-                <img className="image-cover" src={item?.posterUrl || item?.posterUrlPreview} alt={item?.nameOriginal || item?.nameRu as string} />
+                <i className={`movie_icon-fav ${isFavorite(selectedByIdMovie?.kinopoiskId as number) ? 'active' : ''}`} onClick={() => handleFavoriteClick(selectedByIdMovie?.kinopoiskId as number)}></i>
+                <img className="image-cover" src={selectedByIdMovie?.posterUrl || selectedByIdMovie?.posterUrlPreview} alt={selectedByIdMovie?.nameOriginal || selectedByIdMovie?.nameRu as string} />
               </div>
               <SubmitButton text='Video' isBusy={!itemVideo} handleClick={handleClick} />
             </div>
@@ -78,29 +77,29 @@ const MovieDetails: React.FC = () => {
             <div className="details__content">
               <div className="content-title">
                 <h2 className="content-movie_title">
-                  {item?.nameOriginal || item?.nameRu}
+                  {selectedByIdMovie?.nameOriginal || selectedByIdMovie?.nameRu}
                 </h2>
                 <div className="content-vote_average">
-                  {item?.ratingKinopoisk}
+                  {selectedByIdMovie?.ratingKinopoisk}
                 </div>
               </div>
 
               <div className="content-tagline">
-                {item?.slogan || item?.nameRu}
-                <div>{item?.shortDescription}</div>
+                {selectedByIdMovie?.slogan || selectedByIdMovie?.nameRu}
+                <div>{selectedByIdMovie?.shortDescription}</div>
               </div>
 
               <div className="content-info">
                 <span className="content-info_date">
-                  {item?.year}
+                  {selectedByIdMovie?.year}
                 </span>
                 <span className="content-info_runtime">
-                  {item?.serial ? `${item?.filmLength || 1} series` : `${item?.filmLength || 90} min`}
+                  {selectedByIdMovie?.serial ? `${selectedByIdMovie?.filmLength || 1} series` : `${selectedByIdMovie?.filmLength || 90} min`}
                 </span>
               </div>
 
               <div className="content-overview">
-                {item?.description || 'Описание фильма временно не доступно'}
+                {selectedByIdMovie?.description || 'Описание фильма временно не доступно'}
               </div>
             </div>
           </div>

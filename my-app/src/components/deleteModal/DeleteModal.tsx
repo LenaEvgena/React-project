@@ -1,16 +1,16 @@
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { closeDeleteMovieForm, deleteMovieById, removeFavoriteMovie } from '../../redux/actions';
-import { InitialStateType } from '../../types/types';
 import Footer from '../footer/Footer';
 import LogoTitle from '../logoTitle/LogoTitle';
 import SubmitButton from '../submitButton/SubmitButton';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './DeleteModal.scss';
 
 const DeleteModal: React.FC = () => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLDivElement>(null);
-  const id = useSelector((state: InitialStateType) => state.movieIdToDelete);
+  const id = useTypedSelector(state => state.movieIdToDelete);
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (modalRef.current?.contains(e.target as Element)) {

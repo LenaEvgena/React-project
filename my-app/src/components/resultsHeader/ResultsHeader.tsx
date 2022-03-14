@@ -1,18 +1,13 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../redux/actions';
-import { InitialStateType } from '../../types/types';
 import './ResultsHeader.scss';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 const SortResultsHeader: React.FC = () => {
   const dispatch = useDispatch();
-  const isFavorListOpen = useSelector((state: InitialStateType) => state.isFavorListOpen);
-  const currentPage = useSelector((state: InitialStateType) => state.currentPage);
-  const sortType = useSelector((state: InitialStateType) => state.sortType);
-  const filter = useSelector((state: InitialStateType) => state.filter);
-  const keyword = useSelector((state: InitialStateType) => state.keyword);
-  const isFetching = useSelector((state: InitialStateType) => state.isFetching);
+  const { filter, keyword, currentPage, sortType, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
 
   useEffect(() => {
     window.scroll(0, 0);

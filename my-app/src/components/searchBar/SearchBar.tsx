@@ -1,17 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword } from '../../redux/actions';
 import { getMoviesAPI } from '../../redux/asyncActions';
-import { InitialStateType } from '../../types/types';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './SearchBar.scss';
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
-  const currentPage = useSelector((state: InitialStateType) => state.currentPage);
-  const sortType = useSelector((state: InitialStateType) => state.sortType);
-  const filter = useSelector((state: InitialStateType) => state.filter);
-  const keyword = useSelector((state: InitialStateType) => state.keyword);
-  const isFetching = useSelector((state: InitialStateType) => state.isFetching);
+  const { filter, keyword, currentPage, sortType, isFetching } = useTypedSelector((state) => state);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setMoviesKeyword(e.target.value));

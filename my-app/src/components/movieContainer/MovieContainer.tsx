@@ -1,24 +1,18 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { setCurrentPage } from '../../redux/actions';
 import { createPages } from '../../utils/createPages';
 import MovieCard from '../movieCard/MovieCard';
 import ErrorPage from '../errorPage/ErrorPage';
 import FavorContainer from './FavorContainer';
-import { InitialStateType } from '../../types/types';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './MovieContainer.scss';
 
 const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const movies = useSelector((state: InitialStateType) => state.movies.items);
-  const total = useSelector((state: InitialStateType) => state.total);
-  const totalCount = useSelector((state: InitialStateType) => state.totalCount);
-  const currentPage = useSelector((state: InitialStateType) => state.currentPage);
-  const sortType = useSelector((state: InitialStateType) => state.sortType);
-  const isFetching = useSelector((state: InitialStateType) => state.isFetching);
-  const isFetchedError = useSelector((state: InitialStateType) => state.isFetchedError);
-  const isFavorListOpen = useSelector((state: InitialStateType) => state.isFavorListOpen);
+  const movies = useTypedSelector((state) => state.movies.items);
+  const { total, totalCount, currentPage, sortType, isFetching, isFetchedError, isFavorListOpen } = useTypedSelector((state) => state);
   const pages: Array<number> = [];
 
   createPages(pages, total, currentPage);
