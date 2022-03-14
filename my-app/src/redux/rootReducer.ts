@@ -1,9 +1,4 @@
-import { ActionsTypes, InitialStateType } from '../types/types';
-import {
-  SET_MOVIES_ASYNC, SORT_MOVIES_ASYNC, SET_CURRENT_PAGE, SET_IS_FETCHING, SET_FETCHED_ERROR,
-  FILTER_MOVIES_ASYNC, SEARCH_MOVIES_KEYWORD, DELETE_MOVIE, OPEN_DELETE_MOVIE_FORM, CLOSE_DELETE_MOVIE_FORM,
-  SET_FAVORITE_MOVIE, REMOVE_FAVORITE_MOVIE, SET_MOVIE_BY_ID, CLOSE_MOVIE_DETAILS_FORM, TOGGLE_FAVORITE_LIST, SET_VIDEO_LIST
-} from './actions';
+import { ActionsTypesList, ActionTypes, InitialStateType } from '../types/types';
 
 const initialState: InitialStateType = {
   movies: {
@@ -29,9 +24,9 @@ const initialState: InitialStateType = {
   videos: [],
 }
 
-export const rootReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+export const rootReducer = (state = initialState, action: ActionsTypesList): InitialStateType => {
   switch (action.type) {
-    case SET_MOVIES_ASYNC:
+    case ActionTypes.SET_MOVIES_ASYNC:
       return {
         ...state,
         movies: action.movies,
@@ -39,59 +34,59 @@ export const rootReducer = (state = initialState, action: ActionsTypes): Initial
         total: action.total,
         isFetchedError: false,
       }
-    case SET_CURRENT_PAGE:
+    case ActionTypes.SET_CURRENT_PAGE:
       return {
         ...state,
         currentPage: action.currentPage,
       }
-    case SET_MOVIE_BY_ID:
+    case ActionTypes.SET_MOVIE_BY_ID:
       return {
         ...state,
         selectedByIdMovie: action.movie,
       }
-    case CLOSE_MOVIE_DETAILS_FORM:
+    case ActionTypes.CLOSE_MOVIE_DETAILS_FORM:
       return {
         ...state,
         selectedByIdMovie: null,
       }
-    case SET_IS_FETCHING:
+    case ActionTypes.SET_IS_FETCHING:
       return {
         ...state,
         isFetching: action.isFetching,
       }
-    case SET_FETCHED_ERROR:
+    case ActionTypes.SET_FETCHED_ERROR:
       return {
         ...state,
         isFetchedError: action.isFetchedError,
       }
-    case FILTER_MOVIES_ASYNC:
+    case ActionTypes.FILTER_MOVIES_ASYNC:
       return {
         ...state,
         filter: action.filter,
       }
-    case SORT_MOVIES_ASYNC:
+    case ActionTypes.SORT_MOVIES_ASYNC:
       return {
         ...state,
         sortType: action.sortType,
       }
-    case SEARCH_MOVIES_KEYWORD:
+    case ActionTypes.SEARCH_MOVIES_KEYWORD:
       return {
         ...state,
         keyword: action.keyword,
       }
-    case OPEN_DELETE_MOVIE_FORM:
+    case ActionTypes.OPEN_DELETE_MOVIE_FORM:
       return {
         ...state,
         movieIdToDelete: action.id,
         isDeleteFormOpen: true,
       };
-    case CLOSE_DELETE_MOVIE_FORM:
+    case ActionTypes.CLOSE_DELETE_MOVIE_FORM:
       return {
         ...state,
         movieIdToDelete: null,
         isDeleteFormOpen: false,
       };
-    case DELETE_MOVIE:
+    case ActionTypes.DELETE_MOVIE:
       let copy = { ...state };
       copy.isDeleteFormOpen = false;
       copy.movieIdToDelete = null;
@@ -100,22 +95,22 @@ export const rootReducer = (state = initialState, action: ActionsTypes): Initial
       copy.movies = { ...state.movies };
       copy.movies.items = [...state.movies.items.filter((item: any) => item.kinopoiskId !== action.id)];
       return copy;
-    case SET_FAVORITE_MOVIE:
+    case ActionTypes.SET_FAVORITE_MOVIE:
       return {
         ...state,
         favoriteMovies: [...state.movies.items.filter((item: any) => item.kinopoiskId === action.id), ...state.favoriteMovies],
       }
-    case REMOVE_FAVORITE_MOVIE:
+    case ActionTypes.REMOVE_FAVORITE_MOVIE:
       return {
         ...state,
         favoriteMovies: [...state.favoriteMovies.filter((item: any) => item.kinopoiskId !== action.id)],
       }
-    case TOGGLE_FAVORITE_LIST:
+    case ActionTypes.TOGGLE_FAVORITE_LIST:
       return {
         ...state,
         isFavorListOpen: action.isFavorListOpen,
       }
-    case SET_VIDEO_LIST:
+    case ActionTypes.SET_VIDEO_LIST:
       return {
         ...state,
         videos: action.videos,
