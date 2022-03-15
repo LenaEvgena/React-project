@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../footer/Footer';
 import LogoTitle from '../logoTitle/LogoTitle';
 import ResetButton from '../resetButton/ResetButton';
 import './ErrorPage.scss';
@@ -25,6 +26,7 @@ const ErrorPage: React.FC<PropsType> = ({ text, handleClick }) => (
         </div>
       </div>
     </div>
+    <Footer />
   </>
 );
 

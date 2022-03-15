@@ -7,7 +7,7 @@ import './SearchBar.scss';
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
-  const { filter, keyword, currentPage, sortType, isFetching } = useTypedSelector((state) => state);
+  const { keyword, sortType, isFetching } = useTypedSelector((state) => state);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setMoviesKeyword(e.target.value));
@@ -16,7 +16,7 @@ const SearchBar: React.FC = () => {
   const handleClick = (): void => {
     if (!keyword.trim()) return;
     dispatch(setCurrentPage(1));
-    dispatch(filterGenreMoviesAsync('all'))
+    dispatch(filterGenreMoviesAsync('all'));
     dispatch(getMoviesAPI(1, sortType, 'all', keyword));
   }
 
@@ -24,8 +24,8 @@ const SearchBar: React.FC = () => {
     if (!keyword.trim()) return;
     dispatch(setCurrentPage(1));
     dispatch(setMoviesKeyword(''));
-    dispatch(filterGenreMoviesAsync('all'))
-    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
+    dispatch(filterGenreMoviesAsync('all'));
+    dispatch(getMoviesAPI(1, sortType, 'all', ''));
   }
 
   return (
