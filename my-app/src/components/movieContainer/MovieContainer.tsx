@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getMoviesAPI } from '../../redux/asyncActions';
 import { setCurrentPage } from '../../redux/actions';
@@ -12,8 +12,13 @@ import './MovieContainer.scss';
 const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
   const movies = useTypedSelector((state) => state.movies.items);
-  const { total, totalCount, currentPage, sortType, isFetching, isFetchedError, isFavorListOpen } = useTypedSelector((state) => state);
+  const { keyword, filter, total, totalCount, currentPage, sortType, isFetching, isFetchedError, isFavorListOpen } = useTypedSelector((state) => state);
   const pages: Array<number> = [];
+
+  useEffect(() => {
+    window.scroll(0, 0);
+    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
+  }, [currentPage, filter, sortType]);
 
   createPages(pages, total, currentPage);
 
