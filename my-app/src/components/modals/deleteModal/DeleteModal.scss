@@ -1,4 +1,4 @@
-@import "./../../constants.scss";
+@import "./../../../constants.scss";
 
 .delete__modal {
   position: fixed;
@@ -44,7 +44,7 @@
     }
 
     &-close {
-      background: url('./../../assets/cross.svg');
+      background: url('./../../../assets/cross.svg');
       width: 2.2rem;
       height: 2.2rem;
       background-position: center right;

@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import ReactPlayer from 'react-player';
-import { ItemType, VideoItemType } from '../../types/types';
-import Footer from '../common/footer/Footer';
-import LogoTitle from '../common/logoTitle/LogoTitle';
-import SubmitButton from '../common/submitButton/SubmitButton';
+import { ItemType, VideoItemType } from '../../../types/types';
+import Footer from '../../common/footer/Footer';
+import LogoTitle from '../../common/logoTitle/LogoTitle';
+import SubmitButton from '../../common/submitButton/SubmitButton';
 import './VideoModal.scss';
 
 type PropsType = {

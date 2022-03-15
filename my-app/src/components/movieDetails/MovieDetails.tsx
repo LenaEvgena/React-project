@@ -7,7 +7,7 @@ import { closeMovieDetailsForm, removeFavoriteMovie, setFavoriteMovie } from '..
 import Background from '../common/background/Background';
 import LogoTitle from '../common/logoTitle/LogoTitle';
 import SubmitButton from '../common/submitButton/SubmitButton';
-import VideoModal from '../videoModal/VideoModal';
+import VideoModal from '../modals/videoModal/VideoModal';
 import { ItemType, VideoItemType } from '../../types/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './MovieDetails.scss';

@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { closeDeleteMovieForm, deleteMovieById, removeFavoriteMovie } from '../../redux/actions';
-import Footer from '../common/footer/Footer';
-import LogoTitle from '../common/logoTitle/LogoTitle';
-import SubmitButton from '../common/submitButton/SubmitButton';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { closeDeleteMovieForm, deleteMovieById, removeFavoriteMovie } from './../../../redux/actions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import LogoTitle from '../../common/logoTitle/LogoTitle';
+import SubmitButton from '../../common/submitButton/SubmitButton';
 import './DeleteModal.scss';
+import Footer from './../../common/footer/Footer';
 
 const DeleteModal: React.FC = () => {
   const dispatch = useDispatch();
