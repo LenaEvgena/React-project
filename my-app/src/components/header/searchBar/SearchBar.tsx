@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword } from '../../redux/actions';
-import { getMoviesAPI } from '../../redux/asyncActions';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword } from '../../../redux/actions';
+import { getMoviesAPI } from '../../../redux/asyncActions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import './SearchBar.scss';
 
 const SearchBar: React.FC = () => {

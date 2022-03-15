@@ -1,6 +1,6 @@
 import React from 'react';
+import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import MovieCard from '../movieCard/MovieCard';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './MovieContainer.scss';
 
 const FavorContainer: React.FC = () => {

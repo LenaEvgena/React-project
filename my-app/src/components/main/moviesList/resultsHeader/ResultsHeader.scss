@@ -1,4 +1,4 @@
-@import "./../../constants.scss";
+@import "./../../../../constants.scss";
 
 .results__header {
   position: relative;
@@ -76,7 +76,7 @@
     outline: none;
     align-items: center;
     -webkit-appearance: none;
-    background: url('./../../assets/triangle.svg');
+    background: url('./../../../../assets/triangle.svg');
     background-position: center right;
     background-repeat: no-repeat;
 

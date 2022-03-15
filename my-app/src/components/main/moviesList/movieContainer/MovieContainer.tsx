@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getMoviesAPI } from '../../redux/asyncActions';
-import { setCurrentPage } from '../../redux/actions';
-import { createPages } from '../../utils/createPages';
-import MovieCard from '../movieCard/MovieCard';
-import ErrorPage from '../errorPage/ErrorPage';
-import FavorContainer from './FavorContainer';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../../../hooks/useTypedSelector';
+import { setCurrentPage } from '../../../../redux/actions';
+import { getMoviesAPI } from '../../../../redux/asyncActions';
+import { createPages } from '../../../../utils/createPages';
+import ErrorPage from '../../../errorPage/ErrorPage';
+import MovieCard from '../../moviesList/movieCard/MovieCard';
+import FavorContainer from '../../moviesList/movieContainer/FavorContainer';
 import './MovieContainer.scss';
 
 const MovieContainer: React.FC = () => {

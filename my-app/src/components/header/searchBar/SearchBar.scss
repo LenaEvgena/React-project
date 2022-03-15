@@ -1,4 +1,4 @@
-@import "./../../constants.scss";
+@import "./../../../constants.scss";
 
 .search {
   display: flex;
@@ -45,7 +45,7 @@
     &-reset {
       width: 6rem;
       background-color: rgba(56, 56, 56, 0.527);
-      background: url('./../../assets/cross.svg');
+      background: url('./../../../assets/cross.svg');
       width: 2.2rem;
       height: 2.2rem;
       background-position: center;
