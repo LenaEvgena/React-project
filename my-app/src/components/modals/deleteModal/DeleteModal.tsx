@@ -4,8 +4,8 @@ import { closeDeleteMovieForm, deleteMovieById, removeFavoriteMovie } from './..
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import LogoTitle from '../../common/logoTitle/LogoTitle';
 import SubmitButton from '../../common/submitButton/SubmitButton';
-import './DeleteModal.scss';
 import Footer from './../../common/footer/Footer';
+import './DeleteModal.scss';
 
 const DeleteModal: React.FC = () => {
   const dispatch = useDispatch();
