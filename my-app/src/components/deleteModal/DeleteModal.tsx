@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeDeleteMovieForm, deleteMovieById, removeFavoriteMovie } from '../../redux/actions';
-import Footer from '../footer/Footer';
-import LogoTitle from '../logoTitle/LogoTitle';
-import SubmitButton from '../submitButton/SubmitButton';
+import Footer from '../common/footer/Footer';
+import LogoTitle from '../common/logoTitle/LogoTitle';
+import SubmitButton from '../common/submitButton/SubmitButton';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './DeleteModal.scss';
 

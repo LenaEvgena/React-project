@@ -2,10 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleFavoriteList } from '../../redux/actions';
 import FavorButton from '../favorButton/FavorButton';
-import LogoTitle from '../logoTitle/LogoTitle';
+import LogoTitle from '../common/logoTitle/LogoTitle';
 import SearchForm from '../searchForm/SearchForm';
-import Background from '../background/Background';
-import ErrorBoundary from '../errorBoundary/ErrorBoundary';
+import Background from '../common/background/Background';
+import ErrorBoundary from '../common/errorBoundary/ErrorBoundary';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './Header.scss';
 

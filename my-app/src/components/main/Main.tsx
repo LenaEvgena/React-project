@@ -1,7 +1,7 @@
 import React from 'react';
 import SortResultsHeader from '../resultsHeader/ResultsHeader';
 import MovieContainer from '../movieContainer/MovieContainer';
-import ErrorBoundary from '../errorBoundary/ErrorBoundary';
+import ErrorBoundary from '../common/errorBoundary/ErrorBoundary';
 import './Main.scss';
 
 const Main: React.FC = () => (

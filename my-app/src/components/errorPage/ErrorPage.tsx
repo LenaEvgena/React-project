@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../footer/Footer';
-import LogoTitle from '../logoTitle/LogoTitle';
-import ResetButton from '../resetButton/ResetButton';
+import Footer from '../common/footer/Footer';
+import LogoTitle from '../common/logoTitle/LogoTitle';
+import ResetButton from '../common/resetButton/ResetButton';
 import './ErrorPage.scss';
 
 type PropsType = {

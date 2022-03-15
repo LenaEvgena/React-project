@@ -1,5 +1,5 @@
 import React from 'react';
-import headerImage from "./../../assets/poster.jpeg";
+import headerImage from "./../../../assets/poster.jpeg";
 import './Background.scss';
 
 const Background: React.FC = () => (

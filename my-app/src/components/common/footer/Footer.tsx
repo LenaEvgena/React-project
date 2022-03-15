@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoTitle from '../logoTitle/LogoTitle';
+import LogoTitle from '../../common/logoTitle/LogoTitle';
 import './Footer.scss';
 
 const Footer: React.FC = () => (
