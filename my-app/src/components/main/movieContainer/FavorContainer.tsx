@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTypedSelector } from '../../../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import MovieCard from '../movieCard/MovieCard';
 import './MovieContainer.scss';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useTypedSelector } from '../../../../hooks/useTypedSelector';
-import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../../../redux/actions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
 import './ResultsHeader.scss';
 
 const SortResultsHeader: React.FC = () => {

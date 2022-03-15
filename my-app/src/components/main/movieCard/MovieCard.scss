@@ -1,4 +1,4 @@
-@import "./../../../../constants.scss";
+@import "./../../../constants.scss";
 
 .movie {
   position: relative;
@@ -7,7 +7,8 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background-image: url('./../../../../assets/heart.png');
+    background-image: url('./../../../assets/heart.png');
+    filter: drop-shadow( 0 2px rgba(255, 255, 255, 0.746));
     background-size: cover;
     width: 2.35rem;
     height: 2.1rem;
@@ -15,7 +16,7 @@
     cursor: pointer;
 
     &.active{
-      background-image: url('./../../../../assets/heartPink.png');
+      background-image: url('./../../../assets/heartPink.png');
     }
   }
 

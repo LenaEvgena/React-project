@@ -1,6 +1,6 @@
 import React from 'react';
-import SortResultsHeader from './../main/moviesList/resultsHeader/ResultsHeader';
-import MovieContainer from './../main/moviesList/movieContainer/MovieContainer';
+import SortResultsHeader from './../main/resultsHeader/ResultsHeader';
+import MovieContainer from './../main/movieContainer/MovieContainer';
 import ErrorBoundary from './../common/errorBoundary/ErrorBoundary';
 import './Main.scss';
 

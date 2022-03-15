@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { ItemType } from '../../../../types/types';
-import { useTypedSelector } from '../../../../hooks/useTypedSelector';
-import { openDeleteMovieForm, removeFavoriteMovie, setFavoriteMovie } from '../../../../redux/actions';
-import DeleteModal from '../../../modals/deleteModal/DeleteModal';
+import { ItemType } from '../../../types/types';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { openDeleteMovieForm, removeFavoriteMovie, setFavoriteMovie } from '../../../redux/actions';
+import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import './MovieCard.scss';
 
 type PropsType = {
