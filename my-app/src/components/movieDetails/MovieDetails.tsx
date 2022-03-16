@@ -26,7 +26,7 @@ const MovieDetails: React.FC = () => {
     window.scroll(0, 0);
     dispatch(fetchMovieById(id as string));
     dispatch(fetchVideoById(id as string));
-  }, [id]);
+  }, [id, dispatch]);
 
   const getVideo = (arr: Array<VideoItemType>): VideoItemType => {
     let item = arr.find(v => v.site === 'YOUTUBE');

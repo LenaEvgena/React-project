@@ -24,8 +24,8 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="header">
-        <ErrorBoundary>
+      <ErrorBoundary>
+        <header className="header">
           <Background />
           <div className="header__wrapper">
             <div className="header__logo">
@@ -34,8 +34,8 @@ const Header: React.FC = () => {
             </div>
             <SearchForm />
           </div>
-        </ErrorBoundary>
-      </header>
+        </header>
+      </ErrorBoundary>
     </>
   );
 }

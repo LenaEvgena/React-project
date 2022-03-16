@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header/Header';
-import Footer from './components/common/footer/Footer';
 import Main from './components/main/Main';
 import MovieDetails from './components/movieDetails/MovieDetails';
 import ErrorPage from './components/errorPage/ErrorPage';
@@ -17,7 +16,6 @@ const App: React.FC = () => {
         <Route path='*' element={<ErrorPage />} />
       </Routes>
       <Main />
-      <Footer />
       <ScrollButton />
     </BrowserRouter>
   )
