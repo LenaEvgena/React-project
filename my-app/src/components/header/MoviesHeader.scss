@@ -1,0 +1,21 @@
+@import "./../../constants.scss";
+
+.movies__header {
+  position: relative;
+  height: 40rem;
+  background-color: $color-dark;
+
+  .header {
+
+    &__wrapper {
+      position: relative;
+    }
+
+    &__logo {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 2rem 6rem;
+    }
+  }
+}

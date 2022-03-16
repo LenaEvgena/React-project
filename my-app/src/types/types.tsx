@@ -2,6 +2,7 @@ export enum ActionTypes {
   SET_MOVIES_ASYNC = 'MOVIES/SET_MOVIES_ASYNC',
   SET_CURRENT_PAGE = 'MOVIES/SET_CURRENT_PAGE',
   SET_MOVIE_BY_ID = 'MOVIES/SET_MOVIE_BY_ID',
+  OPEN_MOVIE_DETAILS_FORM = 'MOVIES/OPEN_MOVIE_DETAILS_FORM',
   CLOSE_MOVIE_DETAILS_FORM = 'MOVIES/CLOSE_MOVIE_DETAILS_FORM',
   SET_IS_FETCHING = 'MOVIES/SET_IS_FETCHING',
   SET_FETCHED_ERROR = 'ERROR/SET_FETCHED_ERROR',
@@ -72,6 +73,7 @@ export type InitialStateType = {
   sortType: string,
   keyword: string,
   favoriteMovies: Array<ItemType>,
+  areDetailsOpen: boolean,
   selectedByIdMovie: ItemType | null,
   isFavorListOpen: boolean,
   videos: Array<VideoItemType>,
@@ -94,6 +96,11 @@ export type SetCurrentPageType = {
 export type SetMovieByIDType = {
   type: ActionTypes.SET_MOVIE_BY_ID,
   movie: ItemType,
+}
+
+export type OpenMovieDetailsFormType = {
+  type: ActionTypes.OPEN_MOVIE_DETAILS_FORM,
+  areDetailsOpen: boolean,
 }
 
 export type CloseMovieDetailsFormType = {
@@ -184,7 +191,7 @@ export type RemoveAuthPasswordType = {
   password: string,
 }
 
-export type ActionType = SetMovieType | SetCurrentPageType | SetMovieByIDType |
+export type ActionType = SetMovieType | SetCurrentPageType | SetMovieByIDType | OpenMovieDetailsFormType |
   CloseMovieDetailsFormType | SetIsFetchingType | SetFetchedErrorType | FilterGenreMoviesAsyncType |
   SortMoviesAsyncType | SetMoviesKeywordType | DeleteMovieByIdType | OpenDeleteMovieFormType |
   CloseDeleteMovieFormType | SetFavoriteMovieType | RemoveFavoriteMovieType | ToggleFavoriteListType |

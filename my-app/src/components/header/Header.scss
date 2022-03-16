@@ -1,18 +1,11 @@
 @import "./../../constants.scss";
 
-.header {
-  position: relative;
-  height: 40rem;
-  background-color: $color-dark;
-
-  &__wrapper {
-    position: relative;
-  }
-
-  &__logo {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 2rem 6rem;
-  }
+.header-bar {
+  width: 100%;
+  height: 7rem;
+  background-color: $color-dark-grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 5rem;
 }

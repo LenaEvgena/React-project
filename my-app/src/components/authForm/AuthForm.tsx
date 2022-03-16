@@ -7,14 +7,19 @@ import Footer from './../common/footer/Footer';
 import './AuthForm.scss';
 import ResetButton from '../common/resetButton/ResetButton';
 import { removeAuthName, removeAuthPassword, setAuthName, setAuthPassword } from '../../redux/actions';
+import { Link } from 'react-router-dom';
 
 const AutnForm: React.FC = () => {
   const dispatch = useDispatch();
   const { userName, password } = useTypedSelector(state => state);
 
-  const handleReset = () => {
-    dispatch(removeAuthName(''));
-    dispatch(removeAuthPassword(''));
+  const handleReset = (): void => {
+    if (userName.trim()) {
+      dispatch(removeAuthName(''));
+    };
+    if (password.trim()) {
+      dispatch(removeAuthPassword(''));
+    }
   };
 
   return (
@@ -41,7 +46,9 @@ const AutnForm: React.FC = () => {
           </form>
           <div className="modal-button">
             <ResetButton text="Reset" handleClick={handleReset} />
-            <SubmitButton text="Log in" handleClick={() => { }} />
+            <Link to='/'>
+              <SubmitButton text="Log in" handleClick={() => { }} />
+            </Link>
           </div>
         </div>
       </div>
