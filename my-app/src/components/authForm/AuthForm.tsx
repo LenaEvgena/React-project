@@ -10,7 +10,7 @@ import { removeAuthName, removeAuthPassword, setAuthName, setAuthPassword } from
 
 const AutnForm: React.FC = () => {
   const dispatch = useDispatch();
-  const { movieIdToDelete: id, userName, password } = useTypedSelector(state => state);
+  const { userName, password } = useTypedSelector(state => state);
 
   const handleReset = () => {
     dispatch(removeAuthName(''));
@@ -30,18 +30,18 @@ const AutnForm: React.FC = () => {
 
             <label htmlFor="form-name" className="form-title">
               Username
-              <input className="form-input" type="text" id="form-name" name="formTitle" value={userName} onChange={(e) => dispatch(setAuthName(e.target.value))}/>
+              <input className="form-input" type="text" id="form-name" value={userName} onChange={(e) => dispatch(setAuthName(e.target.value))} />
             </label>
 
             <label htmlFor="form-pass" className="form-title">
               Password
-              <input className="form-input" type="password" id="form-pass" name="formTitle" value={password} onChange={(e) => dispatch(setAuthPassword(e.target.value))}/>
+              <input className="form-input" type="password" id="form-pass" value={password} onChange={(e) => dispatch(setAuthPassword(e.target.value))} />
             </label>
 
           </form>
           <div className="modal-button">
-            <ResetButton text="Reset" handleClick={handleReset}/>
-            <SubmitButton text="Log in" handleClick={() => {}} />
+            <ResetButton text="Reset" handleClick={handleReset} />
+            <SubmitButton text="Log in" handleClick={() => { }} />
           </div>
         </div>
       </div>

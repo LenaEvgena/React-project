@@ -3,31 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import MovieDetails from './components/movieDetails/MovieDetails';
+import AuthForm from './components/authForm/AuthForm';
 import ErrorPage from './components/errorPage/ErrorPage';
 import ScrollButton from './components/common/scrollButton/ScrollButton';
 import './style.scss';
-
-
-// const  HeaderWitnMain = () => {
-//   return (
-//     <>
-//       <Header />
-//       <Main />
-//       <Footer />
-//     </>
-//   )
-// }
-
-// const  DetailsWitnMain = () => {
-//   return (
-//     <>
-//       <MovieDetails />
-//       <Main />
-//       <Footer />
-//     </>
-//   )
-// }
-
 
 const App: React.FC = () => {
   return (
@@ -35,6 +14,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path='/' element={<Header />} />
         <Route path='/movie/:id' element={<MovieDetails />} />
+        <Route path='/auth' element={<AuthForm />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
       <Main />
