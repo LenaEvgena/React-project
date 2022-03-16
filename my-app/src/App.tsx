@@ -7,6 +7,28 @@ import ErrorPage from './components/errorPage/ErrorPage';
 import ScrollButton from './components/common/scrollButton/ScrollButton';
 import './style.scss';
 
+
+// const  HeaderWitnMain = () => {
+//   return (
+//     <>
+//       <Header />
+//       <Main />
+//       <Footer />
+//     </>
+//   )
+// }
+
+// const  DetailsWitnMain = () => {
+//   return (
+//     <>
+//       <MovieDetails />
+//       <Main />
+//       <Footer />
+//     </>
+//   )
+// }
+
+
 const App: React.FC = () => {
   return (
     <BrowserRouter>

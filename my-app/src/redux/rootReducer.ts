@@ -22,6 +22,8 @@ const initialState: InitialStateType = {
   },
   isFavorListOpen: false,
   videos: [],
+  userName: '',
+  password: '',
 }
 
 export const rootReducer = (state = initialState, action: ActionType): InitialStateType => {
@@ -119,6 +121,26 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
       return {
         ...state,
         videos: action.videos,
+      }
+    case ActionTypes.SET_AUTH_NAME:
+      return {
+        ...state,
+        userName: action.userName,
+      }
+    case ActionTypes.REMOVE_AUTH_NAME:
+      return {
+        ...state,
+        userName: action.userName,
+      }
+    case ActionTypes.SET_AUTH_PASSWORD:
+      return {
+        ...state,
+        password: action.password,
+      }
+    case ActionTypes.REMOVE_AUTH_PASSWORD:
+      return {
+        ...state,
+        password: action.password,
       }
     default:
       return state;

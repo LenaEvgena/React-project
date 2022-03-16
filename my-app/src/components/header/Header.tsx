@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleFavoriteList } from '../../redux/actions';
 import FavorButton from './favorButton/FavorButton';
+import AuthForm from './../authForm/AuthForm';
 import LogoTitle from '../common/logoTitle/LogoTitle';
 import SearchForm from './searchForm/SearchForm';
 import Background from '../common/background/Background';
@@ -24,6 +25,8 @@ const Header: React.FC = () => {
 
   return (
     <>
+      <AuthForm />
+
       <ErrorBoundary>
         <header className="header">
           <Background />
