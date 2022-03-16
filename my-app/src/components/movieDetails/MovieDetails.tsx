@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
-import { closeMovieDetailsForm, removeFavoriteMovie, setFavoriteMovie } from '../../redux/actions';
+import { closeMovieDetailsForm, removeFavoriteMovie, removeVideoList, setFavoriteMovie } from '../../redux/actions';
 import Background from '../common/background/Background';
 import LogoTitle from '../common/logoTitle/LogoTitle';
 import SubmitButton from '../common/submitButton/SubmitButton';
@@ -46,6 +46,11 @@ const MovieDetails: React.FC = () => {
     handleVideoModal();
   };
 
+  const handleCloseClick = (): void => {
+    dispatch(closeMovieDetailsForm());
+    dispatch(removeVideoList([]));
+  };
+
   const handleFavoriteClick = (id: number): void => {
     if (isFavorite(id)) {
       dispatch(removeFavoriteMovie(id));
@@ -63,7 +68,7 @@ const MovieDetails: React.FC = () => {
         <div className="details">
           <div className="details__header">
             <LogoTitle />
-            <Link to='/' className="details-search" type="button" onClick={() => dispatch(closeMovieDetailsForm())}></Link>
+            <Link to='/' className="details-search" type="button" onClick={handleCloseClick}></Link>
           </div>
           <div className="details__container">
             <div className="details__aside">

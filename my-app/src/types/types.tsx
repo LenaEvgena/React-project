@@ -15,6 +15,7 @@ export enum ActionTypes {
   REMOVE_FAVORITE_MOVIE = 'MOVIES/REMOVE_FAVORITE_MOVIE',
   TOGGLE_FAVORITE_LIST = 'MOVIES/TOGGLE_FAVORITE_LIST',
   SET_VIDEO_LIST = 'MOVIES/SET_VIDEO_LIST',
+  REMOVE_VIDEO_LIST = 'MOVIES/REMOVE_VIDEO_LIST',
 }
 
 export type CountryType = {
@@ -152,9 +153,14 @@ export type SetVideoListType = {
   videos: Array<VideoItemType>,
 }
 
+export type RemoveVideoListType = {
+  type: ActionTypes.REMOVE_VIDEO_LIST,
+  videos: Array<VideoItemType>,
+}
+
 export type ActionType = SetMovieType | SetCurrentPageType | SetMovieByIDType |
   CloseMovieDetailsFormType | SetIsFetchingType | SetFetchedErrorType | FilterGenreMoviesAsyncType |
   SortMoviesAsyncType | SetMoviesKeywordType | DeleteMovieByIdType | OpenDeleteMovieFormType |
   CloseDeleteMovieFormType | SetFavoriteMovieType | RemoveFavoriteMovieType | ToggleFavoriteListType |
-  SetVideoListType;
+  SetVideoListType | RemoveVideoListType;
 

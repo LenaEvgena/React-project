@@ -115,6 +115,11 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
         ...state,
         videos: action.videos,
       }
+    case ActionTypes.REMOVE_VIDEO_LIST:
+      return {
+        ...state,
+        videos: action.videos,
+      }
     default:
       return state;
   }
