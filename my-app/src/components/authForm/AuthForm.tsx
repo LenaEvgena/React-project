@@ -13,7 +13,7 @@ type PropsType = {
   handleClick: () => void,
 }
 
-const AuthForm: React.FC<PropsType> = ({title, handleClick}) => {
+const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
   const dispatch = useDispatch();
   const { userName, password } = useTypedSelector(state => state);
 
@@ -29,6 +29,19 @@ const AuthForm: React.FC<PropsType> = ({title, handleClick}) => {
   return (
     <div className="auth__modal">
       <div className="modal__wrapper">
+        <div className="modal__form">
+          {title === 'register' ?
+            <>
+              <h3>Already have an account?</h3>
+              <Link to='/auth' className="modal__form-link">Sign in now</Link>
+            </>
+            :
+            <>
+              <h3>Don't have an account?</h3>
+              <Link to='/register' className="modal__form-link">Register now</Link>
+            </>
+          }
+        </div>
         <div className="modal">
           <div className="modal__content">
             <h2 className="modal__title">{title}</h2>

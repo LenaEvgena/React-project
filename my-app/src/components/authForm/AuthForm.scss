@@ -52,6 +52,23 @@
       max-width: $content-width;
       margin: 0 auto;
     }
+
+    &__form {
+      font-size: 2rem;
+      font-weight: 275;
+      font-family: $font-family;
+
+      h3 {
+        font-size: 2rem;
+        font-weight: 275;
+        font-family: $font-family;
+      }
+
+      &-link{
+        color: $color-light;
+        padding-bottom: 2px;
+      }
+    }
   }
 }
 

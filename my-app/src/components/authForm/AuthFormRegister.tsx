@@ -1,13 +1,14 @@
 import React from 'react'
 import AuthForm from './AuthForm';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { auth } from '../../firebase';
 
 const AuthFormRegister = () => {
   const { userName, password } = useTypedSelector(state => state);
 
   const handleRegister = () => {
-    const auth = getAuth();
+    if (!userName || !password) return; // todo validation
 
     createUserWithEmailAndPassword(auth, userName, password)
       .then((userCredential) => {
@@ -26,7 +27,7 @@ const AuthFormRegister = () => {
   }
 
   return (
-    <AuthForm title='Register' handleClick={handleRegister} />
+    <AuthForm title='register' handleClick={handleRegister} />
   )
 }
 
