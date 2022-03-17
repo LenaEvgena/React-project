@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../common/footer/Footer';
-import LogoTitle from '../common/logoTitle/LogoTitle';
 import ResetButton from '../common/resetButton/ResetButton';
 import './ErrorPage.scss';
 
@@ -13,9 +12,6 @@ type PropsType = {
 const ErrorPage: React.FC<PropsType> = ({ text, handleClick }) => (
   <>
     <div className="error">
-      <div className="error_logo">
-        <LogoTitle />
-      </div>
       <div className="error__wrapper">
         <div className="error_content">
           <h2 className="error_text">Page not Found</h2>

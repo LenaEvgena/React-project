@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
 import { removeSelectedMovie, toggleMovieDetailsForm, removeFavoriteMovie, removeVideoList, setFavoriteMovie } from '../../redux/actions';
 import Background from '../common/background/Background';
-import LogoTitle from '../common/logoTitle/LogoTitle';
 import SubmitButton from '../common/submitButton/SubmitButton';
 import VideoModal from '../modals/videoModal/VideoModal';
 import { ItemType, VideoItemType } from '../../types/types';
@@ -69,7 +68,6 @@ const MovieDetails: React.FC = () => {
         <Background />
         <div className="details">
           <div className="details__header">
-            <LogoTitle />
             <Link to='/' className="details-search" type="button" onClick={handleCloseClick}></Link>
           </div>
           <div className="details__container">

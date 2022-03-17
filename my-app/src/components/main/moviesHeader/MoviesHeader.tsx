@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { toggleFavoriteList } from '../../redux/actions';
-import FavorButton from './favorButton/FavorButton';
-import SearchForm from './searchForm/SearchForm';
-import Background from '../common/background/Background';
-import ErrorBoundary from '../common/errorBoundary/ErrorBoundary';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './MoviesHeader.scss';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import Background from '../../common/background/Background';
+import ErrorBoundary from '../../common/errorBoundary/ErrorBoundary';
+import { toggleFavoriteList } from '../../../redux/actions';
+import FavorButton from '../favorButton/FavorButton';
+import SearchForm from '../searchForm/SearchForm';
 
 const MoviesHeader: React.FC = () => {
   const dispatch = useDispatch();

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import LogoTitle from '../common/logoTitle/LogoTitle';
 import SubmitButton from '../common/submitButton/SubmitButton';
 import Footer from './../common/footer/Footer';
 import './AuthForm.scss';
@@ -25,7 +24,6 @@ const AutnForm: React.FC = () => {
   return (
     <div className="auth__modal">
       <div className="modal__wrapper">
-        <LogoTitle />
         <div className="modal">
           <div className="modal__content">
             <h2 className="modal__title">Log in</h2>

@@ -11,14 +11,13 @@ import './style.scss';
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      {/* <Header /> */}
+      <Header />
       <Routes>
-        <Route path='/' element={<Header />} />
-        <Route path='/auth' element={<AuthForm />} />
+        <Route path='/' element={<Main />} />
         <Route path='/movie/:id' element={<MovieDetails />} />
+        <Route path='/auth' element={<AuthForm />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
-      <Main />
       <ScrollButton />
     </BrowserRouter>
   )

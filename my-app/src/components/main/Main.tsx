@@ -4,8 +4,8 @@ import MovieContainer from './../main/movieContainer/MovieContainer';
 import ErrorBoundary from './../common/errorBoundary/ErrorBoundary';
 import './Main.scss';
 import Footer from '../common/footer/Footer';
-import MoviesHeader from '../header/MoviesHeader';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import MoviesHeader from './moviesHeader/MoviesHeader';
 
 const Main: React.FC = () => {
   const { isDetailsFormOpen } = useTypedSelector(state => state);
