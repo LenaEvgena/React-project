@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import SubmitButton from '../common/submitButton/SubmitButton';
-import Footer from './../common/footer/Footer';
 import ResetButton from '../common/resetButton/ResetButton';
 import { removeAuthName, removeAuthPassword, setAuthName, setAuthPassword } from '../../redux/actions';
 import './AuthForm.scss';
@@ -67,9 +66,6 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
             </Link>
           </div>
         </div>
-      </div>
-      <div className="modal-footer">
-        <Footer />
       </div>
     </div>
   );

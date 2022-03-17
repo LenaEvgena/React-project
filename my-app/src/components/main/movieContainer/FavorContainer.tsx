@@ -16,21 +16,23 @@ const FavorContainer: React.FC = () => {
   }
 
   return (
-    <div className="movie__container">
-      <div className="result">
-        <span className="result__count">{count}</span>
-        <span> movies found</span>
-      </div>
+    <main className="main">
+      <div className="movie__container">
+        <div className="result">
+          <span className="result__count">{count}</span>
+          <span> movies found</span>
+        </div>
 
-      <div className="container">
-        {favoriteMovies.map(movie => (
-          <MovieCard
-            data={movie}
-            key={movie.kinopoiskId}
-          />))
-        }
+        <div className="container">
+          {favoriteMovies.map(movie => (
+            <MovieCard
+              data={movie}
+              key={movie.kinopoiskId}
+            />))
+          }
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
 

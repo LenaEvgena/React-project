@@ -6,13 +6,12 @@ import { getMoviesAPI } from '../../../redux/asyncActions';
 import { createPages } from '../../../utils/createPages';
 import ErrorPage from '../../errorPage/ErrorPage';
 import MovieCard from '../movieCard/MovieCard';
-import FavorContainer from '../movieContainer/FavorContainer';
 import './MovieContainer.scss';
 
 const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
   const movies = useTypedSelector((state) => state.movies.items);
-  const { keyword, filter, total, totalCount, currentPage, sortType, isFetching, isFetchedError, isFavorListOpen } = useTypedSelector((state) => state);
+  const { keyword, filter, total, totalCount, currentPage, sortType, isFetching, isFetchedError } = useTypedSelector((state) => state);
   const pages: Array<number> = [];
 
   useEffect(() => {
@@ -32,10 +31,6 @@ const MovieContainer: React.FC = () => {
         <div className="loading">No movies found</div>
       </div>
     )
-  }
-
-  if (isFavorListOpen) {
-    return <FavorContainer />
   }
 
   return (
