@@ -7,9 +7,15 @@ const Header: React.FC = () => {
   return (
     <header className="header-bar">
       <LogoTitle />
-      <Link to='/auth'>
-        <button className="log_button" type="button">Log in</button>
-      </Link>
+      <div className="header_buttons">
+        <Link to='/auth'>
+          <button className="log_button" type="button">Log in</button>
+        </Link>
+        <Link to='/register'>
+          <button className="log_button" type="button">Register</button>
+        </Link>
+
+      </div>
     </header>
   );
 }

@@ -22,6 +22,9 @@ html {
   background-color: $color-light-grey;
   color: $color-light;
   scroll-behavior: smooth;
+  width: 100vw;
+  margin: 0 auto;
+
   @media only screen and (max-width: 768px) {
     font-size: 8.5px;
   }

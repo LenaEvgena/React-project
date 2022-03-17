@@ -8,7 +8,12 @@ import ResetButton from '../common/resetButton/ResetButton';
 import { removeAuthName, removeAuthPassword, setAuthName, setAuthPassword } from '../../redux/actions';
 import './AuthForm.scss';
 
-const AutnForm: React.FC = () => {
+type PropsType = {
+  title: string,
+  handleClick: () => void,
+}
+
+const AuthForm: React.FC<PropsType> = ({title, handleClick}) => {
   const dispatch = useDispatch();
   const { userName, password } = useTypedSelector(state => state);
 
@@ -26,7 +31,7 @@ const AutnForm: React.FC = () => {
       <div className="modal__wrapper">
         <div className="modal">
           <div className="modal__content">
-            <h2 className="modal__title">Log in</h2>
+            <h2 className="modal__title">{title}</h2>
           </div>
 
           <form action="!#" className="auth__form">
@@ -45,7 +50,7 @@ const AutnForm: React.FC = () => {
           <div className="modal-button">
             <ResetButton text="Reset" handleClick={handleReset} />
             <Link to='/'>
-              <SubmitButton text="Log in" handleClick={() => { }} />
+              <SubmitButton text={title} handleClick={handleClick} />
             </Link>
           </div>
         </div>
@@ -57,4 +62,4 @@ const AutnForm: React.FC = () => {
   );
 };
 
-export default AutnForm;
+export default AuthForm;
