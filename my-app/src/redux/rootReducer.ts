@@ -17,7 +17,7 @@ const initialState: InitialStateType = {
   sortType: 'RATING',
   keyword: '',
   favoriteMovies: [],
-  areDetailsOpen: false,
+  isDetailsFormOpen: false,
   selectedByIdMovie: {
     kinopoiskId: null,
   },
@@ -47,12 +47,12 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
         ...state,
         selectedByIdMovie: action.movie,
       }
-    case ActionTypes.OPEN_MOVIE_DETAILS_FORM:
+    case ActionTypes.TOGGLE_MOVIE_DETAILS_FORM:
       return {
         ...state,
-        areDetailsOpen: action.areDetailsOpen,
+        isDetailsFormOpen: action.isDetailsFormOpen,
       }
-    case ActionTypes.CLOSE_MOVIE_DETAILS_FORM:
+    case ActionTypes.REMOVE_SELECTED_MOVIE:
       return {
         ...state,
         selectedByIdMovie: null,

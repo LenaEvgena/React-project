@@ -1,7 +1,7 @@
 import {
   ActionTypes,
-  CloseDeleteMovieFormType, CloseMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, ItemType,
-  MoviesType, OpenDeleteMovieFormType, OpenMovieDetailsFormType, RemoveAuthNameType, RemoveAuthPasswordType, RemoveFavoriteMovieType, RemoveVideoListType, SetAuthNameType, SetAuthPasswordType, SetCurrentPageType, SetFavoriteMovieType,
+  CloseDeleteMovieFormType, ToggleMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, ItemType,
+  MoviesType, OpenDeleteMovieFormType, RemoveSelectedMovieType, RemoveAuthNameType, RemoveAuthPasswordType, RemoveFavoriteMovieType, RemoveVideoListType, SetAuthNameType, SetAuthPasswordType, SetCurrentPageType, SetFavoriteMovieType,
   SetFetchedErrorType, SetIsFetchingType, SetMovieByIDType, SetMoviesKeywordType, SetMovieType, SetVideoListType,
   SortMoviesAsyncType, ToggleFavoriteListType, VideoItemType
 } from "./../types/types";
@@ -23,13 +23,13 @@ export const setMovieByID = (movie: ItemType): SetMovieByIDType => ({
   movie,
 });
 
-export const openMovieDetailsForm = (bool: boolean): OpenMovieDetailsFormType => ({
-  type: ActionTypes.OPEN_MOVIE_DETAILS_FORM,
-  areDetailsOpen: bool
+export const toggleMovieDetailsForm = (bool: boolean): ToggleMovieDetailsFormType => ({
+  type: ActionTypes.TOGGLE_MOVIE_DETAILS_FORM,
+  isDetailsFormOpen: bool
 });
 
-export const closeMovieDetailsForm = (): CloseMovieDetailsFormType => ({
-  type: ActionTypes.CLOSE_MOVIE_DETAILS_FORM,
+export const removeSelectedMovie = (): RemoveSelectedMovieType => ({
+  type: ActionTypes.REMOVE_SELECTED_MOVIE,
 });
 
 export const setIsFetching = (bool: boolean): SetIsFetchingType => ({

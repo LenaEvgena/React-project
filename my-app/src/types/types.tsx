@@ -2,8 +2,8 @@ export enum ActionTypes {
   SET_MOVIES_ASYNC = 'MOVIES/SET_MOVIES_ASYNC',
   SET_CURRENT_PAGE = 'MOVIES/SET_CURRENT_PAGE',
   SET_MOVIE_BY_ID = 'MOVIES/SET_MOVIE_BY_ID',
-  OPEN_MOVIE_DETAILS_FORM = 'MOVIES/OPEN_MOVIE_DETAILS_FORM',
-  CLOSE_MOVIE_DETAILS_FORM = 'MOVIES/CLOSE_MOVIE_DETAILS_FORM',
+  TOGGLE_MOVIE_DETAILS_FORM = 'MOVIES/TOGGLE_MOVIE_DETAILS_FORM',
+  REMOVE_SELECTED_MOVIE = 'MOVIES/REMOVE_SELECTED_MOVIE',
   SET_IS_FETCHING = 'MOVIES/SET_IS_FETCHING',
   SET_FETCHED_ERROR = 'ERROR/SET_FETCHED_ERROR',
   FILTER_MOVIES_ASYNC = 'MOVIES/FILTER_MOVIES_ASYNC',
@@ -73,7 +73,7 @@ export type InitialStateType = {
   sortType: string,
   keyword: string,
   favoriteMovies: Array<ItemType>,
-  areDetailsOpen: boolean,
+  isDetailsFormOpen: boolean,
   selectedByIdMovie: ItemType | null,
   isFavorListOpen: boolean,
   videos: Array<VideoItemType>,
@@ -98,13 +98,13 @@ export type SetMovieByIDType = {
   movie: ItemType,
 }
 
-export type OpenMovieDetailsFormType = {
-  type: ActionTypes.OPEN_MOVIE_DETAILS_FORM,
-  areDetailsOpen: boolean,
+export type ToggleMovieDetailsFormType = {
+  type: ActionTypes.TOGGLE_MOVIE_DETAILS_FORM,
+  isDetailsFormOpen: boolean,
 }
 
-export type CloseMovieDetailsFormType = {
-  type: ActionTypes.CLOSE_MOVIE_DETAILS_FORM,
+export type RemoveSelectedMovieType = {
+  type: ActionTypes.REMOVE_SELECTED_MOVIE,
 }
 
 export type SetIsFetchingType = {
@@ -191,8 +191,8 @@ export type RemoveAuthPasswordType = {
   password: string,
 }
 
-export type ActionType = SetMovieType | SetCurrentPageType | SetMovieByIDType | OpenMovieDetailsFormType |
-  CloseMovieDetailsFormType | SetIsFetchingType | SetFetchedErrorType | FilterGenreMoviesAsyncType |
+export type ActionType = SetMovieType | SetCurrentPageType | SetMovieByIDType | ToggleMovieDetailsFormType |
+  RemoveSelectedMovieType | SetIsFetchingType | SetFetchedErrorType | FilterGenreMoviesAsyncType |
   SortMoviesAsyncType | SetMoviesKeywordType | DeleteMovieByIdType | OpenDeleteMovieFormType |
   CloseDeleteMovieFormType | SetFavoriteMovieType | RemoveFavoriteMovieType | ToggleFavoriteListType |
   SetVideoListType | RemoveVideoListType | SetAuthNameType | RemoveAuthNameType | SetAuthPasswordType | RemoveAuthPasswordType;

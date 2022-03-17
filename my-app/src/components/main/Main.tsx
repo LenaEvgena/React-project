@@ -8,10 +8,10 @@ import MoviesHeader from '../header/MoviesHeader';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 const Main: React.FC = () => {
-  const { areDetailsOpen } = useTypedSelector(state => state);
+  const { isDetailsFormOpen } = useTypedSelector(state => state);
   return (
     <>
-      {areDetailsOpen || <MoviesHeader />}
+      {isDetailsFormOpen || <MoviesHeader />}
       <main className="main">
         <SortResultsHeader />
         <ErrorBoundary>

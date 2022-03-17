@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
-import { closeMovieDetailsForm, openMovieDetailsForm, removeFavoriteMovie, removeVideoList, setFavoriteMovie } from '../../redux/actions';
+import { removeSelectedMovie, toggleMovieDetailsForm, removeFavoriteMovie, removeVideoList, setFavoriteMovie } from '../../redux/actions';
 import Background from '../common/background/Background';
 import LogoTitle from '../common/logoTitle/LogoTitle';
 import SubmitButton from '../common/submitButton/SubmitButton';
@@ -26,7 +26,7 @@ const MovieDetails: React.FC = () => {
     window.scroll(0, 0);
     dispatch(fetchMovieById(id as string));
     dispatch(fetchVideoById(id as string));
-    dispatch(openMovieDetailsForm(true));
+    dispatch(toggleMovieDetailsForm(true));
   }, [id, dispatch]);
 
   const getVideo = (arr: Array<VideoItemType>): VideoItemType => {
@@ -48,8 +48,8 @@ const MovieDetails: React.FC = () => {
   };
 
   const handleCloseClick = (): void => {
-    dispatch(openMovieDetailsForm(false));
-    dispatch(closeMovieDetailsForm());
+    dispatch(toggleMovieDetailsForm(false));
+    dispatch(removeSelectedMovie());
     dispatch(removeVideoList([]));
   };
 
