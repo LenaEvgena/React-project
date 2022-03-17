@@ -18,6 +18,7 @@
     font-size: 2rem;
     letter-spacing: 2px;
     box-sizing: border-box;
+    margin-right: 1.3rem;
   }
 
   &__button {
@@ -43,13 +44,15 @@
     }
 
     &-reset {
+      justify-content: center;
       width: 6rem;
       background-color: rgba(56, 56, 56, 0.527);
       background: url('./../../../assets/cross.svg');
       width: 2.2rem;
       height: 2.2rem;
+      margin-left: 0;
       background-position: center;
-      background-size: cover;
+      background-size: contain;
       background-repeat: no-repeat;
       opacity: 0.5;
     }

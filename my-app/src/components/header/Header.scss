@@ -7,5 +7,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 5rem;
+  padding: 2rem 6rem;
+}
+
+.log_button {
+  width: 12rem;
+  height: 4rem;
+  border-radius: 4px;
+  border: 2px solid $color-primary;
+  background-color: $color-dark-grey;
+  color: $color-primary;
+  font-weight: 500;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }

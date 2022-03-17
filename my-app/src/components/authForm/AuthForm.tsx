@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import SubmitButton from '../common/submitButton/SubmitButton';
 import Footer from './../common/footer/Footer';
-import './AuthForm.scss';
 import ResetButton from '../common/resetButton/ResetButton';
 import { removeAuthName, removeAuthPassword, setAuthName, setAuthPassword } from '../../redux/actions';
-import { Link } from 'react-router-dom';
+import './AuthForm.scss';
 
 const AutnForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,8 +32,8 @@ const AutnForm: React.FC = () => {
           <form action="!#" className="auth__form">
 
             <label htmlFor="form-name" className="form-title">
-              Username
-              <input className="form-input" type="text" id="form-name" value={userName} onChange={(e) => dispatch(setAuthName(e.target.value))} />
+              User email
+              <input className="form-input" type="email" id="form-name" value={userName} onChange={(e) => dispatch(setAuthName(e.target.value))} />
             </label>
 
             <label htmlFor="form-pass" className="form-title">
