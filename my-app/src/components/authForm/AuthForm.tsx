@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import SubmitButton from '../common/submitButton/SubmitButton';
 import ResetButton from '../common/resetButton/ResetButton';
@@ -14,6 +14,7 @@ type PropsType = {
 
 const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userName, password } = useTypedSelector(state => state);
 
   const handleReset = (): void => {
@@ -24,6 +25,11 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
       dispatch(removeAuthPassword(''));
     }
   };
+
+  const handleClose = (): void => {
+    handleReset();
+    navigate('/');
+  }
 
   return (
     <div className="auth__modal">
@@ -42,6 +48,7 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
           }
         </div>
         <div className="modal">
+          <div className="modal-close" onClick={handleClose}></div>
           <div className="modal__content">
             <h2 className="modal__title">{title}</h2>
           </div>

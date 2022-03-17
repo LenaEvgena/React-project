@@ -42,20 +42,21 @@
 [data-tooltip]::after {
   content: attr(data-tooltip); /* Выводим текст */
   position: absolute;
-  width: 30rem;
+  max-width: 30rem;
   right: 0;
   top: 0;
+  text-transform: lowercase;
   background: $color-dark;
   color: $color-light;
   padding: 0.5em;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
   pointer-events: none;
   opacity: 0;
-  transition: 0.5s;
+  transition: 1s;
 }
 
 [data-tooltip]:hover::after {
   opacity: 1;
-  top: 1rem;
-  right: 1rem;
+  right: 10rem;
 }
