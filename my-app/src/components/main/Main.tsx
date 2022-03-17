@@ -11,8 +11,10 @@ const Main: React.FC = () => {
   const { isDetailsFormOpen } = useTypedSelector(state => state);
   return (
     <>
-      {isDetailsFormOpen || <MoviesHeader />}
       <main className="main">
+
+        {isDetailsFormOpen || <MoviesHeader />}
+
         <SortResultsHeader />
         <ErrorBoundary>
           <MovieContainer />

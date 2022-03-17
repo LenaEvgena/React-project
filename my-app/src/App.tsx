@@ -14,9 +14,9 @@ const App: React.FC = () => {
       {/* <Header /> */}
       <Routes>
         <Route path='/' element={<Header />} />
-        <Route path='/movie/:id' element={<MovieDetails />} />
         <Route path='/auth' element={<AuthForm />} />
-        {/* <Route path='*' element={<ErrorPage />} /> */}
+        <Route path='/movie/:id' element={<MovieDetails />} />
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
       <Main />
       <ScrollButton />

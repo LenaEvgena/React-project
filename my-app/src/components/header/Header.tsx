@@ -4,9 +4,9 @@ import './Header.scss'
 
 const Header = () => {
   return (
-    <div className="header-bar">
+    <header className="header-bar">
       <LogoTitle />
-    </div>
+    </header>
   );
 }
 
