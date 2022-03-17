@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import Background from '../../common/background/Background';
-import FavorButton from '../favorButton/FavorButton';
-import SearchForm from '../searchForm/SearchForm';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { toggleFavoriteList } from '../../../redux/actions';
+import Background from '../common/background/Background';
+import FavorButton from '../main/favorButton/FavorButton';
+import SearchForm from '../main/searchForm/SearchForm';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { toggleFavoriteList } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 import './MoviesHeader.scss';
 

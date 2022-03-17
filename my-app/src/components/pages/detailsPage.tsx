@@ -2,7 +2,7 @@ import React from 'react'
 import Main from '../main/Main'
 import MovieDetails from '../movieDetails/MovieDetails'
 
-const DetailsPage = () => {
+const DetailsPage: React.FC = () => {
   return (
     <>
       <MovieDetails />
@@ -11,4 +11,4 @@ const DetailsPage = () => {
   )
 }
 
-export default DetailsPage
+export default DetailsPage;

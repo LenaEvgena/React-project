@@ -1,8 +1,8 @@
 import React from 'react'
 import Main from '../main/Main';
-import MoviesHeader from '../main/moviesHeader/MoviesHeader';
+import MoviesHeader from '../moviesHeader/MoviesHeader';
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <>
       <MoviesHeader />
