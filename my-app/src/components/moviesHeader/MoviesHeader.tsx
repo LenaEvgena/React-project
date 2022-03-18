@@ -1,18 +1,32 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Background from '../common/background/Background';
-import FavorButton from '../main/favorButton/FavorButton';
+import FavorButton from './favorButton/FavorButton';
 import SearchForm from '../main/searchForm/SearchForm';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { toggleFavoriteList } from '../../redux/actions';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase';
 import './MoviesHeader.scss';
 
 const MoviesHeader: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [user] = useAuthState(auth);
   const isFavorListOpen = useTypedSelector(state => state.isFavorListOpen)
   let text = !isFavorListOpen ? 'Show favorites' : 'Close favorites';
 
+  const handleOpenClick = (): void => {
+    if (!user) return;
+    dispatch(toggleFavoriteList(true));
+    navigate('/favorite');
+  }
+  const handleCloseClick = (): void => {
+    if (!user) return;
+    dispatch(toggleFavoriteList(false));
+    navigate('/');
+  }
   return (
     <>
       <div className="movies__header">
@@ -20,13 +34,9 @@ const MoviesHeader: React.FC = () => {
         <div className="header__wrapper">
           <div className="header__logo">
             {isFavorListOpen ?
-              <Link to='/'>
-                <FavorButton handleClick={() => dispatch(toggleFavoriteList(false))} text={text} />
-              </Link>
+              <FavorButton isBusy={!user} handleClick={handleCloseClick} text={text} />
               :
-              <Link to='/favorite'>
-                <FavorButton handleClick={() => dispatch(toggleFavoriteList(true))} text={text} />
-              </Link>
+              <FavorButton isBusy={!user} handleClick={handleOpenClick} text={text} />
             }
           </div>
           <SearchForm />
