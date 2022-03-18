@@ -68,9 +68,7 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
           </form>
           <div className="modal-button">
             <ResetButton text="Reset" handleClick={handleReset} />
-            <Link to='/'>
-              <SubmitButton text={title} handleClick={handleClick} />
-            </Link>
+            <SubmitButton text={title} handleClick={handleClick} />
           </div>
         </div>
       </div>

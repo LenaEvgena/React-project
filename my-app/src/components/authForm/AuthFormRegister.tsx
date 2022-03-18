@@ -3,9 +3,23 @@ import AuthForm from './AuthForm';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { removeAuthName, removeAuthPassword } from '../../redux/actions';
 
 const AuthFormRegister = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userName, password } = useTypedSelector(state => state);
+
+  const handleReset = (): void => {
+    if (userName.trim()) {
+      dispatch(removeAuthName(''));
+    };
+    if (password.trim()) {
+      dispatch(removeAuthPassword(''));
+    }
+  };
 
   const handleRegister = () => {
     if (!userName || !password) return; // todo validation
@@ -15,14 +29,13 @@ const AuthFormRegister = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-
-        // ...
+        navigate('/');
+        handleReset();
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-
+        alert('User already exists!');
+        handleReset();
       });
   }
 

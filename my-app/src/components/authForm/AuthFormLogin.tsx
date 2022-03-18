@@ -3,9 +3,23 @@ import AuthForm from './AuthForm';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { removeAuthName, removeAuthPassword } from '../../redux/actions';
 
 const AuthFormLogin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userName, password } = useTypedSelector(state => state);
+
+  const handleReset = (): void => {
+    if (userName.trim()) {
+      dispatch(removeAuthName(''));
+    };
+    if (password.trim()) {
+      dispatch(removeAuthPassword(''));
+    }
+  };
 
   const handleLogin = () => {
     if (!userName || !password) return; // todo validation
@@ -15,13 +29,13 @@ const AuthFormLogin = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-        // ...
+        navigate('/');
+        handleReset();
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-
+        alert('Email not found or invalid password!');
+        handleReset();
       });
   }
 
