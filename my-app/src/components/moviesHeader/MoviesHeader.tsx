@@ -5,7 +5,7 @@ import FavorButton from './favorButton/FavorButton';
 import SearchForm from '../main/searchForm/SearchForm';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { toggleFavoriteList } from '../../redux/actions';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 import './MoviesHeader.scss';

@@ -9,9 +9,13 @@ import Footer from './components/common/footer/Footer';
 import HomePage from './components/pages/homePage';
 import DetailsPage from './components/pages/detailsPage';
 import FavorPage from './components/pages/favorPage';
+import FavoriteDetailsPage from './components/pages/FavoriteDetailsPage';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from './firebase';
 import './style.scss';
 
 const App: React.FC = () => {
+  const [user] = useAuthState(auth);
   return (
     <BrowserRouter>
       <Header />
@@ -21,7 +25,11 @@ const App: React.FC = () => {
         <Route path='/' element={<HomePage />} />
         <Route path='*' element={<ErrorPage />} />
         <Route path='/movie/:id' element={<DetailsPage />} />
-        <Route path='/favorite' element={<FavorPage />} />
+        {user ?
+          <Route path='/favorite' element={<FavorPage />} /> :
+          <Route path='/' element={<HomePage />} />
+        }
+        <Route path='/favorite/movie/:id' element={<FavoriteDetailsPage />} />
       </Routes>
       <Footer />
       <ScrollButton />

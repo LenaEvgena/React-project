@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import LogoTitle from '../common/logoTitle/LogoTitle';
 import { signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
-import { removeAuthName, removeAuthPassword } from '../../redux/actions';
+import { removeAuthName, removeAuthPassword, toggleFavoriteList } from '../../redux/actions';
 import { auth } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import './Header.scss'
@@ -17,6 +17,7 @@ const Header: React.FC = () => {
     signOut(auth).then(() => {
       dispatch(removeAuthName(''));
       dispatch(removeAuthPassword(''));
+      dispatch(toggleFavoriteList(false));
     }).catch((error) => {
       console.log(error);
     });
