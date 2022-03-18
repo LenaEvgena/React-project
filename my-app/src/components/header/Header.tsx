@@ -10,8 +10,7 @@ import './Header.scss'
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
-  const [user] = useAuthState(auth);
-  console.log('useAuthState', user);
+  const [user]: any = useAuthState(auth);
 
   const handleLogout = async () => {
     signOut(auth).then(() => {

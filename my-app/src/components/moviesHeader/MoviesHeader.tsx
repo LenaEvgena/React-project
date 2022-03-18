@@ -13,7 +13,7 @@ import './MoviesHeader.scss';
 const MoviesHeader: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [user] = useAuthState(auth);
+  const [user]: any = useAuthState(auth);
   const isFavorListOpen = useTypedSelector(state => state.isFavorListOpen)
   let text = !isFavorListOpen ? 'Show favorites' : 'Close favorites';
 
@@ -22,6 +22,7 @@ const MoviesHeader: React.FC = () => {
     dispatch(toggleFavoriteList(true));
     navigate('/favorite');
   }
+
   const handleCloseClick = (): void => {
     if (!user) return;
     dispatch(toggleFavoriteList(false));

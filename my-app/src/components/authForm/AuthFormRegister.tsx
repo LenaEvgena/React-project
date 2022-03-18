@@ -30,7 +30,6 @@ const AuthFormRegister = () => {
         const user = userCredential.user;
         console.log(user);
         navigate('/');
-        handleReset();
       })
       .catch((error) => {
         const errorMessage = error.message;

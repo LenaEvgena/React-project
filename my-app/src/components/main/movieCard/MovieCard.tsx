@@ -5,6 +5,9 @@ import { ItemType } from '../../../types/types';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { openDeleteMovieForm, removeFavoriteMovie, setFavoriteMovie } from '../../../redux/actions';
 import DeleteModal from '../../modals/deleteModal/DeleteModal';
+import { firestore, auth } from '../../../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { setDoc, deleteDoc, doc } from "firebase/firestore";
 import './MovieCard.scss';
 
 type PropsType = {
@@ -12,6 +15,7 @@ type PropsType = {
 }
 
 const MovieCard: React.FC<PropsType> = ({ data }) => {
+  const [user]: any = useAuthState(auth);
   const dispatch = useDispatch();
   const { isDeleteFormOpen, favoriteMovies } = useTypedSelector(state => state);
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -39,11 +43,24 @@ const MovieCard: React.FC<PropsType> = ({ data }) => {
     }
   });
 
+  const sendFavor = async (id: number) => {
+    if (!user) return;
+    await setDoc(doc(firestore, user.email, `${id}`), {
+      films: data
+    });
+  }
+
+  const deleteFavor = async (id: number) => {
+    await deleteDoc(doc(firestore, user.email, `${id}`));
+  }
+
   const handleFavoriteClick = (id: number): void => {
     if (isFavorite(id)) {
+      deleteFavor(id);
       dispatch(removeFavoriteMovie(id));
     } else {
-      dispatch(setFavoriteMovie(id));
+      sendFavor(id);
+      dispatch(setFavoriteMovie(id)); //set color
     }
   }
 

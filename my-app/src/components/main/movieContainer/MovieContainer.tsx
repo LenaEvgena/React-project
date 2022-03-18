@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { setCurrentPage } from '../../../redux/actions';
+import { setCurrentPage, setAuthName } from '../../../redux/actions';
 import { getMoviesAPI } from '../../../redux/asyncActions';
 import { createPages } from '../../../utils/createPages';
 import ErrorPage from '../../errorPage/ErrorPage';
 import MovieCard from '../movieCard/MovieCard';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../../firebase';
+
 import './MovieContainer.scss';
 
 const MovieContainer: React.FC = () => {
@@ -13,6 +16,14 @@ const MovieContainer: React.FC = () => {
   const movies = useTypedSelector((state) => state.movies.items);
   const { keyword, filter, total, totalCount, currentPage, sortType, isFetching, isFetchedError } = useTypedSelector((state) => state);
   const pages: Array<number> = [];
+  const { userName } = useTypedSelector((state) => state);
+  const [user]: any = useAuthState(auth);
+
+  useEffect(() => {
+    if (user && !userName) {
+      dispatch(setAuthName(user.email))
+    };
+  }, [user]);
 
   useEffect(() => {
     window.scroll(0, 0);
