@@ -25,6 +25,7 @@ const initialState: InitialStateType = {
   videos: [],
   userName: '',
   password: '',
+  favoriteList: []
 }
 
 export const rootReducer = (state = initialState, action: ActionType): InitialStateType => {
@@ -112,6 +113,11 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
       return {
         ...state,
         favoriteMovies: [...state.favoriteMovies.filter((item: any) => item.kinopoiskId !== action.id)],
+      }
+    case ActionTypes.SET_FAVORITE_MOVIE_LIST:
+      return {
+        ...state,
+        favoriteList: action.favoriteList,
       }
     case ActionTypes.TOGGLE_FAVORITE_LIST:
       return {

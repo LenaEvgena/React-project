@@ -36,40 +36,6 @@
   }
 }
 
-.loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10rem;
-
-  &_image {
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-    border: 5px solid $color-light-grey;
-    border-top: 5px solid $color-primary;
-    transition: 0.3s;
-    animation: spinner 1.3s infinite linear;
-  }
-}
-
-.loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5rem;
-}
-
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .pages {
   display: flex;
   justify-content: center;

@@ -1,29 +1,38 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { setCurrentPage, setAuthName } from '../../../redux/actions';
+import { setCurrentPage, setAuthName, setFavoriteMovieList } from '../../../redux/actions';
 import { getMoviesAPI } from '../../../redux/asyncActions';
 import { createPages } from '../../../utils/createPages';
 import ErrorPage from '../../errorPage/ErrorPage';
 import MovieCard from '../movieCard/MovieCard';
+import Loader from '../../common/loader/Loader';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../../firebase';
-
+import { auth, firestore } from '../../../firebase';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { collection } from 'firebase/firestore';
 import './MovieContainer.scss';
 
 const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
   const movies = useTypedSelector((state) => state.movies.items);
-  const { keyword, filter, total, totalCount, currentPage, sortType, isFetching, isFetchedError } = useTypedSelector((state) => state);
+  const { keyword, filter, total, totalCount, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
   const pages: Array<number> = [];
   const { userName } = useTypedSelector((state) => state);
   const [user]: any = useAuthState(auth);
+  const [favorites]: Array<any> = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из store
 
   useEffect(() => {
     if (user && !userName) {
-      dispatch(setAuthName(user.email))
+      dispatch(setAuthName(user?.email))
     };
   }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(setFavoriteMovieList(favorites));
+    }
+  }, [favorites])
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -58,14 +67,12 @@ const MovieContainer: React.FC = () => {
           onClick={() => dispatch(setCurrentPage(page))}>{page}</span>)}
       </div>
 
-      {isFetching ? (
-        <div className="loader">
-          <div className="loader_image"></div>
-          <div className="loading">Loading...</div>
-        </div>) :
+      {isFetching ?
+        <Loader /> :
         <div className="container">
           {movies.map(movie => (
             <MovieCard
+              favorList={favoriteList}
               data={movie}
               key={movie.kinopoiskId}
             />)
