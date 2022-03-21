@@ -26,13 +26,11 @@ const AuthFormLogin = () => {
 
     signInWithEmailAndPassword(auth, userName, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        console.log(user);
         navigate('/');
       })
       .catch((error) => {
-        const errorMessage = error.message;
+        // const errorMessage = error.message;
         alert('Email not found or invalid password!');
         handleReset();
       });
