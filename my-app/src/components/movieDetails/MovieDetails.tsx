@@ -9,9 +9,8 @@ import { removeSelectedMovie, toggleMovieDetailsForm, removeVideoList } from '..
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
 import { ItemType, VideoItemType } from '../../types/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { firestore, auth } from '../../firebase';
+import { auth, deleteFavor, sendFavor } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { setDoc, deleteDoc, doc } from "firebase/firestore";
 import './MovieDetails.scss';
 
 type ParamsIdType = {
@@ -57,23 +56,12 @@ const MovieDetails: React.FC = () => {
     dispatch(removeVideoList([]));
   };
 
-  const sendFavor = async (id: number) => {
-    if (!user) return;
-    await setDoc(doc(firestore, user?.email, `${id}`), {
-      films: selectedByIdMovie
-    })
-  }
-
-  const deleteFavor = async (id: number) => {
-    await deleteDoc(doc(firestore, user?.email, `${id}`))
-  }
-
   const handleFavoriteClick = (id: number): void => {
     if (isFavorite(id)) {
-      deleteFavor(id);
+      deleteFavor(id, user);
     }
     else {
-      sendFavor(id);
+      sendFavor(id, user, selectedByIdMovie);
     }
   }
 

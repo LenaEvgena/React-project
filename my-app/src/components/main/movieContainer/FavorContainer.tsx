@@ -15,11 +15,11 @@ const FavorContainer: React.FC = () => {
   const [user]: any = useAuthState(auth);
   const { favoriteList } = useTypedSelector((state) => state);
   let count: number = favoriteList?.length;
-  const [favorites, loading]: Array<any> = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из store
+  const [favorites, loading]: Array<any> = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из firestore
 
   useEffect(() => {
     dispatch(setFavoriteMovieList(favorites));
-  }, [favorites])
+  }, [favorites, dispatch])
 
   if (loading) {
     return <Loader />

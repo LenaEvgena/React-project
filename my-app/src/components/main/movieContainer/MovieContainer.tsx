@@ -20,24 +20,24 @@ const MovieContainer: React.FC = () => {
   const pages: Array<number> = [];
   const { userName } = useTypedSelector((state) => state);
   const [user]: any = useAuthState(auth);
-  const [favorites]: Array<any> = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из store
+  const [favorites]: Array<any> = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из firestore
 
   useEffect(() => {
     if (user && !userName) {
       dispatch(setAuthName(user?.email))
     };
-  }, [user]);
-
-  useEffect(() => {
-    if (user) {
-      dispatch(setFavoriteMovieList(favorites));
-    }
-  }, [favorites])
+  }, []);
 
   useEffect(() => {
     window.scroll(0, 0);
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
   }, [currentPage, filter, sortType]);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(setFavoriteMovieList(favorites));
+    }
+  }, [favorites]);
 
   createPages(pages, total, currentPage);
 

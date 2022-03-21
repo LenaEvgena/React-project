@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { setDoc, deleteDoc, doc } from "firebase/firestore";
 
 const firebase = initializeApp({
   apiKey: "AIzaSyBekXAz4h5J0d1jc2r1tyfz5OGeNbWr-W8",
@@ -13,3 +14,14 @@ const firebase = initializeApp({
 
 export const auth = getAuth(firebase);
 export const firestore = getFirestore(firebase);
+
+export const sendFavor = async (id: number, user: any, data: any) => {
+  if (!user) return;
+  await setDoc(doc(firestore, user?.email, `${id}`), {
+    films: data
+  })
+}
+
+export const deleteFavor = async (id: number, user: any) => {
+  await deleteDoc(doc(firestore, user?.email, `${id}`))
+}
