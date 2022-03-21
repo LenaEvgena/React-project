@@ -21,9 +21,10 @@ type ParamsIdType = {
 const MovieDetails: React.FC = () => {
   const dispatch = useDispatch();
   const [user]: any = useAuthState(auth);
-  const { selectedByIdMovie, favoriteList, videos } = useTypedSelector((state) => state);
+  const { selectedByIdMovie, favoriteList, videos, isFavorListOpen } = useTypedSelector((state) => state);
   const { id } = useParams<ParamsIdType>();
   const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
+  let pathTo = isFavorListOpen ? `/favorite` : `/`;
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -84,7 +85,7 @@ const MovieDetails: React.FC = () => {
         <Background />
         <div className="details">
           <div className="details__header">
-            <Link to='/' className="details-search" type="button" onClick={handleCloseClick}></Link>
+            <Link to={pathTo} className="details-search" type="button" onClick={handleCloseClick}></Link>
           </div>
           <div className="details__container">
             <div className="details__aside">

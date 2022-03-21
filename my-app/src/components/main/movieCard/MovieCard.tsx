@@ -18,10 +18,11 @@ type PropsType = {
 const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   const dispatch = useDispatch();
   const [user]: any = useAuthState(auth);
-  const { isDeleteFormOpen } = useTypedSelector(state => state);
+  const { isDeleteFormOpen, isFavorListOpen } = useTypedSelector(state => state);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   let genresList: Array<string> = [];
   let countriesList: Array<string> = [];
+  let path = isFavorListOpen ? `/favorite/movie/${data.kinopoiskId}` : `/movie/${data.kinopoiskId}`;
 
   data.genres!.map((g) => genresList.push(g.genre));
   data.countries!.map((c) => countriesList.push(c.country));
@@ -87,7 +88,7 @@ const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
       <div className="movie__description">
         <div className="movie__title">
           <h3>
-            <Link to={`/movie/${data.kinopoiskId}`}>{data.nameOriginal || data.nameRu}</Link>
+            <Link to={path}>{data.nameOriginal || data.nameRu}</Link>
           </h3>
           <p className="movie__date">
             {data.year}

@@ -6,6 +6,7 @@ const FavoriteDetailsPage: React.FC = () => {
   return (
     <>
       <MovieDetails />
+      <div className="results-header_line"></div>
       <FavorContainer/>
     </>
   )
