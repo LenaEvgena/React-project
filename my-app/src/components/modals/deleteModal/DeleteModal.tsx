@@ -1,16 +1,20 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { closeDeleteMovieForm, deleteMovieById, removeFavoriteMovie } from './../../../redux/actions';
+import { closeDeleteMovieForm, deleteMovieById } from './../../../redux/actions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import LogoTitle from '../../common/logoTitle/LogoTitle';
 import SubmitButton from '../../common/submitButton/SubmitButton';
 import Footer from './../../common/footer/Footer';
+import { firestore, auth } from '../../../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { deleteDoc, doc } from "firebase/firestore";
 import './DeleteModal.scss';
 
 const DeleteModal: React.FC = () => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLDivElement>(null);
   const id = useTypedSelector(state => state.movieIdToDelete);
+  const [user]: any = useAuthState(auth);
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (modalRef.current?.contains(e.target as Element)) {
@@ -19,9 +23,13 @@ const DeleteModal: React.FC = () => {
     dispatch(closeDeleteMovieForm());
   }
 
+  const deleteFavor = async (id: number) => {
+    await deleteDoc(doc(firestore, user?.email, `${id}`))
+  }
+
   const handleDeleteClick = (id: number): void => {
     dispatch(deleteMovieById(id));
-    dispatch(removeFavoriteMovie(id));
+    deleteFavor(id);
   }
 
   return (

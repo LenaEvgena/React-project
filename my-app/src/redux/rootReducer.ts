@@ -16,7 +16,6 @@ const initialState: InitialStateType = {
   filter: 'all',
   sortType: 'RATING',
   keyword: '',
-  favoriteMovies: [],
   isDetailsFormOpen: false,
   selectedByIdMovie: {
     kinopoiskId: null,
@@ -104,16 +103,6 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
       copy.movies = { ...state.movies };
       copy.movies.items = [...state.movies.items.filter((item: any) => item.kinopoiskId !== action.id)];
       return copy;
-    case ActionTypes.SET_FAVORITE_MOVIE:
-      return {
-        ...state,
-        favoriteMovies: [...state.movies.items.filter((item: any) => item.kinopoiskId === action.id), ...state.favoriteMovies],
-      }
-    case ActionTypes.REMOVE_FAVORITE_MOVIE:
-      return {
-        ...state,
-        favoriteMovies: [...state.favoriteMovies.filter((item: any) => item.kinopoiskId !== action.id)],
-      }
     case ActionTypes.SET_FAVORITE_MOVIE_LIST:
       return {
         ...state,

@@ -1,7 +1,8 @@
 import {
   ActionTypes,
   CloseDeleteMovieFormType, ToggleMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, ItemType,
-  MoviesType, OpenDeleteMovieFormType, RemoveSelectedMovieType, RemoveAuthNameType, RemoveAuthPasswordType, RemoveFavoriteMovieType, RemoveVideoListType, SetAuthNameType, SetAuthPasswordType, SetCurrentPageType, SetFavoriteMovieType,
+  MoviesType, OpenDeleteMovieFormType, RemoveSelectedMovieType, RemoveAuthNameType, RemoveAuthPasswordType,
+  RemoveVideoListType, SetAuthNameType, SetAuthPasswordType, SetCurrentPageType,
   SetFetchedErrorType, SetIsFetchingType, SetMovieByIDType, SetMoviesKeywordType, SetMovieType, SetVideoListType,
   SortMoviesAsyncType, ToggleFavoriteListType, VideoItemType, SetFavoriteMovieListType, FavoriteMoviesType
 } from "./../types/types";
@@ -69,16 +70,6 @@ export const openDeleteMovieForm = (id: number): OpenDeleteMovieFormType => ({
 
 export const closeDeleteMovieForm = (): CloseDeleteMovieFormType => ({
   type: ActionTypes.CLOSE_DELETE_MOVIE_FORM,
-});
-
-export const setFavoriteMovie = (id: number): SetFavoriteMovieType => ({
-  type: ActionTypes.SET_FAVORITE_MOVIE,
-  id,
-});
-
-export const removeFavoriteMovie = (id: number): RemoveFavoriteMovieType => ({
-  type: ActionTypes.REMOVE_FAVORITE_MOVIE,
-  id,
 });
 
 export const setFavoriteMovieList = (favoriteList: Array<FavoriteMoviesType>): SetFavoriteMovieListType => ({

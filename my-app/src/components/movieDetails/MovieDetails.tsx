@@ -5,10 +5,13 @@ import { useDispatch } from 'react-redux';
 import Background from '../common/background/Background';
 import SubmitButton from '../common/submitButton/SubmitButton';
 import VideoModal from '../modals/videoModal/VideoModal';
-import { removeSelectedMovie, toggleMovieDetailsForm, removeFavoriteMovie, removeVideoList, setFavoriteMovie } from '../../redux/actions';
+import { removeSelectedMovie, toggleMovieDetailsForm, removeVideoList } from '../../redux/actions';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
 import { ItemType, VideoItemType } from '../../types/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { firestore, auth } from '../../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { setDoc, deleteDoc, doc } from "firebase/firestore";
 import './MovieDetails.scss';
 
 type ParamsIdType = {
@@ -17,7 +20,8 @@ type ParamsIdType = {
 
 const MovieDetails: React.FC = () => {
   const dispatch = useDispatch();
-  const { selectedByIdMovie, favoriteMovies, videos } = useTypedSelector((state) => state);
+  const [user]: any = useAuthState(auth);
+  const { selectedByIdMovie, favoriteList, videos } = useTypedSelector((state) => state);
   const { id } = useParams<ParamsIdType>();
   const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
 
@@ -35,7 +39,7 @@ const MovieDetails: React.FC = () => {
 
   const itemVideo = getVideo(videos);
 
-  const isFavorite = (id: number) => favoriteMovies.some((item) => item.kinopoiskId === id);
+  const isFavorite = (id: number) => favoriteList?.some((item) => item.films?.kinopoiskId === id);
 
   const handleVideoModal = (): void => {
     setShowVideoModal(!showVideoModal);
@@ -52,11 +56,23 @@ const MovieDetails: React.FC = () => {
     dispatch(removeVideoList([]));
   };
 
+  const sendFavor = async (id: number) => {
+    if (!user) return;
+    await setDoc(doc(firestore, user?.email, `${id}`), {
+      films: selectedByIdMovie
+    })
+  }
+
+  const deleteFavor = async (id: number) => {
+    await deleteDoc(doc(firestore, user?.email, `${id}`))
+  }
+
   const handleFavoriteClick = (id: number): void => {
     if (isFavorite(id)) {
-      dispatch(removeFavoriteMovie(id));
-    } else {
-      dispatch(setFavoriteMovie(id));
+      deleteFavor(id);
+    }
+    else {
+      sendFavor(id);
     }
   }
 
