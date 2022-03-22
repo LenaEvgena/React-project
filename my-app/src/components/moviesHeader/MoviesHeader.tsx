@@ -28,6 +28,7 @@ const MoviesHeader: React.FC = () => {
     dispatch(toggleFavoriteList(false));
     navigate('/');
   }
+
   return (
     <>
       <div className="movies__header">
