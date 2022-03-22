@@ -1,0 +1,128 @@
+@import "./../../constants.scss";
+
+.movie__details {
+  position: relative;
+  width: 100%;
+  letter-spacing: 1px;
+  min-height: 54rem;
+  background-color: $color-black;
+  overflow: hidden;
+}
+
+.details {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 5rem 5rem;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  &-search {
+    background-color: transparent;
+    background-image: url('./../../assets/searchButton.svg');
+    background-size: contain;
+    width: 2.5rem;
+    height: 2.6rem;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media only screen and (max-width: 580px) {
+      flex-direction: column;
+    }
+  }
+
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__image {
+    position: relative;
+    width: 28rem;
+    height: 40rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+
+    .image-cover {
+      width: 100%;
+    }
+  }
+
+  &__content {
+    width: calc(100% - 28rem - 6rem);
+
+    @media only screen and (max-width: 580px) {
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+.content {
+  &-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.8rem;
+  }
+
+  &-movie_title {
+    font-size: 5rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+  }
+
+  &-vote_average {
+    font-size: 2.3rem;
+    color: #7cb357;
+    border: 1px solid $color-light;
+    border-radius: 50%;
+    padding: 1.5rem;
+    width: 7rem;
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2.1rem;
+  }
+
+  &-tagline {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    opacity: 0.8;
+    letter-spacing: 0;
+  }
+
+  &-info {
+    font-size: 2.4rem;
+    color: $color-primary;
+    margin-bottom: 3rem;
+  }
+
+  &-info_date {
+    margin-right: 4rem;
+  }
+
+  &-overview {
+    font-size: 1.8rem;
+    font-weight: 300;
+  }
+}

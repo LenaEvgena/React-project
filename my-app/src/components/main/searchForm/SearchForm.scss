@@ -1,0 +1,12 @@
+@import "./../../../constants.scss";
+
+.header__search {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 12rem 12rem 12rem;
+}
+
+.search__text {
+  letter-spacing: 2px;
+  margin-bottom: 4rem;
+}
