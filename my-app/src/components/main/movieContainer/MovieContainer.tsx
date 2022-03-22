@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { setCurrentPage, setAuthName, setFavoriteMovieList } from '../../../redux/actions';
-import { getMoviesAPI } from '../../../redux/asyncActions';
+import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { createPages } from '../../../utils/createPages';
 import ErrorPage from '../../errorPage/ErrorPage';
 import MovieCard from '../movieCard/MovieCard';

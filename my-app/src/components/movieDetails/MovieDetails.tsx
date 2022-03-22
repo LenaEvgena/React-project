@@ -6,7 +6,7 @@ import Background from '../common/background/Background';
 import SubmitButton from '../common/submitButton/SubmitButton';
 import VideoModal from '../modals/videoModal/VideoModal';
 import { removeSelectedMovie, toggleMovieDetailsForm, removeVideoList } from '../../redux/actions';
-import { fetchMovieById, fetchVideoById } from '../../redux/asyncActions';
+import { fetchMovieById, fetchVideoById } from '../../redux/asyncActionsThunks';
 import { ItemType, VideoItemType } from '../../types/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { auth, deleteFavor, sendFavor } from '../../firebase';
