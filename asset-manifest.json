@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/React-project/index.html/static/css/main.f26d8bed.css",
-    "main.js": "/React-project/index.html/static/js/main.dc97c209.js",
-    "static/js/787.28cb0dcd.chunk.js": "/React-project/index.html/static/js/787.28cb0dcd.chunk.js",
-    "static/media/heartPink.png": "/React-project/index.html/static/media/heartPink.c0199e05aed330c83ad5.png",
-    "static/media/poster.jpeg": "/React-project/index.html/static/media/poster.c3e0187c6d7b655d8864.jpeg",
-    "static/media/heart.png": "/React-project/index.html/static/media/heart.aa7b2e59d11e50fc6236.png",
-    "index.html": "/React-project/index.html/index.html",
-    "static/media/triangle.svg": "/React-project/index.html/static/media/triangle.43dfba5d493291d8477d.svg",
-    "static/media/cross.svg": "/React-project/index.html/static/media/cross.1a97d25e305a103c5955.svg",
-    "static/media/searchButton.svg": "/React-project/index.html/static/media/searchButton.1fd03e6d560610f3fecd.svg",
-    "main.f26d8bed.css.map": "/React-project/index.html/static/css/main.f26d8bed.css.map",
-    "main.dc97c209.js.map": "/React-project/index.html/static/js/main.dc97c209.js.map",
-    "787.28cb0dcd.chunk.js.map": "/React-project/index.html/static/js/787.28cb0dcd.chunk.js.map"
+    "main.css": "/my-app/static/css/main.bc3327ca.css",
+    "main.js": "/my-app/static/js/main.d7d419c8.js",
+    "static/js/787.28cb0dcd.chunk.js": "/my-app/static/js/787.28cb0dcd.chunk.js",
+    "static/media/heartPink.png": "/my-app/static/media/heartPink.c0199e05aed330c83ad5.png",
+    "static/media/poster.jpeg": "/my-app/static/media/poster.c3e0187c6d7b655d8864.jpeg",
+    "static/media/heart.png": "/my-app/static/media/heart.aa7b2e59d11e50fc6236.png",
+    "index.html": "/my-app/index.html",
+    "static/media/triangle.svg": "/my-app/static/media/triangle.43dfba5d493291d8477d.svg",
+    "static/media/cross.svg": "/my-app/static/media/cross.1a97d25e305a103c5955.svg",
+    "static/media/searchButton.svg": "/my-app/static/media/searchButton.1fd03e6d560610f3fecd.svg",
+    "main.bc3327ca.css.map": "/my-app/static/css/main.bc3327ca.css.map",
+    "main.d7d419c8.js.map": "/my-app/static/js/main.d7d419c8.js.map",
+    "787.28cb0dcd.chunk.js.map": "/my-app/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f26d8bed.css",
-    "static/js/main.dc97c209.js"
+    "static/css/main.bc3327ca.css",
+    "static/js/main.d7d419c8.js"
   ]
 }
