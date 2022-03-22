@@ -16,30 +16,30 @@ export const fetchMoviesAPI = (currentPage: number, sortType = 'RATING', genre: 
   const url = (sortType === 'RATING') ? `${APIUrl}?type=FILM&order=${sortType}` : `${APIUrl}?type=FILM&order=${sortType}&${yearSorting}`;
 
   return axios
-    .get(`${url}&genres=${genres[genre]}&keyword=${query}&page=${currentPage}`, {
-      headers: {
-        'X-API-KEY': token,
-        'Content-Type': 'application/json',
-      },
-    })
+          .get(`${url}&genres=${genres[genre]}&keyword=${query}&page=${currentPage}`, {
+            headers: {
+              'X-API-KEY': token,
+              'Content-Type': 'application/json',
+            },
+          })
 }
 
 export const fetchMovieByIdAPI = (movieId: string) => {
   return axios
-    .get(`${APIUrl}${movieId}`, {
-      headers: {
-        'X-API-KEY': token,
-        'Content-Type': 'application/json',
-      },
-    })
+          .get(`${APIUrl}${movieId}`, {
+            headers: {
+              'X-API-KEY': token,
+              'Content-Type': 'application/json',
+            },
+          })
 }
 
 export const fetchVideoByIdAPI = (id: string) => {
   return axios
-    .get(`${APIUrl}${id}/videos`, {
-      headers: {
-        'X-API-KEY': token,
-        'Content-Type': 'application/json',
-      },
-    })
+          .get(`${APIUrl}${id}/videos`, {
+            headers: {
+              'X-API-KEY': token,
+              'Content-Type': 'application/json',
+            },
+          })
 }
