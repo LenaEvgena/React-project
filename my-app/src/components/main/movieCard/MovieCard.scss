@@ -143,3 +143,23 @@
     background-color: $color-primary;
   }
 }
+
+[data-tool]::after {
+  content: attr(data-tool); /* Выводим текст */
+  position: absolute;
+  width: 10rem;
+  left: 0;
+  top: 0;
+  background: $color-light-grey;
+  color: $color-light;
+  padding: 0.5em;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.7s;
+}
+
+[data-tool]:hover::after {
+  opacity: 1;
+  top: 2rem;
+}
