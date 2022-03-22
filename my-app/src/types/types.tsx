@@ -22,6 +22,10 @@ export enum ActionTypes {
   REMOVE_AUTH_PASSWORD = 'AUTH/REMOVE_AUTH_PASSWORD',
 }
 
+export type GenresType = {
+  [key: string]: string | number,
+}
+
 export type CountryType = {
   country: string
 }

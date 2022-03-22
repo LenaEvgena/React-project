@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { ActionType } from '../types/types';
+import { ActionType, GenresType } from '../types/types';
 import { setFetchedError, setIsFetching, setMovieByID, setMoviesAsync, setVideoList } from './actions';
 
 const APIUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/';
@@ -9,31 +9,17 @@ const yearSorting = 'yearFrom=1000&yearTo=2021';
 export const getMoviesAPI = (currentPage: number, sortType = 'RATING', genre: string = 'all', query = '') => {
   return async (dispatch: Dispatch<ActionType>) => {
     try {
-      let genreType: string | number;
-      switch (genre) {
-        case 'all':
-          genreType = '';
-          break;
-        case 'melodrama':
-          genreType = 4;
-          break;
-        case 'drama':
-          genreType = 2;
-          break;
-        case 'thriller':
-          genreType = 1;
-          break;
-        case 'crime':
-          genreType = 3;
-          break;
-        default:
-          genreType = '';
-          break;
-      }
+      const genres: GenresType = {
+        'all': '',
+        'melodrama': 4,
+        'drama': 2,
+        'thriller': 1,
+        'crime': 3,
+      };
       const url = (sortType === 'RATING') ? `${APIUrl}?type=FILM&order=${sortType}` : `${APIUrl}?type=FILM&order=${sortType}&${yearSorting}`;
 
       dispatch(setIsFetching(true));
-      const res = await fetch(`${url}&genres=${genreType}&keyword=${query}&page=${currentPage}`, {
+      const res = await fetch(`${url}&genres=${genres[genre]}&keyword=${query}&page=${currentPage}`, {
         method: 'GET',
         headers: {
           'X-API-KEY': token,
