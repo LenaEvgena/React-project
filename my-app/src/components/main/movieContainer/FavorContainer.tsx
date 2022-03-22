@@ -19,7 +19,7 @@ const FavorContainer: React.FC = () => {
 
   useEffect(() => {
     dispatch(setFavoriteMovieList(favorites));
-  }, [favorites, dispatch])
+  }, [favorites])
 
   if (loading) {
     return <Loader />
@@ -43,7 +43,7 @@ const FavorContainer: React.FC = () => {
         <div className="container">
           {favoriteList && favoriteList.map((f: any) => (
             <MovieCard
-              favorList={favorites}
+              favorList={favoriteList}
               data={f.films}
               key={f.films.kinopoiskId}
             />))
