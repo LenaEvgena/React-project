@@ -54,5 +54,6 @@
   "devDependencies": {
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.49.9"
-  }
+  },
+  "homepage": "https://lenaevgena.github.io/React-project/"
 }
