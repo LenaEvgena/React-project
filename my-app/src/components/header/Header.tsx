@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import LogoTitle from '../common/logoTitle/LogoTitle';
 import { signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
-import { removeAuthName, removeAuthPassword, setFavoriteMovieList, toggleFavoriteList } from '../../redux/actions';
-import { auth } from '../../firebase';
+import { removeAuthName, removeAuthPassword, setAuthName, setFavoriteMovieList, toggleFavoriteList } from '../../redux/actions';
+import { auth, firestore } from '../../firebase';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { collection } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './Header.scss'
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
   const [user]: any = useAuthState(auth);
+  const { userName } = useTypedSelector(state => state)
+  const [favorites]: Array<any> = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из firestore
 
   const handleLogout = async () => {
     signOut(auth).then(() => {
@@ -22,6 +27,18 @@ const Header: React.FC = () => {
       console.log(error);
     });
   }
+
+  useEffect(() => {
+    if (user && !userName) {
+      dispatch(setAuthName(user?.email))
+    };
+  }, []);
+
+  useEffect(() => {
+    if (user && favorites) {
+      dispatch(setFavoriteMovieList(favorites));
+    }
+  }, [favorites]);
 
   return (
     <header className="header-bar">
