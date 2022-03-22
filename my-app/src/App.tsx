@@ -17,7 +17,7 @@ import './style.scss';
 const App: React.FC = () => {
   const [user] = useAuthState(auth);
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/React-project'>
       <Header />
       <Routes>
         <Route path='/register' element={<AuthFormRegister />} />
