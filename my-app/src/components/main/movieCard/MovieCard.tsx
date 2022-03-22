@@ -22,6 +22,7 @@ const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   let genresList: Array<string> = [];
   let countriesList: Array<string> = [];
   let path = isFavorListOpen ? `/favorite/movie/${data.kinopoiskId}` : `/movie/${data.kinopoiskId}`;
+  let text = 'Please, register or log in';
 
   data.genres!.map((g) => genresList.push(g.genre));
   data.countries!.map((c) => countriesList.push(c.country));
@@ -56,7 +57,11 @@ const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   return (
     <div className="movie">
       <div className="movie__image">
-        <i className={`movie_icon-fav ${isFavoriteMovie(data.kinopoiskId as number) ? 'active' : ''}`} onClick={() => handleFavoriteClick(data.kinopoiskId as number)}></i>
+        {user ?
+          <i className={`movie_icon-fav ${isFavoriteMovie(data.kinopoiskId as number) ? 'active' : ''}`} onClick={() => handleFavoriteClick(data.kinopoiskId as number)}></i>
+          :
+          <i className={`movie_icon-fav`} data-tool={text}></i>
+        }
         <img className="movie__card" src={data.posterUrl || data.posterUrlPreview} alt={data.nameOriginal || data.nameRu as string} />
 
         {!showOptions ?
