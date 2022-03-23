@@ -12,7 +12,7 @@ import './MovieContainer.scss';
 const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
   const movies = useTypedSelector((state) => state.movies.items);
-  const { keyword, filter, total, totalCount, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
+  const { keyword, filter, total, totalCount, currentPage, sortType, isFetching, isFetchedError, favoriteList, userName } = useTypedSelector((state) => state);
   const pages: Array<number> = [];
 
   useEffect(() => {
@@ -29,10 +29,10 @@ const MovieContainer: React.FC = () => {
   return (
     <div className="movie__container">
 
-      {totalCount === 0 ?
+      {totalCount === 0 && !isFetching ?
 
         <div className="movie__container">
-          <div className="loading">No movies found</div>
+          <div className="loading noresult">No movies found</div>
         </div> :
 
         <>
