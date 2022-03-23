@@ -150,16 +150,19 @@
   width: 10rem;
   left: 0;
   top: 0;
-  background: $color-light-grey;
+  font-size: 1.6rem;
+  background: $color-dark-grey;
+  font-weight: normal;
+  font-style: normal;
   color: $color-light;
   padding: 0.5em;
   border-radius: 4px;
   pointer-events: none;
   opacity: 0;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 [data-tool]:hover::after {
   opacity: 1;
-  top: 2rem;
+  top: 1.5rem;
 }

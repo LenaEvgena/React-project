@@ -11,7 +11,7 @@ type PropsType = {
 const FavorButton: React.FC<PropsType> = ({ text, isBusy, length, handleClick }) => {
   return (
     <div className="logo__button" data-toolt={length}>
-      <button className={`fav-button ${isBusy ? 'busy' : ''}`}  type="button" onClick={handleClick}>{text}</button>
+      <button className={`fav-button ${isBusy ? 'busy' : ''}`} type="button" onClick={handleClick}>{text}</button>
     </div>
   );
 }
