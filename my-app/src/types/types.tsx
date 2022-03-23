@@ -23,7 +23,7 @@ export enum ActionTypes {
 }
 
 export type UserFirebaseType = {
-  uid?: string,
+  uid: string,
   email: string,
 }
 
