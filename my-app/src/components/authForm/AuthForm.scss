@@ -25,6 +25,7 @@
 
     &__title {
       margin-bottom: 4rem;
+      position: relative;
     }
 
     &__subtitle {
@@ -98,7 +99,7 @@
       font-weight: 600;
       text-transform: uppercase;
       color: $color-primary;
-      margin-bottom: 3rem;
+      margin-bottom: 3.7rem;
       letter-spacing: 1px;
     }
 
@@ -118,4 +119,26 @@
       border-radius: 4px;
       text-align: left;
     }
+}
+
+.form_email  {
+  position: relative;
+  .form__error {
+    position: absolute;
+    top: 9.3rem;
+    color: red;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+  }
+}
+
+.form_password  {
+  position: relative;
+  .form__error {
+    position: absolute;
+    top: 9.3rem;
+    color: red;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+  }
 }
