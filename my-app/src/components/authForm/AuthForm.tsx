@@ -14,7 +14,12 @@ type PropsType = {
   handleClick: () => void,
 }
 
-const validationSchema: any = Yup.object().shape({
+type SchemaType = {
+  email: string,
+  password: string,
+}
+
+const validationSchema: Yup.SchemaOf<SchemaType> = Yup.object({
   email: Yup.string()
     .email()
     .required('This field is required'),
@@ -22,18 +27,6 @@ const validationSchema: any = Yup.object().shape({
     .min(4, 'Must be longer than 4 characters')
     .required('This field is required'),
 });
-
-// const userAuthFormValidate = (values: any) => {
-//   const errors: any = {};
-//   if (!values.email) {
-//     errors.email = 'Required';
-//   } else if (
-//     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-//   ) {
-//     errors.email = 'Invalid email address';
-//   }
-//   return errors;
-// }
 
 const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
   const dispatch = useDispatch();
@@ -57,7 +50,6 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
   const submit = (values: any, { setSubmitting }: any) => {
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
     }, 400);
   }
 
@@ -108,9 +100,6 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
                 <div className="modal-button">
                   <ResetButton text="Reset" handleClick={handleReset} />
                   <SubmitButton text={title} handleClick={handleClick} />
-                  {/* <button type="submit" disabled={isSubmitting}>
-                    Submit
-                  </button> */}
                 </div>
               </Form>
             )}
