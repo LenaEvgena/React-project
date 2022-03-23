@@ -1,17 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import SubmitButton from '../common/submitButton/SubmitButton';
 import ResetButton from '../common/resetButton/ResetButton';
-import { removeAuthName, removeAuthPassword, setAuthName, setAuthPassword } from '../../redux/actions';
-import './AuthForm.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import './AuthForm.scss';
 
 type PropsType = {
   title: string,
   handleClick: (values: SchemaType) => void,
+  handleReset: () => void,
 }
 
 export type SchemaType = {
@@ -28,19 +26,8 @@ const validationSchema: Yup.SchemaOf<SchemaType> = Yup.object({
     .required('This field is required'),
 });
 
-const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
-  const dispatch = useDispatch();
+const AuthForm: React.FC<PropsType> = ({ title, handleClick, handleReset }) => {
   const navigate = useNavigate();
-  const { userName, password } = useTypedSelector(state => state);
-
-  const handleReset = (): void => {
-    if (userName.trim()) {
-      dispatch(removeAuthName(''));
-    };
-    if (password.trim()) {
-      dispatch(removeAuthPassword(''));
-    }
-  };
 
   const handleClose = (): void => {
     handleReset();

@@ -1,11 +1,11 @@
 import React from 'react'
 import AuthForm, { SchemaType } from './AuthForm';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { removeAuthName, removeAuthPassword, setAuthName, setAuthPassword } from '../../redux/actions';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 type PropsType = {
   isRegisterForm: boolean,
@@ -16,6 +16,7 @@ const AuthFormContainer: React.FC<PropsType> = ({ isRegisterForm }) => {
   const navigate = useNavigate();
   const { userName, password } = useTypedSelector(state => state);
 
+
   const handleReset = (): void => {
     if (userName.trim()) {
       dispatch(removeAuthName(''));
@@ -25,7 +26,7 @@ const AuthFormContainer: React.FC<PropsType> = ({ isRegisterForm }) => {
     }
   };
 
-  const handleLoginOrRegister = (values: SchemaType) => {
+  const handleLoginOrRegister = (values: SchemaType): void => {
     if (isRegisterForm) {
       createUserWithEmailAndPassword(auth, values.email, values.password)
         .then((userCredential) => {
@@ -53,7 +54,7 @@ const AuthFormContainer: React.FC<PropsType> = ({ isRegisterForm }) => {
   }
 
   return (
-    <AuthForm title={isRegisterForm ? 'register' : 'log in'} handleClick={handleLoginOrRegister} />
+    <AuthForm title={isRegisterForm ? 'register' : 'log in'} handleClick={handleLoginOrRegister} handleReset={handleReset} />
   )
 }
 
