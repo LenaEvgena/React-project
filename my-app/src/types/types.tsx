@@ -22,6 +22,11 @@ export enum ActionTypes {
   REMOVE_AUTH_PASSWORD = 'AUTH/REMOVE_AUTH_PASSWORD',
 }
 
+export type UserFirebaseType = {
+  uid: string,
+  email: string,
+}
+
 export type GenresType = {
   [key: string]: string | number,
 }

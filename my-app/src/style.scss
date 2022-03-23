@@ -24,6 +24,8 @@ html {
   scroll-behavior: smooth;
   width: 100vw;
   margin: 0 auto;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 
   @media only screen and (max-width: 768px) {
     font-size: 8.5px;

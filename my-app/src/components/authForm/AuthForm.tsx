@@ -1,34 +1,41 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import SubmitButton from '../common/submitButton/SubmitButton';
 import ResetButton from '../common/resetButton/ResetButton';
-import { removeAuthName, removeAuthPassword, setAuthName, setAuthPassword } from '../../redux/actions';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import './AuthForm.scss';
 
 type PropsType = {
   title: string,
-  handleClick: () => void,
+  handleClick: (values: SchemaType) => void,
+  handleReset: () => void,
 }
 
-const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { userName, password } = useTypedSelector(state => state);
+export type SchemaType = {
+  email: string,
+  password: string,
+}
 
-  const handleReset = (): void => {
-    if (userName.trim()) {
-      dispatch(removeAuthName(''));
-    };
-    if (password.trim()) {
-      dispatch(removeAuthPassword(''));
-    }
-  };
+const validationSchema: Yup.SchemaOf<SchemaType> = Yup.object({
+  email: Yup.string()
+    .email()
+    .required('This field is required'),
+  password: Yup.string()
+    .min(4, 'Must be longer than 4 characters')
+    .required('This field is required'),
+});
+
+const AuthForm: React.FC<PropsType> = ({ title, handleClick, handleReset }) => {
+  const navigate = useNavigate();
 
   const handleClose = (): void => {
     handleReset();
     navigate('/');
+  }
+
+  const submit = (values: SchemaType, { setSubmitting }: { setSubmitting: (setSubmitting: boolean) => void }) => {
+    handleClick(values);
   }
 
   return (
@@ -53,23 +60,35 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
             <h2 className="modal__title">{title}</h2>
           </div>
 
-          <form action="!#" className="auth__form">
-
-            <label htmlFor="form-name" className="form-title">
-              User email
-              <input className="form-input" type="email" id="form-name" value={userName} onChange={(e) => dispatch(setAuthName(e.target.value))} />
-            </label>
-
-            <label htmlFor="form-pass" className="form-title">
-              Password
-              <input className="form-input" type="password" id="form-pass" value={password} onChange={(e) => dispatch(setAuthPassword(e.target.value))} />
-            </label>
-
-          </form>
-          <div className="modal-button">
-            <ResetButton text="Reset" handleClick={handleReset} />
-            <SubmitButton text={title} handleClick={handleClick} />
-          </div>
+          <Formik
+            initialValues={{
+              email: '',
+              password: ''
+            }}
+            validationSchema={validationSchema}
+            onSubmit={submit}
+          >
+            {({ isSubmitting }) => (
+              <Form className="auth__form">
+                <div className="form_email">
+                  <label htmlFor="form-name" className="form-title">User email
+                    <Field className="form-input" id="form-name" type="email" name="email" />
+                    <ErrorMessage name="email" component="div" className="form__error" />
+                  </label>
+                </div>
+                <div className="form_password">
+                  <label htmlFor="form-pass" className="form-title">Password
+                    <Field className="form-input" id="form-pass" type="password" name="password" />
+                    <ErrorMessage name="password" component="div" className="form__error" />
+                  </label>
+                </div>
+                <div className="modal-button">
+                  <ResetButton text="Reset" handleClick={handleReset} />
+                  <SubmitButton text={title} />
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </div>
@@ -77,3 +96,5 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
 };
 
 export default AuthForm;
+
+
