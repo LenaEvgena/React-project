@@ -4,7 +4,7 @@ import './SubmitButton.scss';
 type PropsType = {
   text: string
   isBusy?: boolean
-  handleClick: () => void,
+  handleClick?: () => void,
 }
 
 const SubmitButton: React.FC<PropsType> = ({ text, isBusy, handleClick }) => (

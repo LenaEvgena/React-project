@@ -11,10 +11,10 @@ import * as Yup from 'yup';
 
 type PropsType = {
   title: string,
-  handleClick: () => void,
+  handleClick: (values: SchemaType) => void,
 }
 
-type SchemaType = {
+export type SchemaType = {
   email: string,
   password: string,
 }
@@ -47,10 +47,8 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
     navigate('/');
   }
 
-  const submit = (values: any, { setSubmitting }: any) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-    }, 400);
+  const submit = (values: SchemaType, { setSubmitting }: { setSubmitting: (setSubmitting: boolean) => void }) => {
+    handleClick(values);
   }
 
   return (
@@ -99,7 +97,7 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
                 </div>
                 <div className="modal-button">
                   <ResetButton text="Reset" handleClick={handleReset} />
-                  <SubmitButton text={title} handleClick={handleClick} />
+                  <SubmitButton text={title} />
                 </div>
               </Form>
             )}
@@ -112,5 +110,4 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
 
 export default AuthForm;
 
-// onChange = {(e) => dispatch(setAuthName(e.target.value))
-// onChange = {(e) => dispatch(setAuthPassword(e.target.value))}
+

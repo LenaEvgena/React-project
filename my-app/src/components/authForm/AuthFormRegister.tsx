@@ -1,11 +1,11 @@
 import React from 'react'
-import AuthForm from './AuthForm';
+import AuthForm, { SchemaType } from './AuthForm';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { removeAuthName, removeAuthPassword } from '../../redux/actions';
+import { removeAuthName, removeAuthPassword, setAuthName, setAuthPassword } from '../../redux/actions';
 
 const AuthFormRegister = () => {
   const dispatch = useDispatch();
@@ -21,12 +21,12 @@ const AuthFormRegister = () => {
     }
   };
 
-  const handleRegister = () => {
-    if (!userName || !password) return; // todo validation
-
-    createUserWithEmailAndPassword(auth, userName, password)
+  const handleRegister = (values: SchemaType) => {
+    createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
         const user = userCredential.user;
+        dispatch(setAuthName(values.email));
+        dispatch(setAuthPassword(values.password));
         navigate('/');
       })
       .catch((error) => {
