@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import Button from '../../common/button/Button';
 import './FavorButton.scss';
 
 type PropsType = {
@@ -14,7 +15,7 @@ const FavorButton: React.FC<PropsType> = ({ text, isBusy, length, handleClick })
 
   return (
     <div className="logo__button" data-toolt={length}>
-      <button className={cls} type="button" onClick={handleClick}>{text}</button>
+      <Button className={cls} type='button' text={text} handleClick={handleClick} />
     </div>
   );
 }

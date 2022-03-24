@@ -1,17 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
-import './SubmitButton.scss';
+import './Button.scss';
 
 type PropsType = {
   type: 'button' | 'submit' | 'reset',
-  text: string,
+  text?: string,
   className: string,
   isBusy?: boolean,
   disabled?: boolean,
+  tooltip?: string,
   handleClick?: () => void,
 }
 
-const Button: React.FC<PropsType> = ({ type, text, isBusy, className, handleClick }) => {
+const Button: React.FC<PropsType> = ({ type, text, isBusy, className, handleClick, ...args }) => {
   let cls = classNames(
     'button',
     className,
@@ -19,7 +20,7 @@ const Button: React.FC<PropsType> = ({ type, text, isBusy, className, handleClic
   );
 
   return (
-    <button className={cls} type={type} onClick={handleClick} disabled={isBusy}>{text}</button>
+    <button className={cls} type={type} onClick={handleClick} disabled={isBusy} data-tooltip={args.tooltip}>{text}</button>
   )
 };
 

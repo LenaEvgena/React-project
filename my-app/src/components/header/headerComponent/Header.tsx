@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import LogoTitle from '../../common/logoTitle/LogoTitle';
+import Button from '../../common/button/Button';
 import { UserImplType } from '../../../types/types';
 import './Header.scss'
 
@@ -15,11 +16,11 @@ const Header: React.FC<PropsType> = ({ user, handleLogout }) => {
       <LogoTitle />
       {user ?
         <Link to='/'>
-          <button className="log_button" data-tooltip={user.email} type="button" onClick={handleLogout}>Log out</button>
+          <Button className='log_button' type='button' text='Log out'  handleClick={handleLogout} tooltip={user.email} />
         </Link>
         :
         <Link to='/auth'>
-          <button className="log_button" type="button">Log in</button>
+          <Button className='log_button' type='button' text='Log in' />
         </Link>
       }
     </header>

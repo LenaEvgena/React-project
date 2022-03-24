@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { closeDeleteMovieForm, deleteMovieById } from './../../../redux/actions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import LogoTitle from '../../common/logoTitle/LogoTitle';
-import SubmitButton from '../../common/submitButton/SubmitButton';
 import Footer from './../../common/footer/Footer';
+import Button from '../../common/button/Button';
 import { auth, deleteFavor } from '../../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { UserImplType } from '../../../types/types';
@@ -39,7 +39,7 @@ const DeleteModal: React.FC = () => {
             <p className="modal__subtitle">Are you sure you want to delete this movie?</p>
           </div>
           <div className="modal-button">
-            <SubmitButton text="confirm" handleClick={() => handleDeleteClick(id as number, user)} />
+            <Button className='submit__button' type='button' text='confirm'  handleClick={() => handleDeleteClick(id as number, user)} />
           </div>
         </div>
       </div>

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import SubmitButton from '../common/submitButton/SubmitButton';
-import ResetButton from '../common/resetButton/ResetButton';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
+import Button from '../common/button/Button';
 import './AuthForm.scss';
 
 type PropsType = {
@@ -81,8 +80,8 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
                   </label>
                 </div>
                 <div className="modal-button">
-                  <ResetButton text="Reset" />
-                  <SubmitButton text={title} />
+                  <Button type='reset' text='reset' className='reset__button' />
+                  <Button type='submit' text={title} className='submit__button' />
                 </div>
               </Form>
             )}

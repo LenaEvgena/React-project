@@ -1,8 +1,7 @@
 import React from 'react';
-import './ScrollButton.scss';
+import Button from '../button/Button';
 
 const ScrollButton: React.FC = () => {
-
   const handleClick = (): void => {
     window.scrollTo({
       top: 0,
@@ -12,7 +11,7 @@ const ScrollButton: React.FC = () => {
   }
 
   return (
-    <button className="scroll__button" type="button" onClick={handleClick}></button>
+    <Button className='scroll__button' type='button' handleClick={handleClick} />
   )
 };
 
