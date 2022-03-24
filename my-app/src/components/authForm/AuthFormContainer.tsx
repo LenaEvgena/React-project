@@ -16,7 +16,6 @@ const AuthFormContainer: React.FC<PropsType> = ({ isRegisterForm }) => {
   const navigate = useNavigate();
   const { userName, password } = useTypedSelector(state => state);
 
-
   const handleReset = (): void => {
     if (userName.trim()) {
       dispatch(removeAuthName(''));

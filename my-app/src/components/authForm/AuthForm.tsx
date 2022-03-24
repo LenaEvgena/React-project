@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SubmitButton from '../common/submitButton/SubmitButton';
 import ResetButton from '../common/resetButton/ResetButton';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import './AuthForm.scss';
 
@@ -34,7 +34,7 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick, handleReset }) => {
     navigate('/');
   }
 
-  const submit = (values: SchemaType, { setSubmitting }: { setSubmitting: (setSubmitting: boolean) => void }) => {
+  const submit = (values: SchemaType, { setSubmitting }: FormikHelpers<SchemaType>) => {
     handleClick(values);
   }
 
