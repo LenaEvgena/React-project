@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import './SubmitButton.scss';
 
 type PropsType = {
@@ -7,8 +8,12 @@ type PropsType = {
   handleClick?: () => void,
 }
 
-const SubmitButton: React.FC<PropsType> = ({ text, isBusy, handleClick }) => (
-  <button className={`submit__button ${isBusy && 'busy'}`} type="submit" onClick={handleClick}>{text}</button>
-);
+const SubmitButton: React.FC<PropsType> = ({ text, isBusy, handleClick }) => {
+  let cls = classNames('submit__button', { 'busy': isBusy });
+
+  return (
+    <button className={cls} type="submit" onClick={handleClick}>{text}</button>
+  )
+};
 
 export default SubmitButton;

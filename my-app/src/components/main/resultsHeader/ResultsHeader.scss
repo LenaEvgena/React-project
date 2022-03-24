@@ -51,6 +51,7 @@
     margin-right: 3rem;
     transition: 0.3s;
     cursor: pointer;
+    border-bottom: 2px solid $color-light-grey;
 
     &.active {
       border-bottom: 2px solid $color-primary;

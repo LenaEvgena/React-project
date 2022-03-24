@@ -1,44 +1,30 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword, toggleFavoriteList } from '../../../redux/actions';
-import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
+import { setMoviesKeyword } from '../../../redux/actions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 import './SearchBar.scss';
 
-const SearchBar: React.FC = () => {
+type PropsType = {
+  isBusy: boolean,
+  handleClick: () => void,
+  handleResetClick: () => void,
+}
+
+const SearchBar: React.FC<PropsType> = ({ isBusy, handleClick, handleResetClick }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { keyword, sortType, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
+  const { keyword } = useTypedSelector((state) => state);
+  let cls = classNames('search__button', { 'busy': isBusy });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setMoviesKeyword(e.target.value));
-  }
-
-  const handleClick = (): void => {
-    if (!keyword.trim()) return;
-    if (isFavorListOpen) {
-      navigate('/');
-      dispatch(toggleFavoriteList(false));
-    }
-    dispatch(setCurrentPage(1));
-    dispatch(filterGenreMoviesAsync('all'));
-    dispatch(getMoviesAPI(1, sortType, 'all', keyword));
-  }
-
-  const handleResetClick = (): void => {
-    if (!keyword.trim()) return;
-    dispatch(setCurrentPage(1));
-    dispatch(setMoviesKeyword(''));
-    dispatch(filterGenreMoviesAsync('all'));
-    dispatch(getMoviesAPI(1, sortType, 'all', ''));
   }
 
   return (
     <div className="search">
       <input className="search__field" type="text" placeholder="What do you want to watch? Enter a keyword..." value={keyword} onChange={handleChange} />
       <button className="search__button search__button-reset" type="button" onClick={handleResetClick}></button>
-      <button className={`search__button ${isFetching && 'busy'}`} type="button" onClick={handleClick}>Search</button>
+      <button className={cls} type="button" onClick={handleClick}>Search</button>
     </div>
   );
 }

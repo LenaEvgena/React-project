@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import './FavorButton.scss';
 
 type PropsType = {
@@ -9,9 +10,11 @@ type PropsType = {
 }
 
 const FavorButton: React.FC<PropsType> = ({ text, isBusy, length, handleClick }) => {
+  let cls = classNames('fav-button', { 'busy': isBusy });
+
   return (
     <div className="logo__button" data-toolt={length}>
-      <button className={`fav-button ${isBusy ? 'busy' : ''}`} type="button" onClick={handleClick}>{text}</button>
+      <button className={cls} type="button" onClick={handleClick}>{text}</button>
     </div>
   );
 }
