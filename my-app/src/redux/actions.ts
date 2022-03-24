@@ -1,8 +1,7 @@
 import {
   ActionTypes,
   CloseDeleteMovieFormType, ToggleMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, ItemType,
-  MoviesType, OpenDeleteMovieFormType, RemoveSelectedMovieType, RemoveAuthNameType, RemoveAuthPasswordType,
-  RemoveVideoListType, SetAuthNameType, SetAuthPasswordType, SetCurrentPageType,
+  MoviesType, OpenDeleteMovieFormType, RemoveSelectedMovieType, RemoveVideoListType, SetCurrentPageType,
   SetFetchedErrorType, SetIsFetchingType, SetMovieByIDType, SetMoviesKeywordType, SetMovieType, SetVideoListType,
   SortMoviesAsyncType, ToggleFavoriteListType, VideoItemType, SetFavoriteMovieListType, FavoriteMoviesType
 } from "./../types/types";
@@ -90,24 +89,4 @@ export const setVideoList = (videos: Array<VideoItemType>): SetVideoListType => 
 export const removeVideoList = (videos: Array<VideoItemType>): RemoveVideoListType => ({
   type: ActionTypes.REMOVE_VIDEO_LIST,
   videos,
-});
-
-export const setAuthName = (userName: string): SetAuthNameType => ({
-  type: ActionTypes.SET_AUTH_NAME,
-  userName,
-});
-
-export const removeAuthName = (userName: string): RemoveAuthNameType => ({
-  type: ActionTypes.REMOVE_AUTH_NAME,
-  userName,
-});
-
-export const setAuthPassword = (password: string): SetAuthPasswordType => ({
-  type: ActionTypes.SET_AUTH_PASSWORD,
-  password,
-});
-
-export const removeAuthPassword = (password: string): RemoveAuthPasswordType => ({
-  type: ActionTypes.REMOVE_AUTH_PASSWORD,
-  password,
 });

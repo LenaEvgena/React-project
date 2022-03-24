@@ -9,7 +9,6 @@ import './AuthForm.scss';
 type PropsType = {
   title: string,
   handleClick: (values: SchemaType) => void,
-  handleReset: () => void,
 }
 
 export type SchemaType = {
@@ -26,11 +25,10 @@ const validationSchema: Yup.SchemaOf<SchemaType> = Yup.object({
     .required('This field is required'),
 });
 
-const AuthForm: React.FC<PropsType> = ({ title, handleClick, handleReset }) => {
+const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
   const navigate = useNavigate();
 
   const handleClose = (): void => {
-    handleReset();
     navigate('/');
   }
 
@@ -83,7 +81,7 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick, handleReset }) => {
                   </label>
                 </div>
                 <div className="modal-button">
-                  <ResetButton text="Reset" handleClick={handleReset} />
+                  <ResetButton text="Reset" />
                   <SubmitButton text={title} />
                 </div>
               </Form>

@@ -1,13 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword } from '../../../redux/actions';
+import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword, toggleFavoriteList } from '../../../redux/actions';
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { useNavigate } from 'react-router-dom';
 import './SearchBar.scss';
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
-  const { keyword, sortType, isFetching } = useTypedSelector((state) => state);
+  const navigate = useNavigate();
+  const { keyword, sortType, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setMoviesKeyword(e.target.value));
@@ -15,6 +17,10 @@ const SearchBar: React.FC = () => {
 
   const handleClick = (): void => {
     if (!keyword.trim()) return;
+    if (isFavorListOpen) {
+      navigate('/');
+      dispatch(toggleFavoriteList(false));
+    }
     dispatch(setCurrentPage(1));
     dispatch(filterGenreMoviesAsync('all'));
     dispatch(getMoviesAPI(1, sortType, 'all', keyword));
