@@ -9,13 +9,14 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { FavoriteMoviesType, UserImplType } from '../../types/types';
 import './Header.scss'
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
-  const [user]: any = useAuthState(auth);
+  const [user] = useAuthState(auth) as UserImplType[];
   const { userName } = useTypedSelector(state => state)
-  const [favorites]: Array<any> = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из firestore
+  const [favorites] = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из firestore
 
   const handleLogout = async () => {
     signOut(auth).then(() => {
@@ -30,13 +31,13 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     if (user && !userName) {
-      dispatch(setAuthName(user?.email))
+      dispatch(setAuthName(user.email))
     };
   }, []);
 
   useEffect(() => {
     if (user && favorites) {
-      dispatch(setFavoriteMovieList(favorites));
+      dispatch(setFavoriteMovieList(favorites as Array<FavoriteMoviesType>));
     }
   }, [favorites]);
 

@@ -22,7 +22,7 @@ export enum ActionTypes {
   REMOVE_AUTH_PASSWORD = 'AUTH/REMOVE_AUTH_PASSWORD',
 }
 
-export type UserFirebaseType = {
+export type UserImplType = {
   uid: string,
   email: string,
 }

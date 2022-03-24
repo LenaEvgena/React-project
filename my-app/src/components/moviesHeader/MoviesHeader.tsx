@@ -8,12 +8,13 @@ import { toggleFavoriteList } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
+import { UserImplType } from '../../types/types';
 import './MoviesHeader.scss';
 
 const MoviesHeader: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [user]: any = useAuthState(auth);
+  const [user] = useAuthState(auth) as UserImplType[];
   const { isFavorListOpen, favoriteList } = useTypedSelector(state => state)
   let text = !isFavorListOpen ? 'Show favorites' : 'Close favorites';
 

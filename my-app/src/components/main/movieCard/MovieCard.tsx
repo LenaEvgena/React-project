@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { FavoriteMoviesType, ItemType } from '../../../types/types';
+import { FavoriteMoviesType, ItemType, UserImplType } from '../../../types/types';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { openDeleteMovieForm } from '../../../redux/actions';
 import DeleteModal from '../../modals/deleteModal/DeleteModal';
@@ -17,7 +17,7 @@ type PropsType = {
 const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState<boolean>(false);
-  const [user]: any = useAuthState(auth);
+  const [user] = useAuthState(auth) as UserImplType[];
   const { isDeleteFormOpen, isFavorListOpen } = useTypedSelector(state => state);
   let genresList: Array<string> = [];
   let countriesList: Array<string> = [];

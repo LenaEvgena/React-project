@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { setDoc, deleteDoc, doc } from "firebase/firestore";
-import { ItemType, UserFirebaseType } from './types/types';
+import { ItemType, UserImplType } from './types/types';
 
 const firebase = initializeApp({
   apiKey: "AIzaSyBekXAz4h5J0d1jc2r1tyfz5OGeNbWr-W8",
@@ -16,13 +16,13 @@ const firebase = initializeApp({
 export const auth = getAuth(firebase);
 export const firestore = getFirestore(firebase);
 
-export const sendFavor = async (id: number, user: UserFirebaseType, data: ItemType | null) => {
+export const sendFavor = async (id: number, user: UserImplType, data: ItemType | null) => {
   if (!user) return;
   await setDoc(doc(firestore, user?.email, `${id}`), {
     films: data
   })
 }
 
-export const deleteFavor = async (id: number, user: UserFirebaseType) => {
+export const deleteFavor = async (id: number, user: UserImplType) => {
   await deleteDoc(doc(firestore, user?.email, `${id}`))
 }
