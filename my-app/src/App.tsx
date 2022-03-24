@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/header/Header';
+import HeaderContainer from './components/header/HeaderContainer';
 import AuthFormContainer from './components/authForm/AuthFormContainer';
 import ErrorPage from './components/errorPage/ErrorPage';
 import ScrollButton from './components/common/scrollButton/ScrollButton';
@@ -17,7 +17,7 @@ const App: React.FC = () => {
   const [user] = useAuthState(auth);
   return (
     <BrowserRouter basename='/React-project'>
-      <Header />
+      <HeaderContainer />
       <Routes>
         <Route path='/register' element={<AuthFormContainer isRegisterForm={true} />} />
         <Route path='/auth' element={<AuthFormContainer isRegisterForm={false} />} />
