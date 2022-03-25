@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
@@ -26,6 +26,13 @@ const Select: React.FC = () => {
     dispatch(setCurrentPage(1));
     dispatch(sortMoviesAsync(yearRef.current?.dataset.value as string));
   }
+
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
+    return () => {
+      document.removeEventListener('click', handleClick);
+    }
+  });
 
   return (
     <>
