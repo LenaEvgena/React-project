@@ -16,7 +16,7 @@ const Header: React.FC<PropsType> = ({ user, handleLogout }) => {
       <LogoTitle />
       {user ?
         <Link to='/'>
-          <Button className='log_button' type='button' text='Log out'  handleClick={handleLogout} tooltip={user.email} />
+          <Button className='log_button' type='button' text='Log out' handleClick={handleLogout} tooltip={user.email} />
         </Link>
         :
         <Link to='/auth'>

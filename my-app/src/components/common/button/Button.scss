@@ -52,7 +52,7 @@
     cursor: default;
   }
 
-  @media only screen and (max-width: 580px){
+  @media only screen and (max-width: 580px) {
     font-size: 1.8rem;
   }
 }
@@ -103,7 +103,7 @@
   &-reset {
     justify-content: center;
     background-color: rgba(56, 56, 56, 0.527);
-    background: url('./../../../assets/cross.svg');
+    background: url("./../../../assets/cross.svg");
     width: 2.2rem;
     height: 2.2rem;
     margin-left: 0;
@@ -133,7 +133,7 @@
   cursor: pointer;
 
   &::before {
-    content: '<';
+    content: "<";
     font-weight: bold;
     position: absolute;
     top: 50%;
@@ -147,4 +147,3 @@
     background-color: $color-dark;
   }
 }
-

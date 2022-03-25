@@ -7,16 +7,16 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background-image: url('./../../../assets/heart.png');
-    filter: drop-shadow( 0 2px rgba(255, 255, 255, 0.746));
+    background-image: url("./../../../assets/heart.png");
+    filter: drop-shadow(0 2px rgba(255, 255, 255, 0.746));
     background-size: cover;
     width: 2.35rem;
     height: 2.1rem;
     background-repeat: no-repeat;
     cursor: pointer;
 
-    &.active{
-      background-image: url('./../../../assets/heartPink.png');
+    &.active {
+      background-image: url("./../../../assets/heartPink.png");
     }
   }
 
@@ -52,7 +52,8 @@
     }
   }
 
-  &__genre, &__country {
+  &__genre,
+  &__country {
     text-transform: capitalize;
     margin-top: 1rem;
     font-size: 1.4rem;
@@ -89,7 +90,7 @@
   transition: 0.3s;
 
   &::before {
-    content: '•••';
+    content: "•••";
     position: absolute;
     top: 50%;
     left: 50%;
