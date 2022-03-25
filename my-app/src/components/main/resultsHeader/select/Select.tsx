@@ -13,8 +13,13 @@ const Select: React.FC = () => {
   const { isFetching, sortType } = useTypedSelector((state) => state);
   let clsSelect = classNames('select', { 'active': showOptions }, { 'busy': isFetching });
 
-  const handleClick = (): void => {
+  const handleOpenOptions = (e: React.MouseEvent<HTMLDivElement>): void => {
+    e.stopPropagation();
     setShowOptions(!showOptions);
+  }
+
+  const handleCloseOptions = (): void => {
+    setShowOptions(false);
   }
 
   const handleRatingOption = (): void => {
@@ -28,9 +33,9 @@ const Select: React.FC = () => {
   }
 
   useEffect(() => {
-    document.addEventListener('click', handleClick);
+    document.addEventListener('click', handleCloseOptions);
     return () => {
-      document.removeEventListener('click', handleClick);
+      document.removeEventListener('click', handleCloseOptions);
     }
   });
 
@@ -38,7 +43,7 @@ const Select: React.FC = () => {
     <>
       <div className="results__sort">
         <span className="results__title">Sort by</span>
-        <div className={clsSelect} onClick={handleClick}>
+        <div className={clsSelect} onClick={handleOpenOptions}>
           <div className="select__header">
             <span className="select__current">{sortType === 'RATING' ? sortType : 'release date'}</span>
             <div className="select__icon"></div>
