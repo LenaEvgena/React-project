@@ -5,16 +5,16 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import LogoTitle from '../../common/logoTitle/LogoTitle';
 import Footer from './../../common/footer/Footer';
 import Button from '../../common/button/Button';
-import { auth, deleteFavor } from '../../../firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { deleteFavor } from '../../../firebase';
 import { UserImplType } from '../../../types/types';
+import useAuth from '../../../hooks/useAuth';
 import './DeleteModal.scss';
 
 const DeleteModal: React.FC = () => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLDivElement>(null);
   const id = useTypedSelector(state => state.movieIdToDelete);
-  const [user] = useAuthState(auth) as UserImplType[];
+  const user = useAuth();
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (modalRef.current?.contains(e.target as Element)) {
@@ -39,7 +39,7 @@ const DeleteModal: React.FC = () => {
             <p className="modal__subtitle">Are you sure you want to delete this movie?</p>
           </div>
           <div className="modal-button">
-            <Button className='submit__button' type='button' text='confirm'  handleClick={() => handleDeleteClick(id as number, user)} />
+            <Button className='submit__button' type='button' text='confirm' handleClick={() => handleDeleteClick(id as number, user)} />
           </div>
         </div>
       </div>

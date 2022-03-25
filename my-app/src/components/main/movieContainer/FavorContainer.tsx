@@ -2,19 +2,15 @@ import React from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import MovieCard from '../movieCard/MovieCard';
 import Loader from '../../common/loader/Loader';
-import { collection } from "firebase/firestore";
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { firestore, auth } from '../../../firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import SortResultsHeader from '../../main/resultsHeader/ResultsHeader';
-import { FavoriteMoviesType, UserImplType } from '../../../types/types';
+import { FavoriteMoviesType } from '../../../types/types';
+import useCollection from '../../../hooks/useCollection';
 import './MovieContainer.scss';
 
 const FavorContainer: React.FC = () => {
-  const [user] = useAuthState(auth) as UserImplType[];
   const { favoriteList } = useTypedSelector((state) => state);
   let count: number = favoriteList?.length;
-  const [_, loading] = useCollectionData(collection(firestore, user.email || 'favorites')); //получение данных из firestore
+  const [_, loading] = useCollection();
 
   return (
     <>

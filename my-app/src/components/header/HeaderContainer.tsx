@@ -2,17 +2,16 @@ import React, { useEffect } from 'react'
 import { signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setFavoriteMovieList, toggleFavoriteList } from '../../redux/actions';
-import { auth, firestore } from '../../firebase';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { collection } from 'firebase/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { FavoriteMoviesType, UserImplType } from '../../types/types';
+import { auth } from '../../firebase';
+import { FavoriteMoviesType } from '../../types/types';
 import Header from './headerComponent/Header';
+import useAuth from '../../hooks/useAuth';
+import useCollection from '../../hooks/useCollection';
 
 const HeaderContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const [user] = useAuthState(auth) as UserImplType[];
-  const [favorites] = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из firestore
+  const user = useAuth();
+  const [favorites] = useCollection();
 
   const handleLogout = async () => {
     signOut(auth).then(() => {

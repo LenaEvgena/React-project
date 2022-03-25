@@ -7,11 +7,11 @@ import VideoModal from '../modals/videoModal/VideoModal';
 import Button from '../common/button/Button';
 import { removeSelectedMovie, toggleMovieDetailsForm, removeVideoList } from '../../redux/actions';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActionsThunks';
-import { ItemType, UserImplType, VideoItemType } from '../../types/types';
+import { ItemType, VideoItemType } from '../../types/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { auth, deleteFavor, sendFavor } from '../../firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { deleteFavor, sendFavor } from '../../firebase';
 import classNames from 'classnames';
+import useAuth from '../../hooks/useAuth';
 import './MovieDetails.scss';
 
 type ParamsIdType = {
@@ -20,7 +20,7 @@ type ParamsIdType = {
 
 const MovieDetails: React.FC = () => {
   const dispatch = useDispatch();
-  const [user] = useAuthState(auth) as UserImplType[];
+  const user = useAuth();
   const { selectedByIdMovie, favoriteList, videos, isFavorListOpen } = useTypedSelector((state) => state);
   const { id } = useParams<ParamsIdType>();
   const [showVideoModal, setShowVideoModal] = useState<boolean>(false);

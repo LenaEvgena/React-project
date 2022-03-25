@@ -9,12 +9,11 @@ import HomePage from './pages/homePage';
 import DetailsPage from './pages/detailsPage';
 import FavorPage from './pages/favorPage';
 import FavoriteDetailsPage from './pages/FavoriteDetailsPage';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './firebase';
+import useAuth from './hooks/useAuth';
 import './style.scss';
 
 const App: React.FC = () => {
-  const [user] = useAuthState(auth);
+  const user = useAuth();
   return (
     <BrowserRouter basename='/React-project'>
       <HeaderContainer />
