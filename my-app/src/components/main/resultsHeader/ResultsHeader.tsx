@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
-import { getLiOptions } from '../../../utils/constants';
+import { getLiOptions } from '../../../utils/liOptions';
 import './ResultsHeader.scss';
 
 const SortResultsHeader: React.FC = () => {
