@@ -1,14 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import classNames from 'classnames';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
-import classNames from 'classnames';
+import { getLiOptions } from '../../../utils/constants';
 import './ResultsHeader.scss';
 
 const SortResultsHeader: React.FC = () => {
   const dispatch = useDispatch();
   const { filter, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
-  let cls = classNames({ 'busy': isFetching });
+  const liOptions = getLiOptions(isFetching, filter)
   let clsSelect = classNames('select', { 'busy': isFetching });
 
   const handleClick = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -28,11 +29,9 @@ const SortResultsHeader: React.FC = () => {
         {!isFavorListOpen && <>
           <div className="results__filter">
             <ul>
-              <li className={`${cls} ${filter === 'all' && 'active'}`} onClick={() => handleOnFilterClick('all')}>All</li>
-              <li className={`${cls} ${filter === 'drama' && 'active'}`} onClick={() => handleOnFilterClick('drama')}>Drama</li>
-              <li className={`${cls} ${filter === 'melodrama' && 'active'}`} onClick={() => handleOnFilterClick('melodrama')}>Melodrama</li>
-              <li className={`${cls} ${filter === 'thriller' && 'active'}`} onClick={() => handleOnFilterClick('thriller')}>Thriller</li>
-              <li className={`${cls} ${filter === 'crime' && 'active'}`} onClick={() => handleOnFilterClick('crime')}>Crime</li>
+              {
+                liOptions.map((item) => <li className={item.cls} key={item.type} onClick={() => handleOnFilterClick(item.type)}>{item.type}</li>)
+              }
             </ul>
           </div>
           <div className="results__sort">
