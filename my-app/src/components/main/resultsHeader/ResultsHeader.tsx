@@ -1,21 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import classNames from 'classnames';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
+import { filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
 import { getLiOptions } from '../../../utils/getLiOptions';
 import './ResultsHeader.scss';
+import Select from './select/Select';
 
 const SortResultsHeader: React.FC = () => {
   const dispatch = useDispatch();
   const { filter, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
   const liOptions = getLiOptions(isFetching, filter)
-  let clsSelect = classNames('select', { 'busy': isFetching });
-
-  const handleClick = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-    dispatch(setCurrentPage(1));
-    dispatch(sortMoviesAsync(e.target.value));
-  }
 
   const handleOnFilterClick = (genre: string): void => {
     dispatch(setCurrentPage(1));
@@ -34,13 +28,7 @@ const SortResultsHeader: React.FC = () => {
               }
             </ul>
           </div>
-          <div className="results__sort">
-            <span>Sort by</span>
-            <select className={clsSelect} onChange={handleClick}>
-              <option value="RATING">Rating</option>
-              <option value="YEAR">Release date</option>
-            </select>
-          </div>
+          <Select />
         </>}
       </div>
     </>
