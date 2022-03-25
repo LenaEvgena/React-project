@@ -7,13 +7,14 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { firestore, auth } from '../../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import SortResultsHeader from '../../main/resultsHeader/ResultsHeader';
+import { FavoriteMoviesType, UserImplType } from '../../../types/types';
 import './MovieContainer.scss';
 
 const FavorContainer: React.FC = () => {
-  const [user]: any = useAuthState(auth);
+  const [user] = useAuthState(auth) as UserImplType[];
   const { favoriteList } = useTypedSelector((state) => state);
   let count: number = favoriteList?.length;
-  const [_, loading]: Array<any> = useCollectionData(collection(firestore, user?.email || 'favorites')); //получение данных из firestore
+  const [_, loading] = useCollectionData(collection(firestore, user.email || 'favorites')); //получение данных из firestore
 
   return (
     <>
@@ -34,7 +35,7 @@ const FavorContainer: React.FC = () => {
               <span> movies found</span>
             </div>
             <div className="container">
-              {favoriteList && favoriteList.map((f: any) => (
+              {favoriteList && favoriteList.map((f: FavoriteMoviesType) => (
                 <MovieCard
                   favorList={favoriteList}
                   data={f.films}

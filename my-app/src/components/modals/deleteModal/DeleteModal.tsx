@@ -3,18 +3,18 @@ import { useDispatch } from 'react-redux';
 import { closeDeleteMovieForm, deleteMovieById } from './../../../redux/actions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import LogoTitle from '../../common/logoTitle/LogoTitle';
-import SubmitButton from '../../common/submitButton/SubmitButton';
 import Footer from './../../common/footer/Footer';
-import { firestore, auth } from '../../../firebase';
+import Button from '../../common/button/Button';
+import { auth, deleteFavor } from '../../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { deleteDoc, doc } from "firebase/firestore";
+import { UserImplType } from '../../../types/types';
 import './DeleteModal.scss';
 
 const DeleteModal: React.FC = () => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLDivElement>(null);
   const id = useTypedSelector(state => state.movieIdToDelete);
-  const [user]: any = useAuthState(auth);
+  const [user] = useAuthState(auth) as UserImplType[];
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (modalRef.current?.contains(e.target as Element)) {
@@ -23,13 +23,9 @@ const DeleteModal: React.FC = () => {
     dispatch(closeDeleteMovieForm());
   }
 
-  const deleteFavor = async (id: number) => {
-    await deleteDoc(doc(firestore, user?.email, `${id}`))
-  }
-
-  const handleDeleteClick = (id: number): void => {
+  const handleDeleteClick = (id: number, user: UserImplType): void => {
     dispatch(deleteMovieById(id));
-    deleteFavor(id);
+    deleteFavor(id, user);
   }
 
   return (
@@ -43,7 +39,7 @@ const DeleteModal: React.FC = () => {
             <p className="modal__subtitle">Are you sure you want to delete this movie?</p>
           </div>
           <div className="modal-button">
-            <SubmitButton text="confirm" handleClick={() => handleDeleteClick(id as number)} />
+            <Button className='submit__button' type='button' text='confirm'  handleClick={() => handleDeleteClick(id as number, user)} />
           </div>
         </div>
       </div>

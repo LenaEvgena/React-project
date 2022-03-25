@@ -1,17 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { sortMoviesAsync, filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
+import { filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
+import { getLiOptions } from '../../../utils/getLiOptions';
 import './ResultsHeader.scss';
+import Select from './select/Select';
 
 const SortResultsHeader: React.FC = () => {
   const dispatch = useDispatch();
   const { filter, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
-
-  const handleClick = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-    dispatch(setCurrentPage(1));
-    dispatch(sortMoviesAsync(e.target.value));
-  }
+  const liOptions = getLiOptions(isFetching, filter)
 
   const handleOnFilterClick = (genre: string): void => {
     dispatch(setCurrentPage(1));
@@ -25,20 +23,12 @@ const SortResultsHeader: React.FC = () => {
         {!isFavorListOpen && <>
           <div className="results__filter">
             <ul>
-              <li className={`${isFetching && 'busy'} ${filter === 'all' && 'active'}`} onClick={() => handleOnFilterClick('all')}>All</li>
-              <li className={`${isFetching && 'busy'} ${filter === 'drama' && 'active'}`} onClick={() => handleOnFilterClick('drama')}>Drama</li>
-              <li className={`${isFetching && 'busy'} ${filter === 'melodrama' && 'active'}`} onClick={() => handleOnFilterClick('melodrama')}>Melodrama</li>
-              <li className={`${isFetching && 'busy'} ${filter === 'thriller' && 'active'}`} onClick={() => handleOnFilterClick('thriller')}>Thriller</li>
-              <li className={`${isFetching && 'busy'} ${filter === 'crime' && 'active'}`} onClick={() => handleOnFilterClick('crime')}>Crime</li>
+              {
+                liOptions.map((item) => <li className={item.cls} key={item.type} onClick={() => handleOnFilterClick(item.type)}>{item.type}</li>)
+              }
             </ul>
           </div>
-          <div className="results__sort">
-            <span>Sort by</span>
-            <select className={`${isFetching && 'busy'} select`} onChange={handleClick}>
-              <option value="RATING">Rating</option>
-              <option value="YEAR">Release date</option>
-            </select>
-          </div>
+          <Select />
         </>}
       </div>
     </>

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { FavoriteMoviesType, ItemType } from '../../../types/types';
+import { FavoriteMoviesType, ItemType, UserImplType } from '../../../types/types';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { openDeleteMovieForm } from '../../../redux/actions';
 import DeleteModal from '../../modals/deleteModal/DeleteModal';
 import { auth, deleteFavor, sendFavor } from '../../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import classNames from 'classnames';
 import './MovieCard.scss';
 
 type PropsType = {
@@ -17,7 +18,7 @@ type PropsType = {
 const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState<boolean>(false);
-  const [user]: any = useAuthState(auth);
+  const [user] = useAuthState(auth) as UserImplType[];
   const { isDeleteFormOpen, isFavorListOpen } = useTypedSelector(state => state);
   let genresList: Array<string> = [];
   let countriesList: Array<string> = [];
@@ -28,6 +29,7 @@ const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   data.countries!.map((c) => countriesList.push(c.country));
 
   const isFavoriteMovie = (id: number) => favorList?.some((item) => item.films.kinopoiskId === id);
+  let cls = classNames('movie_icon-fav', { 'active': isFavoriteMovie(data.kinopoiskId as number) });
 
   const handleOptions = (e: React.MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
@@ -58,9 +60,9 @@ const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
     <div className="movie">
       <div className="movie__image">
         {user ?
-          <i className={`movie_icon-fav ${isFavoriteMovie(data.kinopoiskId as number) ? 'active' : ''}`} onClick={() => handleFavoriteClick(data.kinopoiskId as number)}></i>
+          <i className={cls} onClick={() => handleFavoriteClick(data.kinopoiskId as number)}></i>
           :
-          <i className={`movie_icon-fav`} data-tool={text}></i>
+          <i className={cls} data-tool={text}></i>
         }
         <img className="movie__card" src={data.posterUrl || data.posterUrlPreview} alt={data.nameOriginal || data.nameRu as string} />
 

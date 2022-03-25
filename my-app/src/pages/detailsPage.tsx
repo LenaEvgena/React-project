@@ -1,6 +1,6 @@
 import React from 'react'
-import Main from '../main/Main'
-import MovieDetails from '../movieDetails/MovieDetails'
+import MovieDetails from '../components/movieDetails/MovieDetails';
+import Main from '../components/main/Main';
 
 const DetailsPage: React.FC = () => {
   return (

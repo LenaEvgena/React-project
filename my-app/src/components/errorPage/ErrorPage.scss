@@ -1,34 +1,34 @@
 @import "./../../constants.scss";
 
 .error {
-    width: 100%;
-    background-color: $color-dark;
-    height: 80rem;
-    padding: 3rem 4rem;
+  width: 100%;
+  background-color: $color-dark;
+  height: 80rem;
+  padding: 3rem 4rem;
+  position: relative;
+
+  &__wrapper {
     position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-    &__wrapper {
-      position: relative;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+  &_content {
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    &_content {
-      height: 55%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between
-    }
+  &_text {
+    text-transform: capitalize;
+  }
 
-    &_text {
-      text-transform: capitalize;
-    }
-
-    &_num {
-      font-size: 18rem;
-    }
+  &_num {
+    font-size: 18rem;
+  }
 }

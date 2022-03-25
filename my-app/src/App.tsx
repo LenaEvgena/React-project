@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/header/Header';
+import HeaderContainer from './components/header/HeaderContainer';
 import AuthFormContainer from './components/authForm/AuthFormContainer';
 import ErrorPage from './components/errorPage/ErrorPage';
 import ScrollButton from './components/common/scrollButton/ScrollButton';
 import Footer from './components/common/footer/Footer';
-import HomePage from './components/pages/homePage';
-import DetailsPage from './components/pages/detailsPage';
-import FavorPage from './components/pages/favorPage';
-import FavoriteDetailsPage from './components/pages/FavoriteDetailsPage';
+import HomePage from './pages/homePage';
+import DetailsPage from './pages/detailsPage';
+import FavorPage from './pages/favorPage';
+import FavoriteDetailsPage from './pages/FavoriteDetailsPage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebase';
 import './style.scss';
@@ -17,7 +17,7 @@ const App: React.FC = () => {
   const [user] = useAuthState(auth);
   return (
     <BrowserRouter basename='/React-project'>
-      <Header />
+      <HeaderContainer />
       <Routes>
         <Route path='/register' element={<AuthFormContainer isRegisterForm={true} />} />
         <Route path='/auth' element={<AuthFormContainer isRegisterForm={false} />} />

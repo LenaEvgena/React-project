@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { ItemType, VideoItemType } from '../../../types/types';
+import Button from '../../common/button/Button';
 import Footer from '../../common/footer/Footer';
 import LogoTitle from '../../common/logoTitle/LogoTitle';
-import SubmitButton from '../../common/submitButton/SubmitButton';
 import './VideoModal.scss';
 
 type PropsType = {
@@ -40,7 +40,7 @@ const VideoModal: React.FC<PropsType> = ({ movie, video, handleVideoModal }) => 
             </div>
           </div>
           <div className="video-button">
-            <SubmitButton text="Back" handleClick={handleVideoModal} />
+            <Button className='submit__button' type='button' text='Back' handleClick={handleVideoModal} />
           </div>
         </div>
         <div className="video-footer">

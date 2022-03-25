@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ResetButton from '../common/resetButton/ResetButton';
+import Button from '../common/button/Button';
 import './ErrorPage.scss';
 
 type PropsType = {
@@ -16,7 +16,7 @@ const ErrorPage: React.FC<PropsType> = ({ text, handleClick }) => (
           <h2 className="error_text">Page not Found</h2>
           <p className="error_num">404</p>
           <Link to="/">
-            <ResetButton handleClick={handleClick} text={text || 'Go back'} />
+            <Button className='reset__button' type='reset' text={text || 'Go back'} handleClick={handleClick} />
           </Link>
         </div>
       </div>

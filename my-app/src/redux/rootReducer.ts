@@ -1,4 +1,4 @@
-import { ActionType, ActionTypes, InitialStateType } from '../types/types';
+import { ActionType, ActionTypes, InitialStateType, ItemType } from '../types/types';
 
 const initialState: InitialStateType = {
   movies: {
@@ -22,8 +22,6 @@ const initialState: InitialStateType = {
   },
   isFavorListOpen: false,
   videos: [],
-  userName: '',
-  password: '',
   favoriteList: []
 }
 
@@ -101,7 +99,7 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
       copy.totalCount = state.totalCount - 1;
       copy.total = state.total - 1;
       copy.movies = { ...state.movies };
-      copy.movies.items = [...state.movies.items.filter((item: any) => item.kinopoiskId !== action.id)];
+      copy.movies.items = [...state.movies.items.filter((item: ItemType) => item.kinopoiskId !== action.id)];
       return copy;
     case ActionTypes.SET_FAVORITE_MOVIE_LIST:
       return {
@@ -122,26 +120,6 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
       return {
         ...state,
         videos: action.videos,
-      }
-    case ActionTypes.SET_AUTH_NAME:
-      return {
-        ...state,
-        userName: action.userName,
-      }
-    case ActionTypes.REMOVE_AUTH_NAME:
-      return {
-        ...state,
-        userName: action.userName,
-      }
-    case ActionTypes.SET_AUTH_PASSWORD:
-      return {
-        ...state,
-        password: action.password,
-      }
-    case ActionTypes.REMOVE_AUTH_PASSWORD:
-      return {
-        ...state,
-        password: action.password,
       }
     default:
       return state;

@@ -1,15 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import SubmitButton from '../common/submitButton/SubmitButton';
-import ResetButton from '../common/resetButton/ResetButton';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
+import Button from '../common/button/Button';
 import './AuthForm.scss';
 
 type PropsType = {
   title: string,
   handleClick: (values: SchemaType) => void,
-  handleReset: () => void,
 }
 
 export type SchemaType = {
@@ -26,15 +24,14 @@ const validationSchema: Yup.SchemaOf<SchemaType> = Yup.object({
     .required('This field is required'),
 });
 
-const AuthForm: React.FC<PropsType> = ({ title, handleClick, handleReset }) => {
+const AuthForm: React.FC<PropsType> = ({ title, handleClick }) => {
   const navigate = useNavigate();
 
   const handleClose = (): void => {
-    handleReset();
     navigate('/');
   }
 
-  const submit = (values: SchemaType, { setSubmitting }: { setSubmitting: (setSubmitting: boolean) => void }) => {
+  const submit = (values: SchemaType, { setSubmitting }: FormikHelpers<SchemaType>) => {
     handleClick(values);
   }
 
@@ -83,8 +80,8 @@ const AuthForm: React.FC<PropsType> = ({ title, handleClick, handleReset }) => {
                   </label>
                 </div>
                 <div className="modal-button">
-                  <ResetButton text="Reset" handleClick={handleReset} />
-                  <SubmitButton text={title} />
+                  <Button type='reset' text='reset' className='reset__button' />
+                  <Button type='submit' text={title} className='submit__button' />
                 </div>
               </Form>
             )}

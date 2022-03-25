@@ -3,14 +3,15 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Background from '../common/background/Background';
-import SubmitButton from '../common/submitButton/SubmitButton';
 import VideoModal from '../modals/videoModal/VideoModal';
+import Button from '../common/button/Button';
 import { removeSelectedMovie, toggleMovieDetailsForm, removeVideoList } from '../../redux/actions';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActionsThunks';
-import { ItemType, VideoItemType } from '../../types/types';
+import { ItemType, UserImplType, VideoItemType } from '../../types/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { auth, deleteFavor, sendFavor } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import classNames from 'classnames';
 import './MovieDetails.scss';
 
 type ParamsIdType = {
@@ -19,18 +20,11 @@ type ParamsIdType = {
 
 const MovieDetails: React.FC = () => {
   const dispatch = useDispatch();
-  const [user]: any = useAuthState(auth);
+  const [user] = useAuthState(auth) as UserImplType[];
   const { selectedByIdMovie, favoriteList, videos, isFavorListOpen } = useTypedSelector((state) => state);
   const { id } = useParams<ParamsIdType>();
   const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
   let pathTo = isFavorListOpen ? `/favorite` : `/`;
-
-  useEffect(() => {
-    window.scroll(0, 0);
-    dispatch(fetchMovieById(id as string));
-    dispatch(fetchVideoById(id as string));
-    dispatch(toggleMovieDetailsForm(true));
-  }, [id, dispatch]);
 
   const getVideo = (arr: Array<VideoItemType>): VideoItemType => {
     let item = arr.find(v => v.site === 'YOUTUBE');
@@ -38,8 +32,8 @@ const MovieDetails: React.FC = () => {
   }
 
   const itemVideo = getVideo(videos);
-
   const isFavorite = (id: number) => favoriteList?.some((item) => item.films?.kinopoiskId === id);
+  let cls = classNames('movie_icon-fav', { 'active': isFavorite(selectedByIdMovie?.kinopoiskId as number) });
 
   const handleVideoModal = (): void => {
     setShowVideoModal(!showVideoModal);
@@ -65,6 +59,13 @@ const MovieDetails: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    window.scroll(0, 0);
+    dispatch(fetchMovieById(id as string));
+    dispatch(fetchVideoById(id as string));
+    dispatch(toggleMovieDetailsForm(true));
+  }, [id, dispatch]);
+
   return (
     <>
       {showVideoModal && <VideoModal movie={selectedByIdMovie as ItemType} video={itemVideo as VideoItemType} handleVideoModal={handleVideoModal} />}
@@ -78,10 +79,10 @@ const MovieDetails: React.FC = () => {
           <div className="details__container">
             <div className="details__aside">
               <div className="details__image">
-                <i className={`movie_icon-fav ${isFavorite(selectedByIdMovie?.kinopoiskId as number) ? 'active' : ''}`} onClick={() => handleFavoriteClick(selectedByIdMovie?.kinopoiskId as number)}></i>
+                <i className={cls} onClick={() => handleFavoriteClick(selectedByIdMovie?.kinopoiskId as number)}></i>
                 <img className="image-cover" src={selectedByIdMovie?.posterUrl || selectedByIdMovie?.posterUrlPreview} alt={selectedByIdMovie?.nameOriginal || selectedByIdMovie?.nameRu as string} />
               </div>
-              <SubmitButton text='Video' isBusy={!itemVideo} handleClick={handleClick} />
+              <Button className='submit__button' type='button' text='Video' isBusy={!itemVideo} handleClick={handleClick} />
             </div>
 
             <div className="details__content">

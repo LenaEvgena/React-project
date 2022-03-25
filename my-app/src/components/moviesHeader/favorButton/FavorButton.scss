@@ -1,36 +1,5 @@
 @import "./../../../constants.scss";
 
-.fav-button {
-  min-height: 4rem;
-  background-color: rgba(98, 96, 96, 0.527);
-  border: none;
-  border-radius: 3px;
-  padding: 1rem 1.5rem;
-  color: $color-primary;
-  font-family: $font-family;
-  font-size: 1.3rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: 0.3s;
-
-  &.busy {
-    color: $color-dark;
-    opacity: 0.7;
-    pointer-events: none;
-    cursor: default;
-  }
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  @media only screen and (max-width: 580px){
-    font-size: 1.8rem;
-  }
-}
-
 .logo__button {
   position: relative;
 }

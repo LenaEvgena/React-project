@@ -13,7 +13,7 @@
   border-bottom: 2px solid $color-light-grey;
   padding: 0 6rem;
 
-  @media only screen and (max-width: 450px){
+  @media only screen and (max-width: 450px) {
     column-count: 2;
     height: auto;
   }
@@ -31,7 +31,7 @@
   align-items: center;
   height: 6rem;
 
-  @media only screen and (max-width: 450px){
+  @media only screen and (max-width: 450px) {
     align-items: flex-start;
     height: 30rem;
   }
@@ -40,7 +40,7 @@
     display: flex;
     margin: 0;
 
-    @media only screen and (max-width: 450px){
+    @media only screen and (max-width: 450px) {
       flex-direction: column;
       height: 20rem;
     }
@@ -51,6 +51,7 @@
     margin-right: 3rem;
     transition: 0.3s;
     cursor: pointer;
+    border-bottom: 2px solid $color-light-grey;
 
     &.active {
       border-bottom: 2px solid $color-primary;
@@ -66,47 +67,3 @@
     }
   }
 }
-
-.results__sort{
-  span {
-    margin-right: 3rem;
-    opacity: 0.5;
-  }
-
-  select {
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: $color-light;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    align-items: center;
-    -webkit-appearance: none;
-    background: url('./../../../assets/triangle.svg');
-    background-position: center right;
-    background-repeat: no-repeat;
-
-    &.busy {
-      pointer-events: none;
-      opacity: 0.7;
-    }
-  }
-
-  .select {
-    width: 16rem;
-    height: 2rem;
-
-    &.busy {
-      pointer-events: none;
-      opacity: 0.7;
-    }
-  }
-
-  option {
-    outline: none;
-    background-color: $color-light-grey;
-  }
-}
-
