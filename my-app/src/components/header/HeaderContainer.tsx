@@ -11,7 +11,7 @@ import useCollection from '../../hooks/useCollection';
 const HeaderContainer: React.FC = () => {
   const dispatch = useDispatch();
   const user = useAuth();
-  const [favorites] = useCollection();
+  const {favorites} = useCollection();
 
   const handleLogout = async () => {
     signOut(auth).then(() => {

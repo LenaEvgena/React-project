@@ -10,7 +10,7 @@ import './MovieContainer.scss';
 const FavorContainer: React.FC = () => {
   const { favoriteList } = useTypedSelector((state) => state);
   let count: number = favoriteList?.length;
-  const [_, loading] = useCollection();
+  const { loading } = useCollection();
 
   return (
     <>

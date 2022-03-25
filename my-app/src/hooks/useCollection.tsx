@@ -6,7 +6,7 @@ import useAuth from './useAuth';
 const useCollection = () => {
   const user = useAuth();
   const [favorites, loading] = useCollectionData(collection(firestore, user?.uid || 'favorites')); //получение данных из firestore
-  return [favorites, loading];
+  return { favorites, loading };
 }
 
 export default useCollection;
