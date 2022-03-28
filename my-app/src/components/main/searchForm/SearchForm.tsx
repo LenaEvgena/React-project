@@ -12,13 +12,14 @@ const SearchForm: React.FC = () => {
   const navigate = useNavigate();
   const { keyword, sortType, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
 
-  const handleClick = (): void => {
+  const handleClick = (keyword: string): void => {
     if (!keyword.trim()) return;
     if (isFavorListOpen) {
       navigate('/');
       dispatch(toggleFavoriteList(false));
     }
     dispatch(setCurrentPage(1));
+    dispatch(setMoviesKeyword(keyword));
     dispatch(filterGenreMoviesAsync('all'));
     dispatch(getMoviesAPI(1, sortType, 'all', keyword));
   }
@@ -37,7 +38,7 @@ const SearchForm: React.FC = () => {
         <h1>Find your movie</h1>
       </div>
 
-      <SearchBar isBusy={isFetching} handleClick={handleClick} handleResetClick={handleResetClick} />
+      <SearchBar isBusy={isFetching} handleClick={(keyword) => handleClick(keyword)} handleResetClick={handleResetClick} />
     </div>
   )
 };
