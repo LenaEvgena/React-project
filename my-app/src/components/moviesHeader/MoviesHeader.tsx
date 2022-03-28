@@ -34,11 +34,7 @@ const MoviesHeader: React.FC = () => {
         <Background />
         <div className="header__wrapper">
           <div className="header__logo">
-            {isFavorListOpen ?
-              <FavorButton isBusy={!user} handleClick={handleCloseClick} length={favoriteList.length || 0} text={text} />
-              :
-              <FavorButton isBusy={!user} handleClick={handleOpenClick} length={favoriteList.length || 0} text={text} />
-            }
+            <FavorButton isBusy={!user} handleClick={isFavorListOpen ? handleCloseClick : handleOpenClick} length={favoriteList.length || 0} text={text} />
           </div>
           <SearchForm />
         </div>
