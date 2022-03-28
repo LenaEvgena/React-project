@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { setCurrentPage, setMoviesAsync } from '../../../redux/actions';
@@ -18,12 +18,16 @@ const MovieContainer: React.FC = () => {
   let clsPages = classNames('page', { 'busy': isFetching });
   const pages: Array<number> = [];
 
+  const fetchMovie = useCallback(() => {
+    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword))
+  }, [currentPage, filter, sortType]);
+
   useEffect(() => {
     window.scroll(0, 0);
-    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
+    fetchMovie();
 
     return () => {
-      dispatch(setMoviesAsync({ items: [], total: total || 400, totalPages: totalPages || 7})); //fixes memory leak
+      dispatch(setMoviesAsync({ items: [], total: total || 400, totalPages: totalPages || 7 })); //fixes memory leak
     };
   }, [currentPage, filter, sortType]);
 
