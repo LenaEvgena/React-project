@@ -37,7 +37,6 @@ const SearchForm: React.FC = () => {
       <div className="search__text">
         <h1>Find your movie</h1>
       </div>
-
       <SearchBar isBusy={isFetching} handleClick={(keyword) => handleClick(keyword)} handleResetClick={handleResetClick} />
     </div>
   )

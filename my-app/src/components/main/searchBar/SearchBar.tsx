@@ -26,7 +26,6 @@ const SearchBar: React.FC<PropsType> = ({ isBusy, handleClick, handleResetClick 
 
   return (
     <div className="search">
-
       <Formik
         initialValues={{
           word: '',
