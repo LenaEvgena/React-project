@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
 import { getLiOptions } from '../../../utils/getLiOptions';
-import './ResultsHeader.scss';
 import Select from './select/Select';
+import './ResultsHeader.scss';
 
-const SortResultsHeader: React.FC = () => {
+const ResultsHeader: React.FC = () => {
   const dispatch = useDispatch();
   const { filter, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
   const liOptions = getLiOptions(isFetching, filter)
@@ -35,4 +35,4 @@ const SortResultsHeader: React.FC = () => {
   )
 };
 
-export default SortResultsHeader;
+export default ResultsHeader;

@@ -4,8 +4,8 @@ import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword, toggleFavorit
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useNavigate } from 'react-router-dom';
-import './SearchForm.scss';
 import SearchBar from '../searchBar/SearchBar';
+import './SearchForm.scss';
 
 const SearchForm: React.FC = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import React from 'react';
 import ErrorBoundary from '../common/errorBoundary/ErrorBoundary';
-import SortResultsHeader from './resultsHeader/ResultsHeader';
+import ResultsHeader from './resultsHeader/ResultsHeader';
 import MovieContainer from './movieContainer/MovieContainer';
 import './Main.scss';
 
@@ -9,7 +9,7 @@ const Main: React.FC = () => {
     <>
       <ErrorBoundary>
         <main className="main">
-          <SortResultsHeader />
+          <ResultsHeader />
           <MovieContainer />
         </main>
       </ErrorBoundary>

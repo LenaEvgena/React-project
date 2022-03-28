@@ -68,7 +68,7 @@ const MovieDetails: React.FC = () => {
     return () => {
       isMounted = false;
     }
-  }, [id, dispatch]);
+  }, [id]);
 
   return (
     <>

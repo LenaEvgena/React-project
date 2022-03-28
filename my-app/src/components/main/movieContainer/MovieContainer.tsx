@@ -20,7 +20,7 @@ const MovieContainer: React.FC = () => {
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
 
     return () => {
-      dispatch(setMoviesAsync({ items: [], total, totalPages })); //fixes memory leak
+      dispatch(setMoviesAsync({ items: [], total: total || 400, totalPages })); //fixes memory leak
     };
   }, [currentPage, filter, sortType]);
 
