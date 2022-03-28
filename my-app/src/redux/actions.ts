@@ -9,8 +9,8 @@ import {
 export const setMoviesAsync = (movies: MoviesType): SetMovieType => ({
   type: ActionTypes.SET_MOVIES_ASYNC,
   movies,
-  totalCount: movies.total,
-  total: movies.totalPages,
+  total: movies.total,
+  totalPages: movies.totalPages,
 })
 
 export const setCurrentPage = (page: number): SetCurrentPageType => ({

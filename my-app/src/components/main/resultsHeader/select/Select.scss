@@ -2,7 +2,11 @@
 
 .results__sort {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+
+  @media only screen and (max-width: 550px) {
+    margin: 0 auto;
+  }
 }
 
 .results__title {
@@ -37,6 +41,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media only screen and (max-width: 550px) {
+      width: 19rem;
+    }
+  }
+
+  &__current {
+    @media only screen and (max-width: 550px) {
+    }
   }
 
   &__icon {

@@ -2,7 +2,7 @@ import React from 'react'
 import FavorContainer from '../components/main/movieContainer/FavorContainer';
 import MoviesHeader from '../components/moviesHeader/MoviesHeader';
 
-const FavorPage: React.FC = () => {
+const FavoritePage: React.FC = () => {
   return (
     <>
       <MoviesHeader />
@@ -11,4 +11,4 @@ const FavorPage: React.FC = () => {
   )
 }
 
-export default FavorPage;
+export default FavoritePage;

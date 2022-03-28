@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { FavoriteMoviesType, ItemType, UserImplType } from '../../../types/types';
+import { FavoriteMoviesType, ItemType } from '../../../types/types';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { openDeleteMovieForm } from '../../../redux/actions';
 import DeleteModal from '../../modals/deleteModal/DeleteModal';
-import { auth, deleteFavor, sendFavor } from '../../../firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { deleteFavor, sendFavor } from '../../../firebase';
 import classNames from 'classnames';
+import useAuth from '../../../hooks/useAuth';
 import './MovieCard.scss';
 
 type PropsType = {
@@ -18,15 +18,15 @@ type PropsType = {
 const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState<boolean>(false);
-  const [user] = useAuthState(auth) as UserImplType[];
+  const user = useAuth();
   const { isDeleteFormOpen, isFavorListOpen } = useTypedSelector(state => state);
   let genresList: Array<string> = [];
   let countriesList: Array<string> = [];
   let path = isFavorListOpen ? `/favorite/movie/${data.kinopoiskId}` : `/movie/${data.kinopoiskId}`;
   let text = 'Please, register or log in';
 
-  data.genres!.map((g) => genresList.push(g.genre));
-  data.countries!.map((c) => countriesList.push(c.country));
+  data.genres?.map((g) => genresList.push(g.genre));
+  data.countries?.map((c) => countriesList.push(c.country));
 
   const isFavoriteMovie = (id: number) => favorList?.some((item) => item.films.kinopoiskId === id);
   let cls = classNames('movie_icon-fav', { 'active': isFavoriteMovie(data.kinopoiskId as number) });

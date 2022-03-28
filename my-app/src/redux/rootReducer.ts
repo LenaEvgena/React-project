@@ -7,8 +7,8 @@ const initialState: InitialStateType = {
     totalPages: 0
   },
   currentPage: 1,
-  totalCount: 0,
   total: 0,
+  totalPages: 0,
   isFetching: false,
   isFetchedError: false,
   movieIdToDelete: null,
@@ -31,8 +31,8 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
       return {
         ...state,
         movies: action.movies,
-        totalCount: action.totalCount,
         total: action.total,
+        totalPages: action.totalPages,
         isFetchedError: false,
       }
     case ActionTypes.SET_CURRENT_PAGE:
@@ -96,8 +96,8 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
       let copy = { ...state };
       copy.isDeleteFormOpen = false;
       copy.movieIdToDelete = null;
-      copy.totalCount = state.totalCount - 1;
       copy.total = state.total - 1;
+      copy.totalPages = state.totalPages - 1;
       copy.movies = { ...state.movies };
       copy.movies.items = [...state.movies.items.filter((item: ItemType) => item.kinopoiskId !== action.id)];
       return copy;

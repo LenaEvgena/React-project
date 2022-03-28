@@ -71,8 +71,8 @@ export type FavoriteMoviesType = {
 export type InitialStateType = {
   movies: MoviesType,
   currentPage: number,
-  totalCount: number, //всего фильмов
-  total: number,
+  total: number, //всего фильмов
+  totalPages: number,
   isFetching: boolean,
   isFetchedError: boolean,
   movieIdToDelete: number | null,
@@ -90,8 +90,8 @@ export type InitialStateType = {
 export type SetMovieType = {
   type: ActionTypes.SET_MOVIES_ASYNC,
   movies: MoviesType,
-  totalCount: number,
   total: number,
+  totalPages: number,
 }
 
 export type SetCurrentPageType = {

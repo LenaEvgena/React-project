@@ -2,19 +2,17 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import Background from '../common/background/Background';
 import FavorButton from './favorButton/FavorButton';
-import SearchForm from '../main/searchForm/SearchForm';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { toggleFavoriteList } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase';
-import { UserImplType } from '../../types/types';
+import useAuth from '../../hooks/useAuth';
+import SearchForm from './searchForm/SearchForm';
 import './MoviesHeader.scss';
 
 const MoviesHeader: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [user] = useAuthState(auth) as UserImplType[];
+  const user = useAuth();
   const { isFavorListOpen, favoriteList } = useTypedSelector(state => state)
   let text = !isFavorListOpen ? 'Show favorites' : 'Close favorites';
 

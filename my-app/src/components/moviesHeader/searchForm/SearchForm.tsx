@@ -1,10 +1,10 @@
 import React from 'react';
-import SearchBar from '../searchBar/SearchBar';
 import { useDispatch } from 'react-redux';
 import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword, toggleFavoriteList } from '../../../redux/actions';
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useNavigate } from 'react-router-dom';
+import SearchBar from '../searchBar/SearchBar';
 import './SearchForm.scss';
 
 const SearchForm: React.FC = () => {
@@ -12,13 +12,14 @@ const SearchForm: React.FC = () => {
   const navigate = useNavigate();
   const { keyword, sortType, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
 
-  const handleClick = (): void => {
+  const handleClick = (keyword: string): void => {
     if (!keyword.trim()) return;
     if (isFavorListOpen) {
       navigate('/');
       dispatch(toggleFavoriteList(false));
     }
     dispatch(setCurrentPage(1));
+    dispatch(setMoviesKeyword(keyword));
     dispatch(filterGenreMoviesAsync('all'));
     dispatch(getMoviesAPI(1, sortType, 'all', keyword));
   }
@@ -36,8 +37,7 @@ const SearchForm: React.FC = () => {
       <div className="search__text">
         <h1>Find your movie</h1>
       </div>
-
-      <SearchBar isBusy={isFetching} handleClick={handleClick} handleResetClick={handleResetClick} />
+      <SearchBar isBusy={isFetching} handleClick={(keyword: string) => handleClick(keyword)} handleResetClick={handleResetClick} />
     </div>
   )
 };
