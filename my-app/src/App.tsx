@@ -6,7 +6,7 @@ import ErrorPage from './components/errorPage/ErrorPage';
 import ScrollButton from './components/common/scrollButton/ScrollButton';
 import Footer from './components/common/footer/Footer';
 import HomePage from './pages/HomePage';
-import DetailsPage from './pages/DetailsPage';
+import HomeDetailsPage from './pages/HomeDetailsPage';
 import FavoritePage from './pages/FavoritePage';
 import FavoriteDetailsPage from './pages/FavoriteDetailsPage';
 import useAuth from './hooks/useAuth';
@@ -22,7 +22,7 @@ const App: React.FC = () => {
         <Route path='/auth' element={<AuthFormContainer isRegisterForm={false} />} />
         <Route path='/' element={<HomePage />} />
         <Route path='*' element={<ErrorPage />} />
-        <Route path='/movie/:id' element={<DetailsPage />} />
+        <Route path='/movie/:id' element={<HomeDetailsPage />} />
         {user ?
           <Route path='/favorite' element={<FavoritePage />} /> :
           <Route path='/' element={<HomePage />} />
