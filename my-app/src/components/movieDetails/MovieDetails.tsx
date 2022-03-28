@@ -61,9 +61,13 @@ const MovieDetails: React.FC = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
-    dispatch(fetchMovieById(id as string));
-    dispatch(fetchVideoById(id as string));
+    let isMounted = true;
+    dispatch(fetchMovieById(id as string, isMounted));
+    dispatch(fetchVideoById(id as string, isMounted));
     dispatch(toggleMovieDetailsForm(true));
+    return () => {
+      isMounted = false;
+    }
   }, [id, dispatch]);
 
   return (

@@ -16,22 +16,26 @@ export const getMoviesAPI = (currentPage: number, sortType = 'RATING', genre: st
   }
 }
 
-export const fetchMovieById = (movieId: string) => {
+export const fetchMovieById = (movieId: string, isMounted: boolean) => {
   return async (dispatch: Dispatch<ActionType>) => {
     try {
       const res = await fetchMovieByIdAPI(movieId);
-      dispatch(setMovieByID(res.data));
+      if (isMounted) {
+        dispatch(setMovieByID(res.data));
+      }
     } catch (error) {
       dispatch(setFetchedError(true));
     }
   }
 }
 
-export const fetchVideoById = (id: string) => {
+export const fetchVideoById = (id: string, isMounted: boolean) => {
   return async (dispatch: Dispatch<ActionType>) => {
     try {
       const res = await fetchVideoByIdAPI(id);
-      dispatch(setVideoList(res.data.items || []));
+      if (isMounted) {
+        dispatch(setVideoList(res.data.items || []));
+      }
     } catch (error) {
       dispatch(setFetchedError(true));
     }

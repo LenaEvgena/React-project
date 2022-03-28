@@ -25,8 +25,8 @@ const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   let path = isFavorListOpen ? `/favorite/movie/${data.kinopoiskId}` : `/movie/${data.kinopoiskId}`;
   let text = 'Please, register or log in';
 
-  data.genres!.map((g) => genresList.push(g.genre));
-  data.countries!.map((c) => countriesList.push(c.country));
+  data.genres?.map((g) => genresList.push(g.genre));
+  data.countries?.map((c) => countriesList.push(c.country));
 
   const isFavoriteMovie = (id: number) => favorList?.some((item) => item.films.kinopoiskId === id);
   let cls = classNames('movie_icon-fav', { 'active': isFavoriteMovie(data.kinopoiskId as number) });

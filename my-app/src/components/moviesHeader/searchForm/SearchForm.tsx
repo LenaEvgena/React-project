@@ -1,11 +1,11 @@
 import React from 'react';
-import SearchBar from '../searchBar/SearchBar';
 import { useDispatch } from 'react-redux';
 import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword, toggleFavoriteList } from '../../../redux/actions';
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useNavigate } from 'react-router-dom';
 import './SearchForm.scss';
+import SearchBar from '../searchBar/SearchBar';
 
 const SearchForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const SearchForm: React.FC = () => {
       <div className="search__text">
         <h1>Find your movie</h1>
       </div>
-      <SearchBar isBusy={isFetching} handleClick={(keyword) => handleClick(keyword)} handleResetClick={handleResetClick} />
+      <SearchBar isBusy={isFetching} handleClick={(keyword: string) => handleClick(keyword)} handleResetClick={handleResetClick} />
     </div>
   )
 };

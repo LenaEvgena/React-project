@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { setCurrentPage } from '../../../redux/actions';
+import { setCurrentPage, setMoviesAsync } from '../../../redux/actions';
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { createPages } from '../../../utils/createPages';
 import ErrorPage from '../../errorPage/ErrorPage';
@@ -12,15 +12,19 @@ import './MovieContainer.scss';
 const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
   const movies = useTypedSelector((state) => state.movies.items);
-  const { keyword, filter, total, totalCount, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
+  const { keyword, filter, total, totalPages, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
   const pages: Array<number> = [];
 
   useEffect(() => {
     window.scroll(0, 0);
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
+
+    return () => {
+      dispatch(setMoviesAsync({ items: [], total, totalPages })); //fixes memory leak
+    };
   }, [currentPage, filter, sortType]);
 
-  createPages(pages, total, currentPage);
+  createPages(pages, totalPages, currentPage);
 
   if (isFetchedError) {
     return <ErrorPage handleClick={() => dispatch(getMoviesAPI(currentPage, sortType))} text='Try again' />;
@@ -29,7 +33,7 @@ const MovieContainer: React.FC = () => {
   return (
     <div className="movie__container">
 
-      {totalCount === 0 && !isFetching ?
+      {total === 0 && !isFetching ?
 
         <div className="movie__container">
           <div className="loading noresult">No movies found</div>
@@ -37,7 +41,7 @@ const MovieContainer: React.FC = () => {
 
         <>
           <div className="result">
-            <span className="result__count">{totalCount}</span>
+            <span className="result__count">{total}</span>
             <span> movies found</span>
           </div>
           <div className="pages">
