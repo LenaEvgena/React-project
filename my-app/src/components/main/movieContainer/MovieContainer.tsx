@@ -4,6 +4,7 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { setCurrentPage, setMoviesAsync } from '../../../redux/actions';
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { createPages } from '../../../utils/createPages';
+import classNames from 'classnames';
 import ErrorPage from '../../errorPage/ErrorPage';
 import MovieCard from '../movieCard/MovieCard';
 import Loader from '../../common/loader/Loader';
@@ -14,6 +15,7 @@ const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
   const movies = useTypedSelector((state) => state.movies.items);
   const { keyword, filter, total, totalPages, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
+  let clsPages = classNames('page', { 'busy': isFetching });
   const pages: Array<number> = [];
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const MovieContainer: React.FC = () => {
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
 
     return () => {
-      dispatch(setMoviesAsync({ items: [], total: total || 400, totalPages })); //fixes memory leak
+      dispatch(setMoviesAsync({ items: [], total: total || 400, totalPages: totalPages || 7})); //fixes memory leak
     };
   }, [currentPage, filter, sortType]);
 
@@ -48,7 +50,7 @@ const MovieContainer: React.FC = () => {
             </div>
             <div className="pages">
               {pages.map((page, index) => <span
-                className={currentPage === page ? "page active" : "page"}
+                className={currentPage === page ? `${clsPages} active` : clsPages}
                 key={index}
                 onClick={() => dispatch(setCurrentPage(page))}>{page}</span>)}
             </div>
