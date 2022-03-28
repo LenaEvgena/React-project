@@ -30,8 +30,8 @@ const MovieDetails: React.FC = () => {
     let item = arr.find(v => v.site === 'YOUTUBE');
     return item as VideoItemType;
   }
-
   const itemVideo = getVideo(videos);
+
   const isFavorite = (id: number) => favoriteList?.some((item) => item.films?.kinopoiskId === id);
   let cls = classNames('movie_icon-fav', { 'active': isFavorite(selectedByIdMovie?.kinopoiskId as number) });
 
@@ -61,13 +61,9 @@ const MovieDetails: React.FC = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
-    let isMounted = true;
-    dispatch(fetchMovieById(id as string, isMounted));
-    dispatch(fetchVideoById(id as string, isMounted));
+    dispatch(fetchMovieById(id as string));
+    dispatch(fetchVideoById(id as string));
     dispatch(toggleMovieDetailsForm(true));
-    return () => {
-      isMounted = false;
-    }
   }, [id]);
 
   return (
