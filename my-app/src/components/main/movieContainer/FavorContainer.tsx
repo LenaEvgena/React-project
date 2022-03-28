@@ -13,35 +13,33 @@ const FavorContainer: React.FC = () => {
   const { loading } = useCollection();
 
   return (
-    <>
-      <main className="main">
-        <SortResultsHeader />
+    <main className="main">
+      <SortResultsHeader />
 
-        {loading && <Loader />}
+      {loading && <Loader />}
 
-        {!count ?
+      {!count ?
+        <div className="movie__container">
+          <div className="loading">No movies found</div>
+        </div> :
 
-          <div className="movie__container">
-            <div className="loading">No movies found</div>
-          </div> :
-
-          <div className="movie__container">
-            <div className="result">
-              <span className="result__count">{count}</span>
-              <span> movies found</span>
-            </div>
-            <div className="container">
-              {favoriteList && favoriteList.map((f: FavoriteMoviesType) => (
-                <MovieCard
-                  favorList={favoriteList}
-                  data={f.films}
-                  key={f.films.kinopoiskId}
-                />))
-              }
-            </div>
-          </div>}
-      </main>
-    </>
+        <div className="movie__container">
+          <div className="result">
+            <span className="result__count">{count}</span>
+            <span> movies found</span>
+          </div>
+          <div className="container">
+            {favoriteList && favoriteList.map((f: FavoriteMoviesType) => (
+              <MovieCard
+                favorList={favoriteList}
+                data={f.films}
+                key={f.films.kinopoiskId}
+              />))
+            }
+          </div>
+        </div>
+      }
+    </main>
   );
 }
 

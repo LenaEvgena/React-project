@@ -7,6 +7,7 @@ import { createPages } from '../../../utils/createPages';
 import ErrorPage from '../../errorPage/ErrorPage';
 import MovieCard from '../movieCard/MovieCard';
 import Loader from '../../common/loader/Loader';
+import SortResultsHeader from '../../main/resultsHeader/ResultsHeader';
 import './MovieContainer.scss';
 
 const MovieContainer: React.FC = () => {
@@ -31,42 +32,43 @@ const MovieContainer: React.FC = () => {
   }
 
   return (
-    <div className="movie__container">
+    <main className="main">
+      <SortResultsHeader />
 
-      {total === 0 && !isFetching ?
+      <div className="movie__container">
 
-        <div className="movie__container">
-          <div className="loading noresult">No movies found</div>
-        </div> :
-
-        <>
-          <div className="result">
-            <span className="result__count">{total}</span>
-            <span> movies found</span>
-          </div>
-          <div className="pages">
-            {pages.map((page, index) => <span
-              className={currentPage === page ? "page active" : "page"}
-              key={index}
-              onClick={() => dispatch(setCurrentPage(page))}>{page}</span>)}
-          </div>
-
-          {isFetching ?
-            <Loader /> :
-            <div className="container">
-              {movies.map(movie => (
-                <MovieCard
-                  favorList={favoriteList}
-                  data={movie}
-                  key={movie.kinopoiskId}
-                />)
-              )}
+        {total === 0 && !isFetching ?
+          <div className="movie__container">
+            <div className="loading noresult">No movies found</div>
+          </div> :
+          <>
+            <div className="result">
+              <span className="result__count">{total}</span>
+              <span> movies found</span>
             </div>
-          }
-        </>
+            <div className="pages">
+              {pages.map((page, index) => <span
+                className={currentPage === page ? "page active" : "page"}
+                key={index}
+                onClick={() => dispatch(setCurrentPage(page))}>{page}</span>)}
+            </div>
 
-      }
-    </div>
+            {isFetching ?
+              <Loader /> :
+              <div className="container">
+                {movies.map(movie => (
+                  <MovieCard
+                    favorList={favoriteList}
+                    data={movie}
+                    key={movie.kinopoiskId}
+                  />))
+                }
+              </div>
+            }
+          </>
+        }
+      </div>
+    </main>
   )
 }
 
