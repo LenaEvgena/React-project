@@ -16,12 +16,7 @@ type PropsType = {
 const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   const user = useAuth();
   const { isDeleteFormOpen, isFavorListOpen } = useTypedSelector(state => state);
-  let genresList: Array<string> = [];
-  let countriesList: Array<string> = [];
   let path = isFavorListOpen ? `/favorite/movie/${data.kinopoiskId}` : `/movie/${data.kinopoiskId}`;
-
-  data.genres?.map((g) => genresList.push(g.genre));
-  data.countries?.map((c) => countriesList.push(c.country));
 
   const isFavorite = useCallback((id: number) => {
     return favorList?.some((item) => item.films?.kinopoiskId === id);
