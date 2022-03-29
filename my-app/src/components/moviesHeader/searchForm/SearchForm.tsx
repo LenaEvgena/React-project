@@ -14,12 +14,14 @@ const SearchForm: React.FC = () => {
   const handleClick = useCallback((keyword: string): void => {
     if (!keyword.trim()) return;
     if (isFavorListOpen) {
-      navigate('/');
+      dispatch(setMoviesKeyword(keyword));
       dispatch(toggleFavoriteList(false));
+      navigate('/');
+    } else {
+      dispatch(setCurrentPage(1));
+      dispatch(setMoviesKeyword(keyword));
+      dispatch(filterGenreMoviesAsync('all'));
     }
-    dispatch(setCurrentPage(1));
-    dispatch(setMoviesKeyword(keyword));
-    dispatch(filterGenreMoviesAsync('all'));
   }, [dispatch, isFavorListOpen, navigate])
 
   const handleResetClick = useCallback((): void => {
