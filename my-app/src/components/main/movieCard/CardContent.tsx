@@ -16,9 +16,7 @@ const CardContent: React.FC<PropsType> = ({ data, path }) => {
     () => {
       data.genres?.map((g) => genresList.push(g.genre));
       data.countries?.map((c) => countriesList.push(c.country));
-    },
-    [genresList, countriesList, data.genres, data.countries],
-  )
+    }, [])
 
   useEffect(() => {
     getInfo();
