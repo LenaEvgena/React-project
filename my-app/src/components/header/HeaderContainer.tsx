@@ -26,7 +26,7 @@ const HeaderContainer: React.FC = () => {
     if (user && favorites) {
       dispatch(setFavoriteMovieList(favorites as Array<FavoriteMoviesType>));
     }
-  }, [favorites]);
+  }, [dispatch, favorites, user]);
 
   return (
     <Header user={user} handleLogout={handleLogout} />

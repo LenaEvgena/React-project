@@ -74,4 +74,9 @@
   &:active {
     background-color: $color-primary;
   }
+
+  &.busy {
+    pointer-events: none;
+  }
+
 }

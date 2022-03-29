@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { setCurrentPage, setMoviesAsync } from '../../../redux/actions';
+import { setCurrentPage } from '../../../redux/actions';
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { createPages } from '../../../utils/createPages';
+import classNames from 'classnames';
 import ErrorPage from '../../errorPage/ErrorPage';
 import MovieCard from '../movieCard/MovieCard';
 import Loader from '../../common/loader/Loader';
@@ -14,16 +15,17 @@ const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
   const movies = useTypedSelector((state) => state.movies.items);
   const { keyword, filter, total, totalPages, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
+  let clsPages = classNames('page', { 'busy': isFetching });
   const pages: Array<number> = [];
+
+  const fetchMovie = useCallback(() => {
+    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword))
+  }, [dispatch, currentPage, filter, sortType, keyword]);
 
   useEffect(() => {
     window.scroll(0, 0);
-    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
-
-    return () => {
-      dispatch(setMoviesAsync({ items: [], total: total || 400, totalPages })); //fixes memory leak
-    };
-  }, [currentPage, filter, sortType]);
+    fetchMovie();
+  }, [dispatch, currentPage, filter, sortType, keyword, fetchMovie]);
 
   createPages(pages, totalPages, currentPage);
 
@@ -48,7 +50,7 @@ const MovieContainer: React.FC = () => {
             </div>
             <div className="pages">
               {pages.map((page, index) => <span
-                className={currentPage === page ? "page active" : "page"}
+                className={currentPage === page ? `${clsPages} active` : clsPages}
                 key={index}
                 onClick={() => dispatch(setCurrentPage(page))}>{page}</span>)}
             </div>
