@@ -1,59 +1,45 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import classNames from 'classnames';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { sortMoviesAsync, setCurrentPage } from '../../../redux/actions';
+import React from 'react';
 import './Select.scss';
 
-const Select: React.FC = () => {
-  const dispatch = useDispatch();
-  const ratingRef = useRef<HTMLDivElement>(null);
-  const yearRef = useRef<HTMLDivElement>(null);
-  const [showOptions, setShowOptions] = useState(false);
-  const { isFetching, sortType } = useTypedSelector((state) => state);
-  let clsSelect = classNames('select', { 'active': showOptions }, { 'busy': isFetching });
+type ItemOptionsType = {
+  value: string,
+  label: string,
+  selected?: boolean,
+  className: string,
+  ref: React.RefObject<HTMLDivElement>,
+  handler: () => void,
+}
 
-  const handleOpenOptions = (e: React.MouseEvent<HTMLDivElement>): void => {
-    e.stopPropagation();
-    setShowOptions(!showOptions);
-  }
+type OptionsType = {
+  label: string,
+  icon: string,
+  className: string,
+  iconClassName: string,
+  handler: (e: React.MouseEvent<HTMLDivElement>) => void,
+  options: Array<ItemOptionsType>
+}
 
-  const handleCloseOptions = (): void => {
-    setShowOptions(false);
-  }
+type PropsType = {
+  selectOptions: OptionsType,
+  sortType: string,
+}
 
-  const handleRatingOption = (): void => {
-    dispatch(setCurrentPage(1));
-    dispatch(sortMoviesAsync(ratingRef.current?.dataset.value as string));
-  }
-
-  const handleYearOption = (): void => {
-    dispatch(setCurrentPage(1));
-    dispatch(sortMoviesAsync(yearRef.current?.dataset.value as string));
-  }
-
-  useEffect(() => {
-    document.addEventListener('click', handleCloseOptions);
-    return () => {
-      document.removeEventListener('click', handleCloseOptions);
-    }
-  });
-
+const Select: React.FC<PropsType> = ({ selectOptions, sortType }) => {
   return (
     <>
       <div className="results__sort">
-        <span className="results__title">Sort by</span>
-        <div className={clsSelect} onClick={handleOpenOptions}>
+        <span className="results__title">{selectOptions.label}</span>
+        <div className={selectOptions.className} onClick={selectOptions.handler}>
           <div className="select__header">
             <span className="select__current">{sortType === 'RATING' ? sortType : 'release date'}</span>
-            <div className="select__icon"></div>
+            <div className={selectOptions.iconClassName}></div>
           </div>
           <div className="select__body">
-            <div className="select__option" onClick={handleRatingOption} ref={ratingRef} data-value="RATING">rating</div>
-            <div className="select__option" onClick={handleYearOption} ref={yearRef} data-value="YEAR">release date</div>
+            {selectOptions.options.map((option) => {
+              return <div className={option.className} key={option.value} onClick={option.handler} ref={option.ref} data-value={option.value}>{option.label}</div>
+            })}
           </div>
         </div>
-
       </div>
     </>
   )
