@@ -28,7 +28,9 @@ const DetailsContent: React.FC = () => {
             {selectedByIdMovie?.year}
           </span>
           <span className="content-info_runtime">
-            {selectedByIdMovie?.serial ? `${selectedByIdMovie?.filmLength || 1} series` : `${selectedByIdMovie?.filmLength || 90} min`}
+            {selectedByIdMovie?.serial || selectedByIdMovie?.filmLength ?
+              selectedByIdMovie?.serial ? `${selectedByIdMovie?.filmLength} series` : `${selectedByIdMovie?.filmLength} min`
+              : ''}
           </span>
         </div>
 
