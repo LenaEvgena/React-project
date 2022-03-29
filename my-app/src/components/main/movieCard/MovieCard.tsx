@@ -18,11 +18,14 @@ const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   const { isDeleteFormOpen, isFavorListOpen } = useTypedSelector(state => state);
   let path = isFavorListOpen ? `/favorite/movie/${data.kinopoiskId}` : `/movie/${data.kinopoiskId}`;
 
-  const isFavorite = useCallback((id: number) => {
-    return favorList?.some((item) => item.films?.kinopoiskId === id);
-  }, [favorList])
+  const isFavorite = useCallback(
+    (id: number) => {
+      return favorList?.some((item) => item.films?.kinopoiskId === id);
+    }, [favorList])
 
-  const isInFavorites = useMemo(() => isFavorite(data.kinopoiskId as number), [isFavorite, data.kinopoiskId]);
+  const isInFavorites = useMemo(
+    () => isFavorite(data.kinopoiskId as number)
+    , [isFavorite, data.kinopoiskId]);
 
   const handleFavoriteClick = (id: number): void => {
     if (!user) return;
@@ -37,7 +40,7 @@ const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   return (
     <div className="movie">
       <CardMedia data={data} handleFavoriteClick={handleFavoriteClick} isFavoriteMovie={isInFavorites} path={path} />
-      <CardContent data={data} path={path}  />
+      <CardContent data={data} path={path} />
       {isDeleteFormOpen && <DeleteModal />}
     </div>
   );

@@ -20,9 +20,10 @@ const MovieContainer: React.FC = () => {
 
   createPages(pages, totalPages, currentPage);
 
-  const fetchMovie = useCallback(() => {
-    dispatch(getMoviesAPI(currentPage, sortType, filter, keyword))
-  }, [dispatch, currentPage, filter, sortType, keyword]);
+  const fetchMovie = useCallback(
+    () => {
+      dispatch(getMoviesAPI(currentPage, sortType, filter, keyword))
+    }, [dispatch, currentPage, filter, sortType, keyword]);
 
   useEffect(() => {
     window.scroll(0, 0);

@@ -31,12 +31,18 @@ const MovieDetails: React.FC = () => {
     return item as VideoItemType;
   }
 
-  const isFavorite = useCallback((id: number) => {
-    return favoriteList?.some((item) => item.films?.kinopoiskId === id);
-  }, [favoriteList])
+  const itemVideo = useMemo(
+    () => getVideo(videos)
+    , [videos]);
 
-  const itemVideo = useMemo(() => getVideo(videos), [videos]);
-  const isInFavorites = useMemo(() => isFavorite(selectedByIdMovie?.kinopoiskId as number), [isFavorite, selectedByIdMovie]);
+  const isFavorite = useCallback(
+    (id: number) => {
+      return favoriteList?.some((item) => item.films?.kinopoiskId === id);
+    }, [favoriteList])
+
+  const isInFavorites = useMemo(
+    () => isFavorite(selectedByIdMovie?.kinopoiskId as number)
+    , [isFavorite, selectedByIdMovie]);
 
   const handleClick = (): void => {
     window.scroll(0, 0);
