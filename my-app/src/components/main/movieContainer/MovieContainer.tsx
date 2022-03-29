@@ -18,6 +18,8 @@ const MovieContainer: React.FC = () => {
   let clsPages = classNames('page', { 'busy': isFetching });
   const pages: Array<number> = [];
 
+  createPages(pages, totalPages, currentPage);
+
   const fetchMovie = useCallback(() => {
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword))
   }, [dispatch, currentPage, filter, sortType, keyword]);
@@ -25,9 +27,7 @@ const MovieContainer: React.FC = () => {
   useEffect(() => {
     window.scroll(0, 0);
     fetchMovie();
-  }, [dispatch, currentPage, filter, sortType, keyword, fetchMovie]);
-
-  createPages(pages, totalPages, currentPage);
+  }, [fetchMovie]);
 
   if (isFetchedError) {
     return <ErrorPage handleClick={() => dispatch(getMoviesAPI(currentPage, sortType))} text='Try again' />;

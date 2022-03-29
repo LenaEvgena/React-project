@@ -29,7 +29,7 @@ const FavorContainer: React.FC = () => {
             <span> movies found</span>
           </div>
           <div className="container">
-            {favoriteList && favoriteList.map((f: FavoriteMoviesType) => (
+            {favoriteList.map((f: FavoriteMoviesType) => (
               <MovieCard
                 favorList={favoriteList}
                 data={f.films}
