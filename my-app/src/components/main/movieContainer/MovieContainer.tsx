@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { setCurrentPage, setMoviesAsync } from '../../../redux/actions';
+import { setCurrentPage } from '../../../redux/actions';
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { createPages } from '../../../utils/createPages';
 import classNames from 'classnames';
