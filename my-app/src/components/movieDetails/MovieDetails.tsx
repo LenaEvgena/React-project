@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import classNames from 'classnames';
 import Background from '../common/background/Background';
 import VideoModal from '../modals/videoModal/VideoModal';
 import DetailsMedia from './DetailsMedia';
@@ -31,10 +30,13 @@ const MovieDetails: React.FC = () => {
     let item = arr.find(v => v.site === 'YOUTUBE');
     return item as VideoItemType;
   }
-  const itemVideo = getVideo(videos);
 
-  const isFavorite = (id: number) => favoriteList?.some((item) => item.films?.kinopoiskId === id);
-  let cls = classNames('movie_icon-fav', { 'active': isFavorite(selectedByIdMovie?.kinopoiskId as number) });
+  const isFavorite = useCallback((id: number) => {
+    return favoriteList?.some((item) => item.films?.kinopoiskId === id);
+  }, [favoriteList])
+
+  const itemVideo = useMemo(() => getVideo(videos), [videos]);
+  const isInFavorites = useMemo(() => isFavorite(selectedByIdMovie?.kinopoiskId as number), [isFavorite, selectedByIdMovie]);
 
   const handleClick = (): void => {
     window.scroll(0, 0);
@@ -65,7 +67,7 @@ const MovieDetails: React.FC = () => {
 
   return (
     <>
-      {showVideoModal && <VideoModal movie={selectedByIdMovie as ItemType} video={itemVideo as VideoItemType} handleVideoModal={handleClick} />}
+      {showVideoModal && <VideoModal movie={selectedByIdMovie as ItemType} video={itemVideo} handleVideoModal={handleClick} />}
 
       <div className="movie__details">
         <Background />
@@ -74,7 +76,7 @@ const MovieDetails: React.FC = () => {
             <Link to={pathTo} className="details-search" type="button" onClick={handleCloseClick}></Link>
           </div>
           <div className="details__container">
-            <DetailsMedia itemVideo={itemVideo} handleClick={handleClick} handleFavoriteClick={handleFavoriteClick} cls={cls} />
+            <DetailsMedia itemVideo={itemVideo} handleClick={handleClick} handleFavoriteClick={handleFavoriteClick} isInFavorites={isInFavorites} />
             <DetailsContent />
           </div>
         </div>

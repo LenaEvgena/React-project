@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import Button from '../common/button/Button';
 import { VideoItemType } from '../../types/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
@@ -8,11 +9,12 @@ type PropsType = {
   itemVideo: VideoItemType
   handleClick: () => void
   handleFavoriteClick: (movie: number) => void
-  cls: string
+  isInFavorites: boolean
 }
 
-const DetailsMedia: React.FC<PropsType> = ({ itemVideo, handleClick, handleFavoriteClick, cls }) => {
+const DetailsMedia: React.FC<PropsType> = ({ itemVideo, handleClick, handleFavoriteClick, isInFavorites }) => {
   const { selectedByIdMovie } = useTypedSelector((state) => state);
+  let cls = classNames('movie_icon-fav', { 'active': isInFavorites });
 
   return (
     <>
