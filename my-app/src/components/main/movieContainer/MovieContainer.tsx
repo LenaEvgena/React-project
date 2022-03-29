@@ -20,16 +20,12 @@ const MovieContainer: React.FC = () => {
 
   const fetchMovie = useCallback(() => {
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword))
-  }, [currentPage, filter, sortType]);
+  }, [dispatch, currentPage, filter, sortType, keyword]);
 
   useEffect(() => {
     window.scroll(0, 0);
     fetchMovie();
-
-    return () => {
-      dispatch(setMoviesAsync({ items: [], total: total || 400, totalPages: totalPages || 7 })); //fixes memory leak
-    };
-  }, [currentPage, filter, sortType]);
+  }, [dispatch, currentPage, filter, sortType, keyword, fetchMovie]);
 
   createPages(pages, totalPages, currentPage);
 

@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { filterGenreMoviesAsync, setCurrentPage, setMoviesKeyword, toggleFavoriteList } from '../../../redux/actions';
-import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../searchBar/SearchBar';
@@ -10,7 +9,7 @@ import './SearchForm.scss';
 const SearchForm: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { keyword, sortType, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
+  const { keyword, isFetching, isFavorListOpen } = useTypedSelector((state) => state);
 
   const handleClick = useCallback((keyword: string): void => {
     if (!keyword.trim()) return;
@@ -21,16 +20,14 @@ const SearchForm: React.FC = () => {
     dispatch(setCurrentPage(1));
     dispatch(setMoviesKeyword(keyword));
     dispatch(filterGenreMoviesAsync('all'));
-    dispatch(getMoviesAPI(1, sortType, 'all', keyword));
-  }, [])
+  }, [dispatch, isFavorListOpen, navigate])
 
   const handleResetClick = useCallback((): void => {
     if (!keyword.trim()) return;
     dispatch(setCurrentPage(1));
     dispatch(setMoviesKeyword(''));
     dispatch(filterGenreMoviesAsync('all'));
-    dispatch(getMoviesAPI(1, sortType, 'all', ''));
-  }, [dispatch, keyword, sortType])
+  }, [dispatch, keyword])
 
   return (
     <div className="header__search">
