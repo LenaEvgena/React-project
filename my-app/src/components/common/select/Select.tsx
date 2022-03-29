@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import { useTypedSelector } from '../../../../hooks/useTypedSelector';
-import { sortMoviesAsync, setCurrentPage } from '../../../../redux/actions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { sortMoviesAsync, setCurrentPage } from '../../../redux/actions';
 import './Select.scss';
 
 const Select: React.FC = () => {

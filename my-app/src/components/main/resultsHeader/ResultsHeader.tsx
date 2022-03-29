@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
 import { getLiOptions } from '../../../utils/getLiOptions';
-import Select from './select/Select';
+import Select from '../../common/select/Select';
 import './ResultsHeader.scss';
 
 const ResultsHeader: React.FC = () => {
