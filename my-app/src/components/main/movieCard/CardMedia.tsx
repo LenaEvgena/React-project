@@ -46,11 +46,7 @@ const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteM
 
   return (
     <div className="movie__image">
-      {user ?
-        <i className={cls} onClick={() => handleFavoriteClick(data.kinopoiskId as number)}></i>
-        :
-        <i className={cls} data-tool={text}></i>
-      }
+      <i className={cls} data-tool={!user ? text : null} onClick={() => handleFavoriteClick(data.kinopoiskId as number)}></i>
       <img className="movie__card" src={data.posterUrl || data.posterUrlPreview} alt={data.nameOriginal || data.nameRu as string} onClick={handleClick} />
 
       {!showOptions ?

@@ -25,6 +25,7 @@ const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
   const isInFavorites = useMemo(() => isFavorite(data.kinopoiskId as number), [isFavorite, data.kinopoiskId]);
 
   const handleFavoriteClick = (id: number): void => {
+    if (!user) return;
     if (isInFavorites) {
       deleteFavor(id, user);
     }
