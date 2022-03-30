@@ -8,8 +8,8 @@ import './Select.scss';
 
 const SelectWrapper: React.FC = () => {
   const dispatch = useDispatch();
-  const ratingRef = useRef<HTMLDivElement>(null);
-  const yearRef = useRef<HTMLDivElement>(null);
+  const ratingRef = useRef<HTMLLIElement>(null);
+  const yearRef = useRef<HTMLLIElement>(null);
   const [showOptions, setShowOptions] = useState(false);
   const { isFetching, sortType } = useTypedSelector((state) => state);
 

@@ -11,7 +11,7 @@ type ItemOptionsType = {
   label: string,
   selected?: boolean,
   className: string,
-  ref: React.RefObject<HTMLDivElement>,
+  ref: React.RefObject<HTMLLIElement>,
   handler: () => void,
 }
 
@@ -40,9 +40,18 @@ const Select: React.FC<PropsType> = ({ selectOptions, sortType }) => {
             <div className={selectOptions.iconClassName}></div>
           </div>
           <div className="select__body">
-            {selectOptions.options.map((option) => {
-              return <div className={option.className} key={option.value} onClick={option.handler} ref={option.ref} data-value={option.value}>{option.label}</div>
-            })}
+            <ul className="select__options">
+              {selectOptions.options.map((option) => (
+                <li
+                  className={option.className}
+                  key={option.value}
+                  onClick={option.handler}
+                  ref={option.ref}
+                  data-value={option.value}>
+                  {option.label}
+                </li>)
+              )}
+            </ul>
           </div>
         </div>
       </div>
