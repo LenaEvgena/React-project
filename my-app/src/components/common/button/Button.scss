@@ -120,25 +120,24 @@
   bottom: 4%;
   width: 5.5rem;
   height: 5.5rem;
-  border-radius: 50%;
+  border-radius: 25%;
   border: 2px solid $color-primary;
-  background-color: $color-light-grey;
+  background-color: $color-dark-grey;
   color: $color-primary;
   font-weight: 500;
   font-size: 2rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: 0.4s;
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: pointer;
 
   &::before {
-    content: "<";
-    font-weight: bold;
+    content:  url("./../../../assets/triangle.svg");
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-45%, -50%) rotate(90deg);
+    transform: translate(-50%, -45%) rotate(180deg);
   }
 
   &:hover {
