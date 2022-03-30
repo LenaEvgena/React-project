@@ -25,7 +25,9 @@ const DeleteModal: React.FC = () => {
 
   const handleDeleteClick = (id: number, user: UserImplType): void => {
     dispatch(deleteMovieById(id));
-    deleteFavor(id, user);
+    if (user) {
+      deleteFavor(id, user);
+    }
   }
 
   return (
@@ -39,7 +41,7 @@ const DeleteModal: React.FC = () => {
             <p className="modal__subtitle">Are you sure you want to delete this movie?</p>
           </div>
           <div className="modal-button">
-            <Button className='submit__button' type='button' text='confirm' handleClick={() => handleDeleteClick(id as number, user)} />
+            <Button className='submit__button' type='button' text='confirm' handleClick={() => handleDeleteClick(id || 0, user)} />
           </div>
         </div>
       </div>
