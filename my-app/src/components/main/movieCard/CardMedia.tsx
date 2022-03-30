@@ -50,8 +50,8 @@ const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteM
       <img className="movie__card" src={data.posterUrl || data.posterUrlPreview} alt={data.nameOriginal || data.nameRu as string} onClick={handleClick} />
 
       {!showOptions ?
-        <div className="dots" onClick={handleOptions}></div>
-        : <div className="options__modal">
+        <div className="dots" onClick={handleOptions}></div> :
+        <div className="options__modal">
           <div className="options-close" onClick={handleOptions} >x</div>
           <div className="options-edit" onClick={() => handleFavoriteClick(data.kinopoiskId as number)}>
             {!isFavoriteMovie ? 'Add to favorites' : 'Remove from favorites'}

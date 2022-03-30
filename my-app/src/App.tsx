@@ -21,13 +21,10 @@ const App: React.FC = () => {
         <Route path='/register' element={<AuthFormContainer isRegisterForm={true} />} />
         <Route path='/auth' element={<AuthFormContainer isRegisterForm={false} />} />
         <Route path='/' element={<HomePage />} />
-        <Route path='*' element={<ErrorPage />} />
         <Route path='/movie/:id' element={<HomeDetailsPage />} />
-        {user ?
-          <Route path='/favorite' element={<FavoritePage />} /> :
-          <Route path='/' element={<HomePage />} />
-        }
-        <Route path='/favorite/movie/:id' element={<FavoriteDetailsPage />} />
+        {user && <Route path='/favorite' element={<FavoritePage />} />}
+        {user && <Route path='/favorite/movie/:id' element={<FavoriteDetailsPage />} />}
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
       <Footer />
       <ScrollButton />
