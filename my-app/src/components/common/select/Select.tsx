@@ -1,6 +1,11 @@
 import React from 'react';
 import './Select.scss';
 
+enum SelectTypes {
+  RATING = 'RATING',
+  YEAR = 'RELEASE DATE',
+}
+
 type ItemOptionsType = {
   value: string,
   label: string,
@@ -31,7 +36,7 @@ const Select: React.FC<PropsType> = ({ selectOptions, sortType }) => {
         <span className="results__title">{selectOptions.label}</span>
         <div className={selectOptions.className} onClick={selectOptions.handler}>
           <div className="select__header">
-            <span className="select__current">{sortType === 'RATING' ? sortType : 'release date'}</span>
+            <span className="select__current">{sortType === SelectTypes.RATING ? sortType : SelectTypes.YEAR}</span>
             <div className={selectOptions.iconClassName}></div>
           </div>
           <div className="select__body">

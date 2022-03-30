@@ -67,8 +67,8 @@ const MovieDetails: React.FC = () => {
   useEffect(() => {
     window.scroll(0, 0);
     dispatch(toggleMovieDetailsForm(true));
-    dispatch(fetchMovieById(id as string));
-    dispatch(fetchVideoById(id as string));
+    dispatch(fetchMovieById(id || ''));
+    dispatch(fetchVideoById(id || ''));
   }, [dispatch, id]);
 
   return (

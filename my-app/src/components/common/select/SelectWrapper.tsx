@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { sortMoviesAsync, setCurrentPage } from '../../../redux/actions';
-import './Select.scss';
 import { getSelectOptions } from '../../../utils/getSelectOptions';
 import Select from './Select';
+import './Select.scss';
 
 const SelectWrapper: React.FC = () => {
   const dispatch = useDispatch();
@@ -24,12 +24,12 @@ const SelectWrapper: React.FC = () => {
 
   const handleRatingOption = (): void => {
     dispatch(setCurrentPage(1));
-    dispatch(sortMoviesAsync(ratingRef.current?.dataset.value as string));
+    dispatch(sortMoviesAsync(ratingRef.current?.dataset.value || ''));
   }
 
   const handleYearOption = (): void => {
     dispatch(setCurrentPage(1));
-    dispatch(sortMoviesAsync(yearRef.current?.dataset.value as string));
+    dispatch(sortMoviesAsync(yearRef.current?.dataset.value || ''));
   }
 
   const selectOptions = getSelectOptions(showOptions, isFetching, handleOpenOptions, handleRatingOption, handleYearOption, ratingRef, yearRef);

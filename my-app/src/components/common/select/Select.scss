@@ -56,8 +56,12 @@
     width: 2rem;
     height: 2rem;
     background: url("./../../../assets/triangle.svg");
-    background-position: center right;
+    background-position: center;
     background-repeat: no-repeat;
+
+    &.open {
+      transform: rotate(180deg);
+    }
   }
 
   &__body {

@@ -11,11 +11,13 @@ export const getSelectOptions = (
       { 'active': showOptions },
       { 'busy': isFetching }
     ),
-    iconClassName: 'select__icon',
+    iconClassName: classNames('select__icon',
+      { 'open': showOptions },
+    ),
     handler: handler,
     options: [
-      { value: 'RATING', label: 'rating', selected: true, className: 'select__option', ref: ref1, handler: handler1 },
-      { value: 'YEAR', label: 'release date', selected: false, className: 'select__option', ref: ref2, handler: handler2 },
+      { value: 'RATING', label: 'rating', className: 'select__option', ref: ref1, handler: handler1 },
+      { value: 'YEAR', label: 'release date', className: 'select__option', ref: ref2, handler: handler2 },
     ],
   }
 }
