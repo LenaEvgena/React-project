@@ -133,11 +133,16 @@
   cursor: pointer;
 
   &::before {
-    content:  url("./../../../assets/triangle.svg");
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -45%) rotate(180deg);
+    transform: translate(-50%, -75%) rotate(180deg);
+    width: 2rem;
+    height: 2rem;
+    background: url("./../../../assets/triangle.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   &:hover {
