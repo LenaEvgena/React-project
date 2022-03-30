@@ -1,10 +1,6 @@
 import React from 'react';
+import { SelectTypes } from '../../../utils/getSelectOptions';
 import './Select.scss';
-
-enum SelectTypes {
-  RATING = 'RATING',
-  YEAR = 'RELEASE DATE',
-}
 
 type ItemOptionsType = {
   value: string,
@@ -12,7 +8,7 @@ type ItemOptionsType = {
   selected?: boolean,
   className: string,
   ref: React.RefObject<HTMLLIElement>,
-  handler: () => void,
+  handler: (e: React.MouseEvent<HTMLLIElement>) => void,
 }
 
 type OptionsType = {
@@ -45,10 +41,10 @@ const Select: React.FC<PropsType> = ({ selectOptions, sortType }) => {
                 <li
                   className={option.className}
                   key={option.value}
-                  onClick={option.handler}
                   ref={option.ref}
-                  data-value={option.value}>
-                  {option.label}
+                  data-value={option.value}
+                  onClick={option.handler}>
+                    {option.label}
                 </li>)
               )}
             </ul>
