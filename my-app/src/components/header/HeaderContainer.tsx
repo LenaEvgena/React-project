@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setFavoriteMovieList, toggleFavoriteList } from '../../redux/actions';
 import { auth } from '../../firebase';
-import Header from './headerComponent/Header';
+import Header from './header/Header';
 import useAuth from '../../hooks/useAuth';
 import useCollection from '../../hooks/useCollection';
 import { FavoriteMoviesType } from '../../types/types';

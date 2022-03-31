@@ -1,11 +1,11 @@
 import React from 'react'
-import MovieDetails from '../components/movieDetails/MovieDetails';
+import MovieDetailsContainer from '../components/movieDetails/MovieDetailsContainer';
 import Main from '../components/main/Main';
 
 const HomeDetailsPage: React.FC = () => {
   return (
     <>
-      <MovieDetails />
+      <MovieDetailsContainer />
       <Main />
     </>
   )

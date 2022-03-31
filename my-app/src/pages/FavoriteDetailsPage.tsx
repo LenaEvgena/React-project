@@ -1,11 +1,11 @@
 import React from 'react'
-import MovieDetails from '../components/movieDetails/MovieDetails';
+import MovieDetailsContainer from '../components/movieDetails/MovieDetailsContainer';
 import FavorContainer from '../components/main/movieContainer/FavorContainer';
 
 const FavoriteDetailsPage: React.FC = () => {
   return (
     <>
-      <MovieDetails />
+      <MovieDetailsContainer />
       <FavorContainer/>
     </>
   )
