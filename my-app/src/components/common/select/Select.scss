@@ -1,4 +1,4 @@
-@import "./../../../../constants.scss";
+@import "./../../../constants.scss";
 
 .results__sort {
   display: flex;
@@ -53,11 +53,17 @@
   }
 
   &__icon {
-    width: 2rem;
-    height: 2rem;
-    background: url("./../../../../assets/triangle.svg");
-    background-position: center right;
+    width: 1.8rem;
+    height: 1.8rem;
+    background: url("./../../../assets/triangle.svg");
+    background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;
+    transition: 0.4s;
+
+    &.open {
+      transform: rotate(180deg);
+    }
   }
 
   &__body {

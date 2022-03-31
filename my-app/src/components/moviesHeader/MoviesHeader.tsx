@@ -29,17 +29,15 @@ const MoviesHeader: React.FC = () => {
   }
 
   return (
-    <>
-      <div className="movies__header">
-        <Background />
-        <div className="header__wrapper">
-          <div className="header__logo">
-            <FavorButton isBusy={!user} handleClick={isFavorListOpen ? handleCloseClick : handleOpenClick} length={favoriteList.length || 0} text={text} />
-          </div>
-          <SearchForm />
+    <div className="movies__header">
+      <Background />
+      <div className="header__wrapper">
+        <div className="header__logo">
+          <FavorButton isBusy={!user} handleClick={isFavorListOpen ? handleCloseClick : handleOpenClick} length={favoriteList.length || 0} text={text} />
         </div>
+        <SearchForm />
       </div>
-    </>
+    </div>
   );
 }
 

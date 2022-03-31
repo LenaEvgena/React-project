@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { filterGenreMoviesAsync, setCurrentPage } from '../../../redux/actions';
 import { getLiOptions } from '../../../utils/getLiOptions';
-import Select from './select/Select';
+import SelectWrapper from '../../common/select/SelectWrapper';
 import './ResultsHeader.scss';
 
 const ResultsHeader: React.FC = () => {
@@ -23,12 +23,17 @@ const ResultsHeader: React.FC = () => {
         {!isFavorListOpen && <>
           <div className="results__filter">
             <ul>
-              {
-                liOptions.map((item) => <li className={item.cls} key={item.type} onClick={() => handleOnFilterClick(item.type)}>{item.type}</li>)
-              }
+              {liOptions.map(
+                (item) =>
+                  <li
+                    className={item.cls}
+                    key={item.type}
+                    onClick={() => handleOnFilterClick(item.type)}>
+                    {item.type}
+                  </li>)}
             </ul>
           </div>
-          <Select />
+          <SelectWrapper />
         </>}
       </div>
     </>
