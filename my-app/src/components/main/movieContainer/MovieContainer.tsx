@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { setCurrentPage } from '../../../redux/actions';
@@ -17,14 +17,13 @@ const MovieContainer: React.FC = () => {
   const { keyword, filter, total, totalPages, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
   let clsPages = classNames('page', { 'busy': isFetching });
   const pages: Array<number> = [];
-  const mountedRef: React.MutableRefObject<boolean> = useRef(true);
 
   createPages(pages, totalPages, currentPage);
 
   const fetchMovie = useCallback(
     () => {
-      dispatch(getMoviesAPI(mountedRef.current, currentPage, sortType, filter, keyword))
-    }, [mountedRef, dispatch, currentPage, filter, sortType, keyword]);
+      dispatch(getMoviesAPI(currentPage, sortType, filter, keyword))
+    }, [dispatch, currentPage, filter, sortType, keyword]);
 
   useEffect(() => {
     console.log('MovieContainer mounted');
@@ -33,12 +32,11 @@ const MovieContainer: React.FC = () => {
     fetchMovie();
     return () => {
       console.log('MovieContainer unmounted');
-      mountedRef.current = false;
     }
   }, [fetchMovie]);
 
   if (isFetchedError) {
-    return <ErrorPage handleClick={() => dispatch(getMoviesAPI(mountedRef.current, currentPage, sortType))} text='Try again' />;
+    return <ErrorPage handleClick={() => dispatch(getMoviesAPI(currentPage, sortType))} text='Try again' />;
   }
 
   return (
