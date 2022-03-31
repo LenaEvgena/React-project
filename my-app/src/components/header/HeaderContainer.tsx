@@ -1,17 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setFavoriteMovieList, toggleFavoriteList } from '../../redux/actions';
 import { auth } from '../../firebase';
-import { FavoriteMoviesType } from '../../types/types';
 import Header from './headerComponent/Header';
 import useAuth from '../../hooks/useAuth';
 import useCollection from '../../hooks/useCollection';
+import { FavoriteMoviesType } from '../../types/types';
 
 const HeaderContainer: React.FC = () => {
   const dispatch = useDispatch();
   const user = useAuth();
   const { favorites } = useCollection();
+
+  const getUser = useCallback(() => {
+    if (user && favorites) {
+      dispatch(setFavoriteMovieList(favorites as Array<FavoriteMoviesType>));
+    }
+  }, [user, favorites, dispatch])
+
+  useEffect(() => {
+    console.log('MovieHeader mounted');
+    getUser();
+    return () => {
+      console.log('MovieHeader unmounted');
+    }
+  }, [getUser]);
 
   const handleLogout = async () => {
     signOut(auth).then(() => {
@@ -21,12 +35,6 @@ const HeaderContainer: React.FC = () => {
       console.log(error);
     });
   }
-
-  useEffect(() => {
-    if (user && favorites) {
-      dispatch(setFavoriteMovieList(favorites as Array<FavoriteMoviesType>));
-    }
-  }, [dispatch, favorites, user]);
 
   return (
     <Header user={user} handleLogout={handleLogout} />

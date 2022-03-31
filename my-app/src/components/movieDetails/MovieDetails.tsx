@@ -33,16 +33,19 @@ const MovieDetails: React.FC = () => {
 
   const itemVideo = useMemo(
     () => getVideo(videos)
-    , [videos]);
+    , [videos]
+  );
 
   const isFavorite = useCallback(
     (id: number) => {
       return favoriteList?.some((item) => item.films?.kinopoiskId === id);
-    }, [favoriteList])
+    }, [favoriteList]
+  );
 
   const isInFavorites = useMemo(
     () => isFavorite(selectedByIdMovie?.kinopoiskId as number)
-    , [isFavorite, selectedByIdMovie]);
+    , [isFavorite, selectedByIdMovie]
+  );
 
   const handleClick = (): void => {
     window.scroll(0, 0);
@@ -64,12 +67,23 @@ const MovieDetails: React.FC = () => {
     }
   }
 
+  const getVideoInfo = useCallback(
+    () => {
+      dispatch(fetchMovieById(id || ''));
+      dispatch(fetchVideoById(id || ''));
+    },
+    [dispatch, id]
+  );
+
   useEffect(() => {
+    console.log('details mounted');
     window.scroll(0, 0);
     dispatch(toggleMovieDetailsForm(true));
-    dispatch(fetchMovieById(id || ''));
-    dispatch(fetchVideoById(id || ''));
-  }, [dispatch, id]);
+    getVideoInfo();
+    return () => {
+      console.log('details unmounted');
+    }
+  }, [dispatch, getVideoInfo]);
 
   return (
     <>
