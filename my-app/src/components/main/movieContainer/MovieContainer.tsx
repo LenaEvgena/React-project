@@ -26,12 +26,15 @@ const MovieContainer: React.FC = () => {
     }, [dispatch, currentPage, filter, sortType, keyword]);
 
   useEffect(() => {
+    let isMounted = true;
     console.log('MovieContainer mounted');
-
     window.scroll(0, 0);
-    fetchMovie();
+    if (isMounted) {
+      fetchMovie();
+    }
     return () => {
       console.log('MovieContainer unmounted');
+      isMounted = false;
     }
   }, [fetchMovie]);
 
