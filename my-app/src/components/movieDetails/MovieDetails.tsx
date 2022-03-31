@@ -76,13 +76,9 @@ const MovieDetails: React.FC = () => {
   );
 
   useEffect(() => {
-    console.log('details mounted');
     window.scroll(0, 0);
     dispatch(toggleMovieDetailsForm(true));
     getVideoInfo();
-    return () => {
-      console.log('details unmounted');
-    }
   }, [dispatch, getVideoInfo]);
 
   return (

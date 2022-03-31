@@ -20,11 +20,7 @@ const HeaderContainer: React.FC = () => {
   }, [user, favorites, dispatch])
 
   useEffect(() => {
-    console.log('MovieHeader mounted');
     getUser();
-    return () => {
-      console.log('MovieHeader unmounted');
-    }
   }, [getUser]);
 
   const handleLogout = async () => {
