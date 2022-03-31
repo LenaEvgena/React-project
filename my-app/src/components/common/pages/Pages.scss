@@ -1,0 +1,42 @@
+@import "./../../../constants.scss";
+
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
+  font-size: 1.5rem;
+}
+
+.page {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 1px solid $color-primary;
+  border-radius: 8px;
+  padding: 1rem 1rem;
+  margin: 0 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.active {
+    background-color: $color-primary;
+  }
+
+  &:active {
+    background-color: $color-primary;
+  }
+
+  &.busy {
+    pointer-events: none;
+  }
+
+}
