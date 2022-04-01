@@ -21,6 +21,8 @@ const HeaderContainer: React.FC = () => {
 
   useEffect(() => {
     getUser();
+    return () => {
+    }
   }, [getUser]);
 
   const handleLogout = async () => {

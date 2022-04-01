@@ -10,18 +10,19 @@ import './MovieCard.scss';
 
 type PropsType = {
   data: ItemType,
-  favorList: Array<FavoriteMoviesType>
+  favoriteList: Array<FavoriteMoviesType>
 }
 
-const MovieCard: React.FC<PropsType> = ({ data, favorList }) => {
+const MovieCard: React.FC<PropsType> = ({ data, favoriteList }) => {
   const user = useAuth();
   const { isDeleteFormOpen, isFavorListOpen } = useTypedSelector(state => state);
   let path = isFavorListOpen ? `/favorite/movie/${data.kinopoiskId}` : `/movie/${data.kinopoiskId}`;
 
+  //проверяем, есть ли такой в избранных
   const isFavorite = useCallback(
     (id: number) => {
-      return favorList?.some((item) => item.films?.kinopoiskId === id);
-    }, [favorList])
+      return favoriteList?.some((item) => item.films?.kinopoiskId === id);
+    }, [favoriteList])
 
   const isInFavorites = useMemo(
     () => isFavorite(data.kinopoiskId as number)

@@ -1,5 +1,11 @@
 @import "./../../../constants.scss";
 
+.main {
+  position: relative;
+  width: 100%;
+  background-color: $color-dark;
+}
+
 .movie__container {
   width: 100%;
   letter-spacing: 1px;

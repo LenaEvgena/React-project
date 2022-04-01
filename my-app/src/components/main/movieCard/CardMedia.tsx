@@ -8,13 +8,13 @@ import useAuth from '../../../hooks/useAuth';
 import './MovieCard.scss';
 
 type PropsType = {
-  data: ItemType,
+  data: ItemType | null,
   path: string,
   isFavoriteMovie: boolean,
   handleFavoriteClick: (movie: number) => void
 }
 
-const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteMovie, path }) => {
+const CardMedia: React.FC<PropsType> = ({ data = null, handleFavoriteClick, isFavoriteMovie, path }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -30,7 +30,7 @@ const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteM
 
   const handleOptions = (e: React.MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
-    setShowOptions(!showOptions);
+    setShowOptions(prev => !prev);
   }
 
   const handleCloseOptions = (): void => {
@@ -46,19 +46,20 @@ const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteM
 
   return (
     <div className="movie__image">
-      <i className={cls} data-tool={!user ? text : null} onClick={() => handleFavoriteClick(data.kinopoiskId as number)}></i>
-      <img className="movie__card" src={data.posterUrl || data.posterUrlPreview} alt={data.nameOriginal || data.nameRu as string} onClick={handleClick} />
+      <i className={cls} data-tool={!user ? text : null} onClick={() => handleFavoriteClick(data?.kinopoiskId as number)}></i>
+      <img className="movie__card" src={data?.posterUrl || data?.posterUrlPreview} alt={data?.nameOriginal || data?.nameRu as string} onClick={handleClick} />
 
       {!showOptions ?
         <div className="dots" onClick={handleOptions}></div> :
         <div className="options__modal">
           <div className="options-close" onClick={handleOptions} >x</div>
-          <div className="options-edit" onClick={() => handleFavoriteClick(data.kinopoiskId as number)}>
+          <div className="options-edit" onClick={() => handleFavoriteClick(data?.kinopoiskId as number)}>
             {!isFavoriteMovie ? 'Add to favorites' : 'Remove from favorites'}
           </div>
-          <div className="options-delete" onClick={() => dispatch(openDeleteMovieForm(data.kinopoiskId as number))}>Delete</div>
+          <div className="options-delete" onClick={() => dispatch(openDeleteMovieForm(data?.kinopoiskId as number))}>Delete</div>
         </div>}
     </div>
+
   );
 }
 

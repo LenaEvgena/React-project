@@ -3,12 +3,14 @@ import { ActionType } from '../types/types';
 import { setFetchedError, setIsFetching, setMovieByID, setMoviesAsync, setVideoList } from './actions';
 import { fetchMovieByIdAPI, fetchMoviesAPI, fetchVideoByIdAPI } from '../axiosAPI/api';
 
-export const getMoviesAPI = (currentPage: number, sortType = 'RATING', genre: string = 'all', query = '') => {
+export const getMoviesAPI = (isMountedFlag: boolean, currentPage = 1, sortType = 'RATING', genre: string = 'all', query = '') => {
   return async (dispatch: Dispatch<ActionType>) => {
     try {
       dispatch(setIsFetching(true));
       const res = await fetchMoviesAPI(currentPage, sortType, genre, query);
-      dispatch(setMoviesAsync(res.data));
+      if (isMountedFlag) {
+        dispatch(setMoviesAsync(res.data));
+      }
       dispatch(setIsFetching(false));
     } catch (error) {
       dispatch(setFetchedError(true));
