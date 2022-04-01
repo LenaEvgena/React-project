@@ -18,18 +18,19 @@ type PropsType = {
   type: Types,
   movies?: ItemType[],
   total: number,
-  currentPage: number,
-  sortType: string,
+  currentPage?: number,
+  sortType?: string,
   isFetching: boolean,
   isFetchedError: boolean,
   favoriteList: FavoriteMoviesType[],
+  refer: boolean
 }
 
-const MovieList: React.FC<PropsType> = ({ type, movies, total, currentPage, sortType, isFetching, isFetchedError, favoriteList, children }) => {
+const MovieList: React.FC<PropsType> = ({ refer, type, movies, total, currentPage, sortType, isFetching, isFetchedError, favoriteList, children }) => {
   const dispatch = useDispatch();
 
   if (isFetchedError) {
-    return <ErrorPage handleClick={() => dispatch(getMoviesAPI(currentPage, sortType))} text='Try again' />;
+    return <ErrorPage handleClick={() => dispatch(getMoviesAPI(refer, currentPage || 1, sortType))} text='Try again' />;
   }
 
   return (

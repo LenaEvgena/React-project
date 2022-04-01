@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
@@ -9,22 +9,24 @@ const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
   const movies = useTypedSelector((state) => state.movies.items);
   const { keyword, filter, total, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
+  let mountedRef: React.MutableRefObject<boolean> = useRef(true);
 
   const fetchMovie = useCallback(
     () => {
-      dispatch(getMoviesAPI(currentPage, sortType, filter, keyword))
+      dispatch(getMoviesAPI(mountedRef.current, currentPage, sortType, filter, keyword))
     }, [dispatch, currentPage, filter, sortType, keyword]);
 
   useEffect(() => {
-    let isMounted = true;
+    console.log('movie mounted');
+
+    mountedRef.current = true;
     window.scroll(0, 0);
-    if (isMounted) {
-      fetchMovie();
-    }
+    fetchMovie();
     return () => {
-      isMounted = false;
+      console.log('movie unmounted');
+      mountedRef.current = false;
     }
-  }, [fetchMovie]);
+  }, [fetchMovie, mountedRef]);
 
   return (
     <MovieList
@@ -35,7 +37,8 @@ const MovieContainer: React.FC = () => {
       sortType={sortType}
       isFetching={isFetching}
       isFetchedError={isFetchedError}
-      favoriteList={favoriteList}>
+      favoriteList={favoriteList}
+      refer={mountedRef.current}>
       <Pages />
     </MovieList>
   )
