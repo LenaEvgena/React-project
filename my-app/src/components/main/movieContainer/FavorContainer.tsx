@@ -2,7 +2,6 @@ import React from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import useCollection from '../../../hooks/useCollection';
 import MovieList, { Types } from '../movieList/MovieList';
-import './MovieContainer.scss';
 
 const FavorContainer: React.FC = () => {
   const { loading } = useCollection();

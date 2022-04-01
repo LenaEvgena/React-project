@@ -7,6 +7,7 @@ import Loader from '../../common/loader/Loader';
 import SortResultsHeader from '../resultsHeader/ResultsHeader';
 import ErrorBoundary from '../../common/errorBoundary/ErrorBoundary';
 import { ItemType, FavoriteMoviesType } from '../../../types/types';
+import './MovieList.scss';
 
 export enum Types {
   ItemType = 0,

@@ -2,10 +2,8 @@ import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
-import ErrorPage from '../../errorPage/ErrorPage';
 import Pages from '../../common/pages/Pages';
 import MovieList, { Types } from '../movieList/MovieList';
-import './MovieContainer.scss';
 
 const MovieContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,10 +25,6 @@ const MovieContainer: React.FC = () => {
       isMounted = false;
     }
   }, [fetchMovie]);
-
-  if (isFetchedError) {
-    return <ErrorPage handleClick={() => dispatch(getMoviesAPI(currentPage, sortType))} text='Try again' />;
-  }
 
   return (
     <MovieList
