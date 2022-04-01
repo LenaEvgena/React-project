@@ -14,7 +14,7 @@ type PropsType = {
   handleFavoriteClick: (movie: number) => void
 }
 
-const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteMovie, path }) => {
+const CardMedia: React.FC<PropsType> = ({ data = null, handleFavoriteClick, isFavoriteMovie, path }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState<boolean>(false);

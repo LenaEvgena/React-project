@@ -1,12 +1,12 @@
 import React from 'react'
 import MovieDetailsContainer from '../components/movieDetails/MovieDetailsContainer';
-import MovieContainer from '../components/main/movieContainer/MovieContainer';
+import Main from '../components/main/Main';
 
 const HomeDetailsPage: React.FC = () => {
   return (
     <>
       <MovieDetailsContainer />
-      <MovieContainer />
+      <Main />
     </>
   )
 }

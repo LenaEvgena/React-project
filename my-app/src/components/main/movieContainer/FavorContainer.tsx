@@ -7,16 +7,14 @@ const FavorContainer: React.FC = () => {
   const { loading } = useCollection();
   const { isFetchedError, favoriteList } = useTypedSelector((state) => state);
   let count: number = favoriteList?.length;
-  let mountedRef = useRef(true);
+  let mountedRef = useRef(false);
 
   useEffect(() => {
     mountedRef.current = true;
-    console.log('favor mounted');
     return () => {
-      console.log('favor unmounted');
       mountedRef.current = false;
     }
-  }, [mountedRef]);
+  });
 
   return (
     <MovieList
@@ -25,7 +23,8 @@ const FavorContainer: React.FC = () => {
       isFetching={loading}
       isFetchedError={isFetchedError}
       favoriteList={favoriteList}
-      refer={mountedRef.current} />
+      refer={mountedRef.current}
+    />
   );
 }
 

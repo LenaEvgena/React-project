@@ -1,34 +1,26 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useRef } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { getMoviesAPI } from '../../../redux/asyncActionsThunks';
+import { ItemType } from '../../../types/types';
 import Pages from '../../common/pages/Pages';
 import MovieList, { Types } from '../movieList/MovieList';
 
-const MovieContainer: React.FC = () => {
-  const dispatch = useDispatch();
-  const movies = useTypedSelector((state) => state.movies.items);
-  const { keyword, filter, total, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
-  let mountedRef: React.MutableRefObject<boolean> = useRef(true);
+type PropsType = {
+  movies: ItemType[],
+}
 
-  const fetchMovie = useCallback(
-    () => {
-      dispatch(getMoviesAPI(mountedRef.current, currentPage, sortType, filter, keyword))
-    }, [dispatch, currentPage, filter, sortType, keyword]);
+const MovieContainer: React.FC<PropsType> = ({ movies }) => {
+  const { total, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
+  let mountedRef = useRef(false);
 
   useEffect(() => {
-    console.log('movie mounted');
-
     mountedRef.current = true;
-    window.scroll(0, 0);
-    fetchMovie();
     return () => {
-      console.log('movie unmounted');
       mountedRef.current = false;
     }
-  }, [fetchMovie, mountedRef]);
+  });
 
   return (
+    // <h1></h1>
     <MovieList
       type={Types.ItemType}
       movies={movies}
@@ -38,7 +30,8 @@ const MovieContainer: React.FC = () => {
       isFetching={isFetching}
       isFetchedError={isFetchedError}
       favoriteList={favoriteList}
-      refer={mountedRef.current}>
+      refer={mountedRef.current}
+    >
       <Pages />
     </MovieList>
   )
