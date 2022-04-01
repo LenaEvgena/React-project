@@ -1,12 +1,12 @@
 import React from 'react'
-import Main from '../components/main/Main';
+import MovieContainer from '../components/main/movieContainer/MovieContainer';
 import MoviesHeader from '../components/moviesHeader/MoviesHeader';
 
 const HomePage: React.FC = () => {
   return (
     <>
       <MoviesHeader />
-      <Main />
+      <MovieContainer />
     </>
   )
 }

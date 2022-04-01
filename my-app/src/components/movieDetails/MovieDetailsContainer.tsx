@@ -22,6 +22,7 @@ const MovieDetailsContainer: React.FC = () => {
   const { id } = useParams<ParamsIdType>();
   let pathTo = isFavorListOpen ? `/favorite` : `/`;
 
+  //выбираем youtube как источник видео
   const getVideo = (arr: Array<VideoItemType>): VideoItemType => {
     let item = arr.find(v => v.site === 'YOUTUBE');
     return item as VideoItemType;
@@ -32,7 +33,8 @@ const MovieDetailsContainer: React.FC = () => {
     , [videos]
   );
 
-  const isFavorite = useCallback(
+  //проверяем, есть ли такой в избранных
+  const isFavorite = useCallback( //
     (id: number) => {
       return favoriteList?.some((item) => item.films?.kinopoiskId === id);
     }, [favoriteList]
@@ -63,6 +65,7 @@ const MovieDetailsContainer: React.FC = () => {
     }
   }
 
+  //получаем инфо и видео выбранного фильма
   const getVideoInfo = useCallback(
     () => {
       dispatch(fetchMovieById(id || ''));
