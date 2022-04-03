@@ -1,0 +1,47 @@
+@import "./../../../constants.scss";
+
+.main {
+  position: relative;
+  width: 100%;
+  background-color: $color-dark;
+}
+
+.movie__container {
+  width: 100%;
+  letter-spacing: 1px;
+  padding: 0 6rem 7rem;
+}
+
+.result {
+  padding: 2.5rem 0;
+  font-weight: 200;
+
+  &__count {
+    font-weight: 600;
+  }
+}
+
+.noresult {
+  padding-top: 10rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4rem;
+  justify-self: center;
+  align-self: center;
+
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  @media only screen and (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (max-width: 330px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

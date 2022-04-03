@@ -1,0 +1,24 @@
+@import "./../../../constants.scss";
+
+.logo__button {
+  position: relative;
+}
+
+[data-toolt]::after {
+  content: attr(data-toolt); /* Выводим текст */
+  position: absolute;
+  right: -1.4rem;
+  top: -1.4rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-primary;
+  color: $color-light;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.85;
+}
