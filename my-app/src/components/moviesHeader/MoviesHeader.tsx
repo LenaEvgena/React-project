@@ -14,7 +14,7 @@ const MoviesHeader: React.FC = () => {
   const navigate = useNavigate();
   const user = useAuth();
   const { isFavorListOpen, favoriteList } = useTypedSelector(state => state)
-  let text = !isFavorListOpen ? 'Show favorites' : 'Close favorites';
+  const text = !isFavorListOpen ? 'Show favorites' : 'Close favorites';
 
   const handleOpenClick = (): void => {
     if (!user) return;
