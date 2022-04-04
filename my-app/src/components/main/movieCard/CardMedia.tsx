@@ -41,6 +41,10 @@ const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteM
     handleFavoriteClick(data?.kinopoiskId as number);
   }
 
+  const handleDeleteClick = (): void => {
+    dispatch(openDeleteMovieForm(data?.kinopoiskId as number));
+  }
+
   useEffect(() => {
     document.addEventListener('click', handleCloseOptions);
     return () => {
@@ -57,10 +61,10 @@ const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteM
         <div className="dots" onClick={handleOptions}></div> :
         <div className="options__modal">
           <div className="options-close" onClick={handleOptions}>x</div>
-          <div className="options-edit" onClick={() => handleFavoriteClick(data?.kinopoiskId as number)}>
+          <div className="options-edit" onClick={handleFavorite}>
             {!isFavoriteMovie ? 'Add to favorites' : 'Remove from favorites'}
           </div>
-          <div className="options-delete" onClick={() => dispatch(openDeleteMovieForm(data?.kinopoiskId as number))}>Delete</div>
+          <div className="options-delete" onClick={handleDeleteClick}>Delete</div>
         </div>}
     </div>
 

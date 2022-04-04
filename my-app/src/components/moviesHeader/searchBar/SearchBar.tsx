@@ -36,7 +36,7 @@ const SearchBar: React.FC<PropsType> = ({ isBusy, handleClick, handleResetClick 
         {({ isSubmitting }) => (
           <Form className="search__form">
             <Field className="search__field" type="text" placeholder="What do you want to watch? Enter a keyword..." name="word" />
-            <Button className='search__button search__button-reset' type='reset' handleClick={() => handleResetClick()} />
+            <Button className='search__button search__button-reset' type='reset' handleClick={handleResetClick} />
             <Button className={cls} type='submit' text='Search' />
           </Form>
         )}

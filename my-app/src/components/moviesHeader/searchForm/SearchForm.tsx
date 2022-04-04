@@ -23,7 +23,7 @@ const SearchForm: React.FC = () => {
         dispatch(setMoviesKeyword(keyword));
         dispatch(filterGenreMoviesAsync('all'));
       }
-    }, [dispatch, isFavorListOpen, navigate])
+    }, [isFavorListOpen, navigate])
 
   const handleResetClick = useCallback(
     (): void => {
@@ -31,14 +31,14 @@ const SearchForm: React.FC = () => {
       dispatch(setCurrentPage(1));
       dispatch(setMoviesKeyword(''));
       dispatch(filterGenreMoviesAsync('all'));
-    }, [dispatch, keyword])
+    }, [keyword])
 
   return (
     <div className="header__search">
       <div className="search__text">
         <h1>Find your movie</h1>
       </div>
-      <SearchBar isBusy={isFetching} handleClick={(keyword: string) => handleClick(keyword)} handleResetClick={handleResetClick} />
+      <SearchBar isBusy={isFetching} handleClick={handleClick} handleResetClick={handleResetClick} />
     </div>
   )
 };

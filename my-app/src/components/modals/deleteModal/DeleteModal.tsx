@@ -30,12 +30,16 @@ const DeleteModal: React.FC = () => {
     }
   }
 
+  const handleCloseClick = (): void => {
+    dispatch(closeDeleteMovieForm())
+  }
+
   return (
     <div className="delete__modal">
       <div className="modal__wrapper" onClick={handleOutsideClick}>
         <LogoTitle />
         <div className="modal" ref={modalRef}>
-          <div className="modal-close" onClick={() => dispatch(closeDeleteMovieForm())}></div>
+          <div className="modal-close" onClick={handleCloseClick}></div>
           <div className="modal__content">
             <h2 className="modal__title">Delete movie</h2>
             <p className="modal__subtitle">Are you sure you want to delete this movie?</p>
