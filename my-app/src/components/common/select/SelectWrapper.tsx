@@ -39,7 +39,7 @@ const SelectWrapper: React.FC = () => {
     return () => {
       document.removeEventListener('click', handleCloseOptions);
     }
-  });
+  }, []);
 
   return (
     <Select selectOptions={selectOptions} sortType={sortType} />
