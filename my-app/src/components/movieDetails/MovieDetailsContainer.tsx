@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { removeSelectedMovie, toggleMovieDetailsForm, removeVideoList } from '../../redux/actions';
 import { fetchMovieById, fetchVideoById } from '../../redux/asyncActionsThunks';
-import { ItemType, VideoItemType } from '../../types/types';
+import { MovieItemType, VideoItemType } from '../../types/types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { deleteFavor, sendFavor } from '../../firebase';
 import useAuth from '../../hooks/useAuth';
@@ -24,30 +24,20 @@ const MovieDetailsContainer: React.FC = () => {
 
   //выбираем youtube как источник видео
   const getVideo = (arr: Array<VideoItemType>): VideoItemType => {
-    let item = arr.find(v => v.site === 'YOUTUBE');
+    const item = arr.find(v => v.site === 'YOUTUBE');
     return item as VideoItemType;
   }
 
-  const itemVideo = useMemo(
-    () => getVideo(videos)
-    , [videos]
-  );
+  const itemVideo = getVideo(videos);
 
   //проверяем, есть ли такой в избранных
-  const isFavorite = useCallback( //
-    (id: number) => {
-      return favoriteList?.some((item) => item.films?.kinopoiskId === id);
-    }, [favoriteList]
-  );
-
   const isInFavorites = useMemo(
-    () => isFavorite(selectedByIdMovie?.kinopoiskId as number)
-    , [isFavorite, selectedByIdMovie]
-  );
+    () => favoriteList?.some((item) => item.films?.kinopoiskId === selectedByIdMovie?.kinopoiskId)
+    , [favoriteList, selectedByIdMovie?.kinopoiskId]);
 
   const handleClick = (): void => {
     window.scroll(0, 0);
-    setShowVideoModal(!showVideoModal);
+    setShowVideoModal(prevShowVideoModal => !prevShowVideoModal);
   };
 
   const handleCloseClick = (): void => {
@@ -57,7 +47,7 @@ const MovieDetailsContainer: React.FC = () => {
   };
 
   const handleFavoriteClick = (id: number): void => {
-    if (isFavorite(id)) {
+    if (isInFavorites) {
       deleteFavor(id, user);
     }
     else {
@@ -71,25 +61,25 @@ const MovieDetailsContainer: React.FC = () => {
       dispatch(fetchMovieById(id || ''));
       dispatch(fetchVideoById(id || ''));
     },
-    [dispatch, id]
+    [id]
   );
 
   useEffect(() => {
     window.scroll(0, 0);
     dispatch(toggleMovieDetailsForm(true));
     getVideoInfo();
-  }, [dispatch, getVideoInfo]);
+  }, [getVideoInfo]);
 
   return (
     <MovieDetails
       showVideoModal={showVideoModal}
-      selectedByIdMovie={selectedByIdMovie as ItemType}
+      selectedByIdMovie={selectedByIdMovie as MovieItemType}
       itemVideo={itemVideo}
       pathTo={pathTo}
       isInFavorites={isInFavorites}
       handleClick={handleClick}
       handleCloseClick={handleCloseClick}
-      handleFavoriteClick={(id: number) => handleFavoriteClick(id)} />
+      handleFavoriteClick={handleFavoriteClick} />
   );
 }
 

@@ -21,17 +21,16 @@ const HeaderContainer: React.FC = () => {
 
   useEffect(() => {
     getUser();
-    return () => {
-    }
   }, [getUser]);
 
   const handleLogout = async () => {
-    signOut(auth).then(() => {
+    try {
+      await signOut(auth);
       dispatch(toggleFavoriteList(false));
       dispatch(setFavoriteMovieList([]));
-    }).catch((error) => {
+    } catch (error) {
       console.log(error);
-    });
+    }
   }
 
   return (

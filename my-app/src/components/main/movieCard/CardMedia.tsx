@@ -37,6 +37,10 @@ const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteM
     setShowOptions(false);
   }
 
+  const handleFavorite = (): void => {
+    handleFavoriteClick(data?.kinopoiskId as number);
+  }
+
   useEffect(() => {
     document.addEventListener('click', handleCloseOptions);
     return () => {
@@ -46,13 +50,13 @@ const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteM
 
   return (
     <div className="movie__image">
-      <i className={cls} data-tool={!user ? text : null} onClick={() => handleFavoriteClick(data?.kinopoiskId as number)}></i>
+      <i className={cls} data-tool={!user ? text : null} onClick={handleFavorite}></i>
       <img className="movie__card" src={data?.posterUrl || data?.posterUrlPreview} alt={data?.nameOriginal || data?.nameRu as string} onClick={handleClick} />
 
       {!showOptions ?
         <div className="dots" onClick={handleOptions}></div> :
         <div className="options__modal">
-          <div className="options-close" onClick={handleOptions} >x</div>
+          <div className="options-close" onClick={handleOptions}>x</div>
           <div className="options-edit" onClick={() => handleFavoriteClick(data?.kinopoiskId as number)}>
             {!isFavoriteMovie ? 'Add to favorites' : 'Remove from favorites'}
           </div>
