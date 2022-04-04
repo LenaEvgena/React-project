@@ -1,27 +1,16 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ItemType } from '../../../types/types';
+import { MovieItemType } from '../../../types/types';
 import './MovieCard.scss';
 
 type PropsType = {
-  data: ItemType,
+  data: MovieItemType,
   path: string,
 }
 
 const CardContent: React.FC<PropsType> = ({ data, path }) => {
-  let genresList: Array<string> = useMemo(() => [], []);
-  let countriesList: Array<string> = useMemo(() => [], []);
-
-  const getInfo = useCallback(
-    () => {
-      data.genres?.map((g) => genresList.push(g.genre));
-      data.countries?.map((c) => countriesList.push(c.country));
-    }, [])
-
-  useEffect(() => {
-    getInfo();
-  }, [getInfo])
-
+  const genresList: Array<string> = useMemo(() => data.genres?.map((g) => g.genre) ?? [], [data]);
+  const countriesList: Array<string> = useMemo(() => data.countries?.map((c) => c.country) ?? [], [data]);
 
   return (
     <div className="movie__description">
