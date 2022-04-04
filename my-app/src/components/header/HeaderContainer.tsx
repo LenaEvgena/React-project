@@ -17,7 +17,7 @@ const HeaderContainer: React.FC = () => {
     if (user && favorites) {
       dispatch(setFavoriteMovieList(favorites as Array<FavoriteMoviesType>));
     }
-  }, [user, favorites])
+  }, [user, favorites, dispatch])
 
   useEffect(() => {
     getUser();

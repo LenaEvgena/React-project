@@ -61,14 +61,14 @@ const MovieDetailsContainer: React.FC = () => {
       dispatch(fetchMovieById(id || ''));
       dispatch(fetchVideoById(id || ''));
     },
-    [id]
+    [id, dispatch]
   );
 
   useEffect(() => {
     window.scroll(0, 0);
     dispatch(toggleMovieDetailsForm(true));
     getVideoInfo();
-  }, [getVideoInfo]);
+  }, [getVideoInfo, dispatch]);
 
   return (
     <MovieDetails
