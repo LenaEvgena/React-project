@@ -4,13 +4,13 @@ import Background from '../common/background/Background';
 import VideoModal from '../modals/videoModal/VideoModal';
 import DetailsMedia from './DetailsMedia';
 import DetailsContent from './DetailsContent';
-import { ItemType, VideoItemType } from '../../types/types';
+import { MovieItemType, VideoItemType } from '../../types/types';
 import './MovieDetails.scss';
 
 type PropsType = {
   showVideoModal: boolean,
   isInFavorites: boolean,
-  selectedByIdMovie: ItemType,
+  selectedByIdMovie: MovieItemType,
   itemVideo: VideoItemType,
   pathTo: string,
   handleClick: () => void,

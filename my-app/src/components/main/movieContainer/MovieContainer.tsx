@@ -1,28 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { ItemType } from '../../../types/types';
+import { MovieItemType } from '../../../types/types';
 import Pages from '../../common/pages/Pages';
 import MovieList, { Types } from '../movieList/MovieList';
 
 type PropsType = {
-  movies: ItemType[],
+  movies: MovieItemType[],
 }
 
 const MovieContainer: React.FC<PropsType> = ({ movies }) => {
   const { total, currentPage, sortType, isFetching, isFetchedError, favoriteList } = useTypedSelector((state) => state);
-  let mountedRef = useRef(false);
-
-  useEffect(() => {
-    mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    }
-  });
 
   return (
-    // <h1></h1>
     <MovieList
-      type={Types.ItemType}
+      type={Types.MovieItemType}
       movies={movies}
       total={total}
       currentPage={currentPage}
@@ -30,7 +21,6 @@ const MovieContainer: React.FC<PropsType> = ({ movies }) => {
       isFetching={isFetching}
       isFetchedError={isFetchedError}
       favoriteList={favoriteList}
-      refer={mountedRef.current}
     >
       <Pages />
     </MovieList>

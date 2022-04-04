@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import ReactPlayer from 'react-player';
-import { ItemType, VideoItemType } from '../../../types/types';
+import { MovieItemType, VideoItemType } from '../../../types/types';
 import Button from '../../common/button/Button';
 import Footer from '../../common/footer/Footer';
 import LogoTitle from '../../common/logoTitle/LogoTitle';
 import './VideoModal.scss';
 
 type PropsType = {
-  movie: ItemType,
+  movie: MovieItemType,
   video: VideoItemType,
   handleVideoModal: () => void;
 }

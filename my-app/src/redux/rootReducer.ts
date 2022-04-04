@@ -1,4 +1,4 @@
-import { ActionType, ActionTypes, InitialStateType, ItemType } from '../types/types';
+import { ActionType, ActionTypes, InitialStateType, MovieItemType } from '../types/types';
 
 const initialState: InitialStateType = {
   movies: {
@@ -99,7 +99,7 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
       copy.total = state.total - 1;
       copy.totalPages = state.totalPages - 1;
       copy.movies = { ...state.movies };
-      copy.movies.items = [...state.movies.items.filter((item: ItemType) => item.kinopoiskId !== action.id)];
+      copy.movies.items = [...state.movies.items.filter((item: MovieItemType) => item.kinopoiskId !== action.id)];
       return copy;
     case ActionTypes.SET_FAVORITE_MOVIE_LIST:
       return {

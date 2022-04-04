@@ -1,6 +1,6 @@
 import {
   ActionTypes,
-  CloseDeleteMovieFormType, ToggleMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, ItemType,
+  CloseDeleteMovieFormType, ToggleMovieDetailsFormType, DeleteMovieByIdType, FilterGenreMoviesAsyncType, MovieItemType,
   MoviesType, OpenDeleteMovieFormType, RemoveSelectedMovieType, RemoveVideoListType, SetCurrentPageType,
   SetFetchedErrorType, SetIsFetchingType, SetMovieByIDType, SetMoviesKeywordType, SetMovieType, SetVideoListType,
   SortMoviesAsyncType, ToggleFavoriteListType, VideoItemType, SetFavoriteMovieListType, FavoriteMoviesType
@@ -18,7 +18,7 @@ export const setCurrentPage = (page: number): SetCurrentPageType => ({
   currentPage: page,
 })
 
-export const setMovieByID = (movie: ItemType): SetMovieByIDType => ({
+export const setMovieByID = (movie: MovieItemType): SetMovieByIDType => ({
   type: ActionTypes.SET_MOVIE_BY_ID,
   movie,
 });

@@ -6,31 +6,30 @@ import MovieCard from '../movieCard/MovieCard';
 import Loader from '../../common/loader/Loader';
 import SortResultsHeader from '../resultsHeader/ResultsHeader';
 import ErrorBoundary from '../../common/errorBoundary/ErrorBoundary';
-import { ItemType, FavoriteMoviesType } from '../../../types/types';
+import { MovieItemType, FavoriteMoviesType } from '../../../types/types';
 import './MovieList.scss';
 
 export enum Types {
-  ItemType = 0,
+  MovieItemType = 0,
   FavoriteMoviesType = 1,
 }
 
 type PropsType = {
   type: Types,
-  movies?: ItemType[],
+  movies?: MovieItemType[],
   total: number,
   currentPage?: number,
   sortType?: string,
   isFetching: boolean,
   isFetchedError: boolean,
   favoriteList: FavoriteMoviesType[],
-  refer: boolean
 }
 
-const MovieList: React.FC<PropsType> = ({ refer, type, movies, total, currentPage, sortType, isFetching, isFetchedError, favoriteList, children }) => {
+const MovieList: React.FC<PropsType> = ({ type, movies, total, currentPage, sortType, isFetching, isFetchedError, favoriteList, children }) => {
   const dispatch = useDispatch();
 
   if (isFetchedError) {
-    return <ErrorPage handleClick={() => dispatch(getMoviesAPI(refer, currentPage || 1, sortType))} text='Try again' />;
+    return <ErrorPage handleClick={() => dispatch(getMoviesAPI(currentPage || 1, sortType))} text='Try again' />;
   }
 
   return (
@@ -55,7 +54,7 @@ const MovieList: React.FC<PropsType> = ({ refer, type, movies, total, currentPag
               {isFetching ?
                 <Loader /> :
                 <div className="container">
-                  {type === Types.ItemType ?
+                  {type === Types.MovieItemType ?
                     movies!.map(movie => (
                       <MovieCard
                         favoriteList={favoriteList}

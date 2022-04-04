@@ -15,7 +15,7 @@ type SchemaType = {
   word: string,
 }
 
-let schema = Yup.string();
+const schema = Yup.string();
 
 const SearchBar: React.FC<PropsType> = ({ isBusy, handleClick, handleResetClick }) => {
   let cls = classNames('search__button', { 'busy': isBusy });

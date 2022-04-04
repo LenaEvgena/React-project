@@ -15,7 +15,7 @@ const SelectWrapper: React.FC = () => {
 
   const handleOpenOptions = (e: React.MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
-    setShowOptions(!showOptions);
+    setShowOptions(prev => !prev);
   }
 
   const handleCloseOptions = (): void => {

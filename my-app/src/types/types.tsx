@@ -35,7 +35,7 @@ export type GenreType = {
   genre: string
 }
 
-export type ItemType = {
+export type MovieItemType = {
   kinopoiskId: number | null,
   nameRu?: string | null,
   nameOriginal?: string | null,
@@ -59,13 +59,13 @@ export type VideoItemType = {
 }
 
 export type MoviesType = {
-  items: Array<ItemType>,
+  items: Array<MovieItemType>,
   total: number,
   totalPages: number,
 }
 
 export type FavoriteMoviesType = {
-  films: ItemType
+  films: MovieItemType
 }
 
 export type InitialStateType = {
@@ -81,7 +81,7 @@ export type InitialStateType = {
   sortType: string,
   keyword: string,
   isDetailsFormOpen: boolean,
-  selectedByIdMovie: ItemType | null,
+  selectedByIdMovie: MovieItemType | null,
   isFavorListOpen: boolean,
   videos: Array<VideoItemType>,
   favoriteList: Array<FavoriteMoviesType>,
@@ -101,7 +101,7 @@ export type SetCurrentPageType = {
 
 export type SetMovieByIDType = {
   type: ActionTypes.SET_MOVIE_BY_ID,
-  movie: ItemType,
+  movie: MovieItemType,
 }
 
 export type ToggleMovieDetailsFormType = {

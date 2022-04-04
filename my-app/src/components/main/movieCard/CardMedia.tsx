@@ -2,25 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import { ItemType } from '../../../types/types';
+import { MovieItemType } from '../../../types/types';
 import { openDeleteMovieForm } from '../../../redux/actions';
 import useAuth from '../../../hooks/useAuth';
 import './MovieCard.scss';
 
 type PropsType = {
-  data: ItemType | null,
+  data: MovieItemType | null,
   path: string,
   isFavoriteMovie: boolean,
   handleFavoriteClick: (movie: number) => void
 }
 
-const CardMedia: React.FC<PropsType> = ({ data = null, handleFavoriteClick, isFavoriteMovie, path }) => {
+const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteMovie, path }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const user = useAuth();
-  let text = 'Please, register or log in';
-  let cls = classNames('movie_icon-fav', { 'active': isFavoriteMovie });
+  const text = 'Please, register or log in';
+  const cls = classNames('movie_icon-fav', { 'active': isFavoriteMovie });
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     navigate(path);
@@ -42,7 +42,7 @@ const CardMedia: React.FC<PropsType> = ({ data = null, handleFavoriteClick, isFa
     return () => {
       document.removeEventListener('click', handleCloseOptions);
     }
-  });
+  }, []);
 
   return (
     <div className="movie__image">
