@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/React-project/static/css/main.b47a843c.css",
-    "main.js": "/React-project/static/js/main.a3613345.js",
+    "main.js": "/React-project/static/js/main.f8017af1.js",
     "static/js/787.28cb0dcd.chunk.js": "/React-project/static/js/787.28cb0dcd.chunk.js",
     "static/media/heartPink.png": "/React-project/static/media/heartPink.c0199e05aed330c83ad5.png",
     "static/media/poster.jpeg": "/React-project/static/media/poster.c3e0187c6d7b655d8864.jpeg",
@@ -11,11 +11,11 @@
     "static/media/cross.svg": "/React-project/static/media/cross.1a97d25e305a103c5955.svg",
     "static/media/searchButton.svg": "/React-project/static/media/searchButton.1fd03e6d560610f3fecd.svg",
     "main.b47a843c.css.map": "/React-project/static/css/main.b47a843c.css.map",
-    "main.a3613345.js.map": "/React-project/static/js/main.a3613345.js.map",
+    "main.f8017af1.js.map": "/React-project/static/js/main.f8017af1.js.map",
     "787.28cb0dcd.chunk.js.map": "/React-project/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b47a843c.css",
-    "static/js/main.a3613345.js"
+    "static/js/main.f8017af1.js"
   ]
 }
