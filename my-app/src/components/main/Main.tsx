@@ -12,7 +12,7 @@ const Main = () => {
   useEffect(() => {
     window.scroll(0, 0);
     dispatch(getMoviesAPI(currentPage, sortType, filter, keyword));
-  }, [currentPage, sortType, filter, keyword]);
+  }, [currentPage, sortType, filter, keyword, dispatch]);
 
   return (
     <MovieContainer movies={movies} />

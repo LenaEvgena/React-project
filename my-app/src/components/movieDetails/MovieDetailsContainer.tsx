@@ -23,12 +23,10 @@ const MovieDetailsContainer: React.FC = () => {
   let pathTo = isFavorListOpen ? `/favorite` : `/`;
 
   //выбираем youtube как источник видео
-  const getVideo = (arr: Array<VideoItemType>): VideoItemType => {
-    const item = arr.find(v => v.site === 'YOUTUBE');
+  const itemVideo = useMemo(() => {
+    const item = videos.find(v => v.site === 'YOUTUBE');
     return item as VideoItemType;
-  }
-
-  const itemVideo = getVideo(videos);
+  }, [videos])
 
   //проверяем, есть ли такой в избранных
   const isInFavorites = useMemo(
