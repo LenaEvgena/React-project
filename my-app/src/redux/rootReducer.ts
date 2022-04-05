@@ -33,7 +33,6 @@ export const rootReducer = (state = initialState, action: ActionType): InitialSt
         movies: action.movies,
         total: action.total,
         totalPages: action.totalPages,
-        isFetchedError: false,
       }
     case ActionTypes.SET_CURRENT_PAGE:
       return {
