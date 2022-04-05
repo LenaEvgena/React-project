@@ -17,7 +17,9 @@ const DetailsMedia: React.FC<PropsType> = ({ itemVideo, handleClick, handleFavor
   const cls = classNames('movie_icon-fav', { 'active': isInFavorites });
 
   const handleFavorite = () => {
-    handleFavoriteClick(selectedByIdMovie?.kinopoiskId as number);
+    if (selectedByIdMovie) {
+      handleFavoriteClick(selectedByIdMovie.kinopoiskId as number);
+    }
   }
 
   return (

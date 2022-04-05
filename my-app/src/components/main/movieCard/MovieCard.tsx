@@ -19,7 +19,7 @@ const MovieCard: React.FC<PropsType> = ({ data, favoriteList }) => {
   const path = isFavorListOpen ? `/favorite/movie/${data.kinopoiskId}` : `/movie/${data.kinopoiskId}`;
 
   const isInFavorites = useMemo(
-    () => favoriteList?.some((item) => item.films?.kinopoiskId === data.kinopoiskId)
+    () => favoriteList.some((item) => item.films.kinopoiskId === data.kinopoiskId)
     , [favoriteList, data.kinopoiskId]);
 
   const handleFavoriteClick = (id: number): void => {

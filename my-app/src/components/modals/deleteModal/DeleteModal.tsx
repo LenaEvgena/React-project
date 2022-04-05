@@ -17,7 +17,7 @@ const DeleteModal: React.FC = () => {
   const user = useAuth();
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>): void => {
-    if (modalRef.current?.contains(e.target as Element)) {
+    if (modalRef.current && modalRef.current.contains(e.target as Element)) {
       return;
     }
     dispatch(closeDeleteMovieForm());

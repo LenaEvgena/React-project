@@ -6,7 +6,7 @@ import MovieList, { Types } from '../movieList/MovieList';
 const FavorContainer: React.FC = () => {
   const { loading } = useCollection();
   const { isFetchedError, favoriteList } = useTypedSelector((state) => state);
-  const count: number = favoriteList?.length;
+  const count: number = favoriteList.length;
 
   return (
     <MovieList

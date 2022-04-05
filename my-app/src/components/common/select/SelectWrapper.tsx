@@ -24,12 +24,16 @@ const SelectWrapper: React.FC = () => {
 
   const handleRatingOption = (): void => {
     dispatch(setCurrentPage(1));
-    dispatch(sortMoviesAsync(ratingRef.current?.dataset.value || ''));
+    if (ratingRef.current) {
+      dispatch(sortMoviesAsync(ratingRef.current.dataset.value || ''));
+    }
   }
 
   const handleYearOption = (): void => {
     dispatch(setCurrentPage(1));
-    dispatch(sortMoviesAsync(yearRef.current?.dataset.value || ''));
+    if (yearRef.current) {
+      dispatch(sortMoviesAsync(yearRef.current.dataset.value || ''));
+    }
   }
 
   const selectOptions = getSelectOptions(showOptions, isFetching, handleOpenOptions, handleRatingOption, handleYearOption, ratingRef, yearRef);

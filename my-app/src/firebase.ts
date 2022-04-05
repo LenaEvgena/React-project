@@ -18,11 +18,11 @@ export const firestore = getFirestore(firebase);
 
 export const sendFavor = async (id: number, user: UserImplType, data: MovieItemType | null) => {
   if (!user) return;
-  await setDoc(doc(firestore, user?.uid, `${id}`), {
+  await setDoc(doc(firestore, user.uid, `${id}`), {
     films: data
   })
 }
 
 export const deleteFavor = async (id: number, user: UserImplType) => {
-  await deleteDoc(doc(firestore, user?.uid, `${id}`))
+  await deleteDoc(doc(firestore, user.uid, `${id}`))
 }

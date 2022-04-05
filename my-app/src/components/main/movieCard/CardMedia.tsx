@@ -38,11 +38,15 @@ const CardMedia: React.FC<PropsType> = ({ data, handleFavoriteClick, isFavoriteM
   }
 
   const handleFavorite = (): void => {
-    handleFavoriteClick(data?.kinopoiskId as number);
+    if (data) {
+      handleFavoriteClick(data.kinopoiskId as number);
+    }
   }
 
   const handleDeleteClick = (): void => {
-    dispatch(openDeleteMovieForm(data?.kinopoiskId as number));
+    if (data) {
+      dispatch(openDeleteMovieForm(data.kinopoiskId as number));
+    }
   }
 
   useEffect(() => {

@@ -30,7 +30,7 @@ const MovieDetailsContainer: React.FC = () => {
 
   //проверяем, есть ли такой в избранных
   const isInFavorites = useMemo(
-    () => favoriteList?.some((item) => item.films?.kinopoiskId === selectedByIdMovie?.kinopoiskId)
+    () => favoriteList.some((item) => item.films.kinopoiskId === selectedByIdMovie?.kinopoiskId)
     , [favoriteList, selectedByIdMovie?.kinopoiskId]);
 
   const handleClick = (): void => {
