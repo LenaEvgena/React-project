@@ -20,7 +20,7 @@ const validationSchema: Yup.SchemaOf<SchemaType> = Yup.object({
     .email()
     .required('This field is required'),
   password: Yup.string()
-    .min(4, 'Must be longer than 4 characters')
+    .min(6, 'Must be longer than 6 characters')
     .required('This field is required'),
 });
 
